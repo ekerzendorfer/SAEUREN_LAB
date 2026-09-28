@@ -17,7 +17,7 @@ header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdro
 .brand h1{font-size:1.25rem;margin:0}.brand p{margin:2px 0 0;color:var(--muted);font-size:.9rem}
 .header-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.version{font-size:.78rem;color:var(--muted);padding:4px 8px;border:1px solid var(--line);border-radius:999px}
 .btn{border:1px solid var(--line);background:#fff;color:var(--ink);padding:9px 13px;border-radius:10px;font-weight:650}.btn:hover{border-color:#9fb3d8}.btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}.btn.soft{background:var(--accent2);border-color:#c7d5f3;color:#173b86}.btn.good{background:#e8f6ef;border-color:#b5dfc8;color:var(--good)}.btn:disabled{opacity:.45;cursor:not-allowed}
-main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}.step{background:#fff;border:1px solid var(--line);padding:10px 12px;border-radius:12px;color:var(--muted);font-size:.88rem}.step.active{border-color:var(--accent);box-shadow:0 0 0 2px rgba(36,87,197,.08);color:var(--accent);font-weight:750}.step.done{background:#f1f8f4;color:var(--good);border-color:#cbe7d7}.step.unlocked{cursor:pointer}.step.unlocked:hover{border-color:#9fb3d8}.step.locked{opacity:.6}
+main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:16px}.step{background:#fff;border:1px solid var(--line);padding:10px 12px;border-radius:12px;color:var(--muted);font-size:.88rem}.step.active{border-color:var(--accent);box-shadow:0 0 0 2px rgba(36,87,197,.08);color:var(--accent);font-weight:750}.step.done{background:#f1f8f4;color:var(--good);border-color:#cbe7d7}.step.unlocked{cursor:pointer}.step.unlocked:hover{border-color:#9fb3d8}.step.locked{opacity:.6}
 .phase{display:none}.phase.active{display:block}.grid3{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:14px}.grid2{display:grid;grid-template-columns:1.2fr .8fr;gap:14px}.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}.card h2,.card h3{margin-top:0}.subtle{color:var(--muted);font-size:.94rem}.callout{padding:12px 14px;border-radius:12px;background:#f7f9fd;border:1px solid var(--line);margin:10px 0}.question{margin:15px 0;padding-top:12px;border-top:1px dashed var(--line)}.question:first-child{border-top:none;padding-top:0}.feedback{margin-top:8px;padding:10px 12px;border-radius:10px;background:#f7f9fc;border:1px solid var(--line);display:none}.feedback.show{display:block}.feedback.good{background:#eef9f3;border-color:#bfe5cf;color:#0f5c3b}.feedback.hint{background:#fff7ea;border-color:#ead3a7;color:#7c4d00}.feedback.bad{background:#fff1f1;border-color:#efc5c5;color:#8f2828}
 .sample-stage{min-height:230px;display:flex;align-items:center;justify-content:center;gap:28px;position:relative}.bottle{width:110px;height:165px;border:3px solid #96a5b7;border-radius:16px 16px 24px 24px;position:relative;background:linear-gradient(#fff 0 35%,#f4f0d5 35% 100%)}.bottle:before{content:"";position:absolute;width:52px;height:36px;left:26px;top:-35px;border:3px solid #96a5b7;border-bottom:none;border-radius:7px 7px 0 0;background:#fff}.label{position:absolute;left:10px;right:10px;top:62px;background:#fff;border:1px solid #c6cdd8;border-radius:8px;padding:9px;text-align:center;font-weight:700;font-size:.88rem}.beaker{width:110px;height:130px;border:3px solid #96a5b7;border-top:none;border-radius:0 0 18px 18px;position:relative;background:linear-gradient(to top,#edf3ff 0 58%,transparent 58%)}.beaker:before{content:"";position:absolute;top:0;left:-3px;right:-3px;border-top:3px solid #96a5b7}.beaker span{position:absolute;bottom:14px;left:0;right:0;text-align:center;color:#546277;font-size:.82rem}
 .indicator-wrap{display:flex;gap:14px;align-items:center}.strip{width:38px;height:150px;border:1px solid #aaa;border-radius:4px;background:#eee;position:relative}.strip.wet:after{content:"";position:absolute;left:0;right:0;bottom:0;height:48%;background:#e26b50;border-radius:0 0 3px 3px}.ph-scale{display:grid;grid-template-columns:repeat(9,1fr);gap:2px;margin-top:12px}.ph-chip{height:28px;border-radius:5px;color:#fff;font-size:.68rem;display:flex;align-items:center;justify-content:center;text-shadow:0 1px 2px #0007}.ph20{background:#c94338}.ph25{background:#d6523e}.ph30{background:#e16442}.ph35{background:#ea7844}.ph40{background:#ef8f46}.ph45{background:#e9a349}.ph50{background:#d9b44e}.ph55{background:#bdba52}.ph60{background:#9dbb58}.meter{display:flex;align-items:center;gap:14px}.electrode{width:28px;height:155px;border-radius:14px;background:linear-gradient(#dbe2ea,#8b99aa);position:relative}.electrode:after{content:"";position:absolute;bottom:-6px;left:6px;width:16px;height:22px;border-radius:0 0 8px 8px;background:#46596f}.digital{font-variant-numeric:tabular-nums;font-size:2rem;font-weight:800;border:2px solid #a7b6c8;background:#172033;color:#8ef0ba;padding:12px 16px;border-radius:10px;min-width:138px;text-align:center}
@@ -28,6 +28,16 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
 .measurement{display:grid;grid-template-columns:1fr 1fr;gap:14px}.chart-card{min-height:420px}.chart-title{display:flex;justify-content:space-between;align-items:center;gap:10px}.chartbox{width:100%;overflow:auto}.chartbox svg{width:100%;min-width:580px;height:auto;display:block}.table-wrap{max-height:320px;overflow:auto;border:1px solid var(--line);border-radius:10px}table{border-collapse:collapse;width:100%;font-size:.9rem}th,td{padding:8px 9px;border-bottom:1px solid #e6ebf2;text-align:right}th:first-child,td:first-child{text-align:center}th{position:sticky;top:0;background:#f7f9fc;z-index:1}
 .phase-nav{display:flex;justify-content:space-between;gap:10px;margin-top:16px}.protocol-panel{position:fixed;top:0;right:-520px;width:min(520px,94vw);height:100vh;background:#fff;border-left:1px solid var(--line);box-shadow:-12px 0 32px rgba(20,40,70,.16);z-index:40;transition:right .25s ease;padding:18px;overflow:auto}.protocol-panel.open{right:0}.protocol-panel pre{white-space:pre-wrap;background:#f7f9fc;border:1px solid var(--line);padding:12px;border-radius:10px}.overlay{position:fixed;inset:0;background:#17203355;z-index:30;display:none}.overlay.show{display:block}.helper{font-size:.84rem;color:var(--muted)}
 .auto-controls{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:12px 0}.export-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}.range-row label{display:block;font-weight:700;margin-bottom:6px}.range-row output{font-variant-numeric:tabular-nums;color:var(--accent);font-weight:800}.unlock-note{display:none;margin:8px 0;padding:10px 12px;background:#fff6da;border:1px solid #e8cc77;border-radius:10px;color:#684b00}.unlock-note.show{display:block}.footer-note{margin-top:16px;color:var(--muted);font-size:.84rem}
+
+.range-status{padding:9px 11px;border:1px solid var(--line);border-radius:10px;background:#f8faff;font-variant-numeric:tabular-nums}
+.hidden-block{display:none}.hidden-block.show{display:block}
+.legend{display:flex;gap:12px;flex-wrap:wrap;margin:8px 0 2px;font-size:.86rem;color:var(--muted)}
+.legend-item{display:flex;align-items:center;gap:6px}.legend-swatch{width:20px;height:10px;border-radius:3px;border:1px solid #9997}
+.deriv-note{font-size:.86rem;color:var(--muted);margin-top:8px}
+.chart-clickable{cursor:crosshair;touch-action:none}
+.indicator-buttons{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}
+.result-box{padding:12px 14px;border-radius:12px;border:1px solid #bfe5cf;background:#eef9f3;color:#0f5c3b;margin-top:10px}
+
 @media(max-width:980px){.grid3,.grid2,.titration-top,.measurement{grid-template-columns:1fr}.stepper{grid-template-columns:1fr 1fr}.header-inner{align-items:flex-start}.sample-stage{min-height:190px}.auto-controls{grid-template-columns:1fr}}
 </style>
 </head>
@@ -39,7 +49,7 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
       <p>Beispiel 1: Speiseessig – vom pH-Wert zur Titrationskurve</p>
     </div>
     <div class="header-actions">
-      <span class="version">v0.1.1 · Phase 1–4</span>
+      <span class="version">v0.2.0 · Phase 1–7</span>
       <button class="btn" id="protocolBtn">Protokoll</button>
       <button class="btn" id="resetAllBtn">Neu starten</button>
     </div>
@@ -50,7 +60,10 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
     <div class="step active" data-step="1">1 · pH untersuchen</div>
     <div class="step" data-step="2">2 · Vermuten</div>
     <div class="step" data-step="3">3 · Messen</div>
-    <div class="step" data-step="4">4 · Kurve entdecken</div>
+    <div class="step" data-step="4">4 · Kurve</div>
+    <div class="step" data-step="5">5 · ÄP annähern</div>
+    <div class="step" data-step="6">6 · ÄP finden</div>
+    <div class="step" data-step="7">7 · Indikator</div>
   </div>
 
   <section class="phase active" id="phase1">
@@ -272,11 +285,119 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
         <div class="feedback hint" id="autoFeedback">Beobachtet besonders, wie die gewählte Zugabemenge die Auflösung im steilen Bereich beeinflusst. Während einer Pause könnt ihr Zugabemenge und Geschwindigkeit verändern und anschließend fortsetzen.</div>
       </div>
     </div>
-    <div class="phase-nav"><button class="btn" data-back="3">Zurück</button><button class="btn primary" disabled title="Folgt in der nächsten Version">Phase 5: Äquivalenzbereich untersuchen</button></div>
+    <div class="phase-nav"><button class="btn" data-back="3">Zurück</button><button class="btn primary" id="toPhase5Btn" disabled>Phase 5: Äquivalenzbereich untersuchen</button></div>
   </section>
 
-  <div class="card" style="margin-top:14px"><h3>Vorgemerkt für den vollständigen Lernweg</h3><p class="subtle"><b>Titrationschallenge nach dem Realversuch:</b> Die SchülerInnen dosieren selbst und versuchen, den Äquivalenz-/Endpunkt möglichst genau zu treffen. Die Rückmeldung soll die Abweichung erklären und nicht nur bewerten.</p></div>
-  <p class="footer-note">SÄUREN_LAB v0.1.1 · technischer Prototyp für GitHub Pages · Phasen 1–4</p>
+
+  <section class="phase" id="phase5">
+    <div class="grid2">
+      <div class="card chart-card">
+        <div class="chart-title"><h2>5. Wo verändert sich der pH besonders stark?</h2><span class="subtle">Bereich selbst markieren</span></div>
+        <p class="subtle">Klickt im Diagramm einmal auf den Beginn und danach auf das Ende des Bereichs, in dem der pH besonders stark ansteigt.</p>
+        <div class="chartbox"><svg id="chart5" class="chart-clickable" viewBox="0 0 760 390" aria-label="Titrationskurve mit wählbarem Bereich"></svg></div>
+        <div class="inline" style="margin-top:10px">
+          <div class="range-status" id="rangeStatus">Noch kein Bereich markiert.</div>
+          <button class="btn" id="clearRangeBtn">Markierung löschen</button>
+          <button class="btn primary" id="checkRangeBtn" disabled>Bereich prüfen</button>
+        </div>
+        <div class="feedback" id="rangeFeedback"></div>
+      </div>
+      <div class="card">
+        <h3>Warum jetzt feiner dosieren?</h3>
+        <p>Warum waren die kleineren NaOH-Portionen gerade in diesem Bereich sinnvoll?</p>
+        <label class="choice"><input type="radio" name="fineReason" value="speed"> Damit die Neutralisationsreaktion schneller abläuft.</label>
+        <label class="choice"><input type="radio" name="fineReason" value="resolution"> Damit der Bereich mit der starken pH-Änderung genauer erfasst wird.</label>
+        <label class="choice"><input type="radio" name="fineReason" value="acid"> Damit während der Messung weniger Essigsäure vorhanden ist.</label>
+        <button class="btn" id="checkFineReasonBtn">Antwort prüfen</button>
+        <div class="feedback" id="fineReasonFeedback"></div>
+
+        <div class="hidden-block" id="eqIntro">
+          <div class="callout" style="margin-top:16px">
+            <h3 style="margin-bottom:6px">Äquivalenzpunkt</h3>
+            <p style="margin-bottom:6px">Am Äquivalenzpunkt wurde gerade so viel Natronlauge zugegeben, wie zur Neutralisation der vorhandenen Säure erforderlich ist.</p>
+            <details class="excourse"><summary>Mehr dazu</summary><div>Bei einer einprotonigen Säure wie Essigsäure entspricht am Äquivalenzpunkt die zugegebene Stoffmenge an NaOH der ursprünglichen Stoffmenge an Essigsäure.</div></details>
+          </div>
+          <div class="question">
+            <label><b>Schätzt nun das Äquivalenzvolumen:</b></label>
+            <div class="inline" style="margin-top:7px"><input class="field short" id="eqEstimate" type="text" inputmode="decimal" placeholder="mL"><span>mL NaOH</span><button class="btn primary" id="saveEqEstimateBtn">Schätzung speichern</button></div>
+            <div class="feedback" id="eqEstimateFeedback"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="phase-nav"><button class="btn" data-back="4">Zurück</button><button class="btn primary" id="toPhase6Btn" disabled>Weiter: ÄP leichter finden</button></div>
+  </section>
+
+  <section class="phase" id="phase6">
+    <div class="grid2">
+      <div class="card chart-card">
+        <h2>6. Äquivalenzpunkt leichter finden</h2>
+        <p class="subtle">Oben bleibt eure Titrationskurve sichtbar. Darunter könnt ihr eine Hilfskurve einblenden, die zeigt, wie stark sich der pH-Wert pro zugegebenem Volumen ändert.</p>
+        <div class="chartbox"><svg id="chart6main" viewBox="0 0 760 390"></svg></div>
+        <button class="btn soft" id="showDerivativeBtn">ÄP leichter finden</button>
+      </div>
+      <div class="card">
+        <h3>Hilfskurve</h3>
+        <div class="hidden-block" id="derivativeBlock">
+          <div class="chartbox"><svg id="derivativeChart" viewBox="0 0 760 300" aria-label="Änderung des pH-Werts pro Volumen"></svg></div>
+          <p class="deriv-note"><b>Änderung des pH-Werts pro zugegebenem Volumen</b> · mathematisch: 1. Ableitung</p>
+          <p>Klickt auf den Punkt, an dem die Hilfskurve ihr Maximum erreicht.</p>
+          <div class="feedback" id="derivativeFeedback"></div>
+          <div class="result-box hidden-block" id="eqResult"></div>
+          <div class="question hidden-block" id="eqCompareBlock">
+            <p><b>Wie gut war eure Schätzung aus Phase 5?</b></p>
+            <select class="field" id="eqCompare"><option value="">Bitte auswählen</option><option value="sehr nahe">sehr nahe</option><option value="etwas daneben">etwas daneben</option><option value="deutlich daneben">deutlich daneben</option></select>
+            <textarea class="field note-area" id="eqReflection" placeholder="Was hat euch bei der Schätzung geholfen oder irritiert? …" style="margin-top:8px"></textarea>
+            <button class="btn" id="saveEqReflectionBtn">Reflexion speichern</button>
+          </div>
+          <details class="excourse" style="margin-top:12px"><summary>SEK II: Warum heißt das „Ableitung“?</summary><div>Die Ableitung beschreibt hier, wie stark sich der pH-Wert pro kleinem Volumenschritt ändert. Wo diese Änderung am größten ist, besitzt die Hilfskurve ihr Maximum.</div></details>
+        </div>
+      </div>
+    </div>
+    <div class="phase-nav"><button class="btn" data-back="5">Zurück</button><button class="btn primary" id="toPhase7Btn" disabled>Weiter: Welcher Indikator passt?</button></div>
+  </section>
+
+  <section class="phase" id="phase7">
+    <div class="grid2">
+      <div class="card chart-card">
+        <div class="chart-title"><h2>7. Welcher Indikator passt?</h2><span class="subtle">Umschlagsbereiche vergleichen</span></div>
+        <div class="indicator-buttons">
+          <button class="btn soft" id="toggleBTBBtn">Bromthymolblau einblenden</button>
+          <button class="btn soft" id="togglePPBtn">Phenolphthalein einblenden</button>
+        </div>
+        <div class="chartbox"><svg id="chart7" viewBox="0 0 760 390"></svg></div>
+        <div class="legend">
+          <span class="legend-item"><span class="legend-swatch" style="background:rgba(70,170,170,.25)"></span> Bromthymolblau: etwa pH 6,0–7,6</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:rgba(230,80,150,.22)"></span> Phenolphthalein: etwa pH 8,2–10,0</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Entscheiden und begründen</h3>
+        <p><b>Welchen Indikator würdet ihr für die reale Titration von Essigsäure mit Natronlauge bevorzugen?</b></p>
+        <label class="choice"><input type="radio" name="indicatorChoice" value="btb"> Bromthymolblau</label>
+        <label class="choice"><input type="radio" name="indicatorChoice" value="pp"> Phenolphthalein</label>
+        <label class="choice"><input type="radio" name="indicatorChoice" value="equal"> Beide sind gleich gut geeignet.</label>
+        <button class="btn" id="checkIndicatorBtn">Entscheidung prüfen</button>
+        <div class="feedback" id="indicatorFeedback"></div>
+
+        <div class="question">
+          <p><b>Was würdet ihr beim Realversuch mit Phenolphthalein am Endpunkt beobachten?</b></p>
+          <label class="choice"><input type="radio" name="indicatorObs" value="blue"> Die Lösung wird kräftig blau.</label>
+          <label class="choice"><input type="radio" name="indicatorObs" value="pink"> Die zunächst farblose Lösung zeigt eine gerade beständige, sehr schwache Rosafärbung.</label>
+          <label class="choice"><input type="radio" name="indicatorObs" value="none"> Es gibt keine sichtbare Farbänderung.</label>
+          <button class="btn" id="checkIndicatorObsBtn">Antwort prüfen</button>
+          <div class="feedback" id="indicatorObsFeedback"></div>
+        </div>
+        <div class="result-box hidden-block" id="phase7Complete">
+          <b>Phasen 1–7 abgeschlossen.</b><br>Ihr könnt jetzt den virtuellen Lernweg auf eine reale Essigprobe übertragen. Der nächste Ausbau plant Probenvorbereitung, optionalen Realversuch/Video und die schrittweise Auswertung der Etikettangabe „5 % Säure“.
+        </div>
+      </div>
+    </div>
+    <div class="phase-nav"><button class="btn" data-back="6">Zurück</button><button class="btn primary" disabled title="Folgt im nächsten Ausbau">Phase 8: Realversuch planen</button></div>
+  </section>
+
+  <div class="card" style="margin-top:14px"><h3>Vorgemerkt für Phase 8+</h3><p class="subtle"><b>Titrationschallenge nach dem Realversuch:</b> Die SchülerInnen dosieren selbst und versuchen, den Äquivalenz-/Endpunkt möglichst genau zu treffen. Die Rückmeldung soll die Abweichung erklären und nicht nur bewerten.</p></div>
+  <p class="footer-note">SÄUREN_LAB v0.2.0 · technischer Prototyp für GitHub Pages · Phasen 1–7</p>
 </main>
 
 <div class="overlay" id="overlay"></div>
@@ -306,6 +427,17 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
     autoData:[],
     autoVolume:0,
     autoView:false,
+    rangeStart:null,
+    rangeEnd:null,
+    rangeCorrect:false,
+    fineReasonDone:false,
+    eqEstimate:null,
+    derivativeShown:false,
+    eqDerived:null,
+    showBTB:false,
+    showPP:false,
+    indicatorChoiceDone:false,
+    indicatorObsDone:false,
     maxUnlocked:1,
     protocol:[]
   };
@@ -363,7 +495,7 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
   }
 
   function goPhase(n){
-    if(n<1 || n>4) return;
+    if(n<1 || n>7) return;
     if(n>state.maxUnlocked) state.maxUnlocked=n;
     state.phase=n;
     $$('.phase').forEach((p,i)=>p.classList.toggle('active',i===n-1));
@@ -383,7 +515,11 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
       drawChart($('#chart4'), d, state.autoView ? true : state.pointsConnected);
       $('#chartModeLabel').textContent = state.autoView ? 'Autotitration' : (state.pointsConnected ? 'Titrationskurve' : 'Punktwolke');
       $('#savedHypothesisText').textContent = hypothesisText();
+      $('#toPhase5Btn').disabled=!state.pointsConnected;
     }
+    if(n===5) renderPhase5();
+    if(n===6) renderPhase6();
+    if(n===7) renderPhase7();
   }
 
   function hypothesisText(){
@@ -421,6 +557,113 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
     }
     data.forEach((d,i)=>{html+=`<circle cx="${sx(d.v)}" cy="${sy(d.ph)}" r="${i===data.length-1?5:4}" fill="${i===data.length-1?'#c64f32':'#2457c5'}" stroke="#fff" stroke-width="1.5"><title>${fmt(d.v,1)} mL · pH ${fmt(d.ph,2)}</title></circle>`});
     svg.innerHTML=html;
+  }
+
+  function chartBase(data, connect=true, bands=[]){
+    const W=760,H=390, ml=58,mr=20,mt=18,mb=48;
+    const pw=W-ml-mr, ph=H-mt-mb;
+    const xMax=15, yMin=0,yMax=14;
+    const sx=x=>ml+(x/xMax)*pw;
+    const sy=y=>mt+(yMax-y)/(yMax-yMin)*ph;
+    let html=`<rect x="0" y="0" width="${W}" height="${H}" fill="#fff" rx="10"/>`;
+    bands.forEach(b=>{html+=`<rect x="${ml}" y="${sy(b.high)}" width="${pw}" height="${sy(b.low)-sy(b.high)}" fill="${b.fill}"/>`});
+    for(let y=0;y<=14;y+=2){html+=`<line x1="${ml}" y1="${sy(y)}" x2="${W-mr}" y2="${sy(y)}" stroke="#e6ebf2"/><text x="${ml-10}" y="${sy(y)+4}" text-anchor="end" font-size="12" fill="#5f6b7a">${y}</text>`}
+    for(let x=0;x<=15;x+=1){if(x%2===0){html+=`<line x1="${sx(x)}" y1="${mt}" x2="${sx(x)}" y2="${H-mb}" stroke="#f0f3f7"/><text x="${sx(x)}" y="${H-mb+20}" text-anchor="middle" font-size="12" fill="#5f6b7a">${x}</text>`}}
+    html+=`<line x1="${ml}" y1="${H-mb}" x2="${W-mr}" y2="${H-mb}" stroke="#78879a"/><line x1="${ml}" y1="${mt}" x2="${ml}" y2="${H-mb}" stroke="#78879a"/>`;
+    html+=`<text x="${ml+pw/2}" y="${H-10}" text-anchor="middle" font-size="13" fill="#334155">zugegebenes NaOH-Volumen / mL</text>`;
+    html+=`<text x="16" y="${mt+ph/2}" transform="rotate(-90 16 ${mt+ph/2})" text-anchor="middle" font-size="13" fill="#334155">pH</text>`;
+    if(connect && data.length>1){
+      const pts=data.map(d=>`${sx(d.v)},${sy(d.ph)}`).join(' ');
+      html+=`<polyline points="${pts}" fill="none" stroke="#2457c5" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>`;
+    }
+    data.forEach((d,i)=>{html+=`<circle cx="${sx(d.v)}" cy="${sy(d.ph)}" r="4" fill="#2457c5" stroke="#fff" stroke-width="1.5"><title>${fmt(d.v,1)} mL · pH ${fmt(d.ph,2)}</title></circle>`});
+    return {html,W,H,ml,mr,mt,mb,pw,ph,sx,sy};
+  }
+
+  function phaseData(){
+    const autoCompleteEnough = state.autoData && state.autoData.length>=8 && state.autoData.at(-1).v >= EQ_ML + 0.8;
+    return autoCompleteEnough ? state.autoData : state.measurements;
+  }
+
+  function renderPhase5(){
+    const svg=$('#chart5'); if(!svg) return;
+    const data=phaseData();
+    const g=chartBase(data,true);
+    let html=g.html;
+    if(state.rangeStart!==null){
+      const a=state.rangeStart, b=state.rangeEnd;
+      if(b===null){html+=`<line x1="${g.sx(a)}" y1="${g.mt}" x2="${g.sx(a)}" y2="${g.H-g.mb}" stroke="#c05a00" stroke-width="3" stroke-dasharray="6 4"/>`;}
+      else{
+        const lo=Math.min(a,b), hi=Math.max(a,b);
+        html+=`<rect x="${g.sx(lo)}" y="${g.mt}" width="${g.sx(hi)-g.sx(lo)}" height="${g.H-g.mb-g.mt}" fill="rgba(238,174,76,.18)" stroke="#c87900" stroke-width="2"/>`;
+      }
+    }
+    html+=`<rect x="${g.ml}" y="${g.mt}" width="${g.pw}" height="${g.ph}" fill="transparent" pointer-events="all"/>`;
+    svg.innerHTML=html;
+    updateRangeStatus();
+  }
+
+  function chartClickVolume(svg,evt){
+    const rect=svg.getBoundingClientRect();
+    const x=(evt.clientX-rect.left)*(760/rect.width);
+    const ml=58, pw=760-58-20;
+    if(x<ml || x>ml+pw) return null;
+    return Math.max(0,Math.min(15,(x-ml)/pw*15));
+  }
+
+  function updateRangeStatus(){
+    const s=$('#rangeStatus'); if(!s) return;
+    if(state.rangeStart===null){s.textContent='Noch kein Bereich markiert.'; $('#checkRangeBtn').disabled=true; return;}
+    if(state.rangeEnd===null){s.textContent=`Beginn: ${fmt(state.rangeStart,1)} mL · jetzt Ende anklicken`; $('#checkRangeBtn').disabled=true; return;}
+    const lo=Math.min(state.rangeStart,state.rangeEnd), hi=Math.max(state.rangeStart,state.rangeEnd);
+    s.textContent=`Markierter Bereich: ${fmt(lo,1)}–${fmt(hi,1)} mL NaOH`;
+    $('#checkRangeBtn').disabled=false;
+  }
+
+  function derivativeData(data){
+    const out=[];
+    for(let i=1;i<data.length;i++){
+      const dv=data[i].v-data[i-1].v;
+      if(dv<=0) continue;
+      out.push({v:(data[i].v+data[i-1].v)/2, slope:(data[i].ph-data[i-1].ph)/dv, i});
+    }
+    return out;
+  }
+
+  function renderDerivativeChart(){
+    const svg=$('#derivativeChart'); if(!svg) return;
+    const d=derivativeData(phaseData());
+    const W=760,H=300, ml=58,mr=20,mt=18,mb=48,pw=W-ml-mr,ph=H-mt-mb,xMax=15;
+    const maxY=Math.max(1,...d.map(x=>x.slope))*1.12;
+    const sx=x=>ml+(x/xMax)*pw, sy=y=>mt+(maxY-y)/maxY*ph;
+    let html=`<rect x="0" y="0" width="${W}" height="${H}" fill="#fff" rx="10"/>`;
+    for(let k=0;k<=4;k++){const y=maxY*k/4;html+=`<line x1="${ml}" y1="${sy(y)}" x2="${W-mr}" y2="${sy(y)}" stroke="#e6ebf2"/><text x="${ml-9}" y="${sy(y)+4}" text-anchor="end" font-size="11" fill="#5f6b7a">${y.toFixed(1).replace('.',',')}</text>`}
+    for(let x=0;x<=15;x+=2){html+=`<line x1="${sx(x)}" y1="${mt}" x2="${sx(x)}" y2="${H-mb}" stroke="#f1f3f6"/><text x="${sx(x)}" y="${H-mb+20}" text-anchor="middle" font-size="11" fill="#5f6b7a">${x}</text>`}
+    html+=`<line x1="${ml}" y1="${H-mb}" x2="${W-mr}" y2="${H-mb}" stroke="#78879a"/><line x1="${ml}" y1="${mt}" x2="${ml}" y2="${H-mb}" stroke="#78879a"/>`;
+    html+=`<text x="${ml+pw/2}" y="${H-9}" text-anchor="middle" font-size="12" fill="#334155">NaOH-Volumen / mL</text>`;
+    html+=`<text x="16" y="${mt+ph/2}" transform="rotate(-90 16 ${mt+ph/2})" text-anchor="middle" font-size="12" fill="#334155">ΔpH / ΔV</text>`;
+    if(d.length>1){html+=`<polyline points="${d.map(x=>`${sx(x.v)},${sy(x.slope)}`).join(' ')}" fill="none" stroke="#7a4bb3" stroke-width="2.5"/>`;}
+    d.forEach((x,j)=>{
+      const selected=state.eqDerived!==null && Math.abs(state.eqDerived-x.v)<1e-6;
+      html+=`<circle class="deriv-point" data-j="${j}" cx="${sx(x.v)}" cy="${sy(x.slope)}" r="${selected?7:5}" fill="${selected?'#c05a00':'#7a4bb3'}" stroke="#fff" stroke-width="1.5" style="cursor:pointer"><title>${fmt(x.v,2)} mL · ΔpH/ΔV ${fmt(x.slope,2)}</title></circle>`;
+    });
+    svg.innerHTML=html;
+    $$('.deriv-point').forEach(c=>c.addEventListener('click',()=>handleDerivativePick(parseInt(c.dataset.j))));
+  }
+
+  function renderPhase6(){
+    if($('#chart6main')) drawChart($('#chart6main'),phaseData(),true);
+    if(state.derivativeShown){$('#derivativeBlock').classList.add('show');renderDerivativeChart();}
+  }
+
+  function renderPhase7(){
+    const bands=[];
+    if(state.showBTB) bands.push({low:6.0,high:7.6,fill:'rgba(70,170,170,.22)'});
+    if(state.showPP) bands.push({low:8.2,high:10.0,fill:'rgba(230,80,150,.19)'});
+    const g=chartBase(phaseData(),true,bands);
+    $('#chart7').innerHTML=g.html;
+    $('#toggleBTBBtn').textContent=state.showBTB?'Bromthymolblau ausblenden':'Bromthymolblau einblenden';
+    $('#togglePPBtn').textContent=state.showPP?'Phenolphthalein ausblenden':'Phenolphthalein einblenden';
   }
 
   function renderMeasurements(){
@@ -570,6 +813,7 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
     $('#chartModeLabel').textContent='Titrationskurve';
     $('#curveFeedback').classList.add('show');
     $('#autoStep').disabled=false;$('#autoSpeed').disabled=false;$('#autoRunBtn').disabled=false;$('#autoResetBtn').disabled=false;$('#autoFeedback').classList.add('show');
+    $('#toPhase5Btn').disabled=false;
     log('Phase 4','Messpunkte verbunden; Titrationskurve sichtbar gemacht.');
   });
   $('#saveReflectionBtn').addEventListener('click',()=>{
@@ -696,6 +940,149 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
   }
   $('#exportManualCsvBtn').addEventListener('click',()=>downloadCsv('SAEUREN_LAB_Messwerte_manuell.csv',state.measurements,'manuelle diskontinuierliche Titration'));
   $('#exportAutoCsvBtn').addEventListener('click',()=>downloadCsv('SAEUREN_LAB_Messwerte_autotitration.csv',state.autoData,'automatische Titration'));
+
+  // Phase 5
+  $('#toPhase5Btn').addEventListener('click',()=>goPhase(5));
+  $('#chart5').addEventListener('click',evt=>{
+    const v=chartClickVolume($('#chart5'),evt); if(v===null) return;
+    if(state.rangeStart===null || state.rangeEnd!==null){state.rangeStart=v;state.rangeEnd=null;state.rangeCorrect=false;}
+    else {state.rangeEnd=v;state.rangeCorrect=false;}
+    renderPhase5();
+  });
+  $('#clearRangeBtn').addEventListener('click',()=>{state.rangeStart=null;state.rangeEnd=null;state.rangeCorrect=false;renderPhase5();$('#rangeFeedback').classList.remove('show');updatePhase5Gate();});
+  $('#checkRangeBtn').addEventListener('click',()=>{
+    if(state.rangeStart===null || state.rangeEnd===null) return;
+    const lo=Math.min(state.rangeStart,state.rangeEnd), hi=Math.max(state.rangeStart,state.rangeEnd), width=hi-lo;
+    if(lo<=EQ_ML && hi>=EQ_ML && width<=2.5){
+      state.rangeCorrect=true;
+      showFeedback($('#rangeFeedback'),'good','Der markierte Bereich umfasst den besonders steilen Abschnitt sinnvoll. Hier bewirkt eine kleine weitere NaOH-Zugabe eine sehr große pH-Änderung.');
+      log('Phase 5',`Steiler Kurvenbereich markiert: ${fmt(lo,1)}–${fmt(hi,1)} mL NaOH.`);
+    } else if(width>2.5 && lo<=EQ_ML && hi>=EQ_ML){
+      state.rangeCorrect=false;
+      showFeedback($('#rangeFeedback'),'hint','Euer Bereich enthält den starken Anstieg, ist aber noch sehr breit. Grenzt genauer ein, wo die Messpunkte besonders stark nach oben springen.');
+    } else if(hi<EQ_ML){
+      state.rangeCorrect=false;
+      showFeedback($('#rangeFeedback'),'hint','Der markierte Bereich liegt noch vor dem stärksten Anstieg. Vergleicht die vertikalen Abstände benachbarter Messpunkte weiter rechts.');
+    } else if(lo>EQ_ML){
+      state.rangeCorrect=false;
+      showFeedback($('#rangeFeedback'),'hint','Der markierte Bereich liegt bereits hinter dem stärksten Anstieg. Schaut etwas weiter links, wo die Kurve fast senkrecht nach oben läuft.');
+    } else {
+      state.rangeCorrect=false;
+      showFeedback($('#rangeFeedback'),'hint','Ihr seid in der Nähe. Versucht den Bereich so zu wählen, dass der fast senkrechte Abschnitt der Kurve vollständig erfasst ist.');
+    }
+    updatePhase5Gate();
+  });
+  $('#checkFineReasonBtn').addEventListener('click',()=>{
+    const r=$('input[name="fineReason"]:checked');
+    if(!r){showFeedback($('#fineReasonFeedback'),'hint','Wählt zuerst eine Begründung aus.');return;}
+    if(r.value==='resolution'){
+      state.fineReasonDone=true;
+      showFeedback($('#fineReasonFeedback'),'good','Richtig. Kleinere Zugaben liefern in diesem Bereich mehr Messpunkte und erfassen den starken pH-Anstieg genauer.');
+      log('Phase 5','Kleine Zugabeschritte richtig begründet: genauere Erfassung des starken pH-Anstiegs.');
+    } else if(r.value==='speed'){
+      state.fineReasonDone=false;
+      showFeedback($('#fineReasonFeedback'),'hint','Die Neutralisationsreaktion wird nicht deshalb schneller, weil kleinere Portionen zugegeben werden. Die feinere Dosierung verbessert vielmehr die Auflösung der Messreihe im steilen Bereich.');
+    } else {
+      state.fineReasonDone=false;
+      showFeedback($('#fineReasonFeedback'),'hint','Die vorhandene Essigsäuremenge wird nicht durch die Größe einzelner NaOH-Portionen festgelegt. Kleinere Schritte helfen uns, den entscheidenden Kurvenbereich genauer zu vermessen.');
+    }
+    updatePhase5Gate();
+  });
+  function updatePhase5Gate(){
+    const ready=state.rangeCorrect && state.fineReasonDone;
+    $('#eqIntro').classList.toggle('show',ready);
+    if(!ready){$('#toPhase6Btn').disabled=true;}
+  }
+  $('#saveEqEstimateBtn').addEventListener('click',()=>{
+    const raw=$('#eqEstimate').value.trim().replace(',','.'); const v=parseFloat(raw);
+    if(!Number.isFinite(v) || v<0 || v>15){showFeedback($('#eqEstimateFeedback'),'hint','Gebt ein Äquivalenzvolumen innerhalb des dargestellten Messbereichs von 0 bis 15 mL an.');return;}
+    const lo=Math.min(state.rangeStart,state.rangeEnd)-0.4, hi=Math.max(state.rangeStart,state.rangeEnd)+0.4;
+    if(v<lo || v>hi){showFeedback($('#eqEstimateFeedback'),'hint','Diese Schätzung liegt außerhalb des von euch selbst markierten steilen Bereichs. Vergleicht beides noch einmal und passt den Wert an.');return;}
+    state.eqEstimate=v;
+    showFeedback($('#eqEstimateFeedback'),'good',`Schätzung gespeichert: ${fmt(v,2)} mL. In der nächsten Phase prüft ihr sie mit einer Hilfskurve.`);
+    $('#toPhase6Btn').disabled=false;
+    log('Phase 5',`Äquivalenzvolumen geschätzt: ${fmt(v,2)} mL NaOH.`);
+  });
+  $('#toPhase6Btn').addEventListener('click',()=>goPhase(6));
+
+  // Phase 6
+  $('#showDerivativeBtn').addEventListener('click',()=>{
+    state.derivativeShown=true;
+    $('#derivativeBlock').classList.add('show');
+    renderDerivativeChart();
+    $('#showDerivativeBtn').textContent='Hilfskurve aktualisieren';
+    log('Phase 6','Hilfskurve (1. Ableitung) eingeblendet.');
+  });
+  function handleDerivativePick(j){
+    const d=derivativeData(phaseData()); if(!d[j]) return;
+    const maxIndex=d.reduce((best,x,i)=>x.slope>d[best].slope?i:best,0);
+    const pick=d[j], best=d[maxIndex];
+    state.eqDerived=pick.v;
+    renderDerivativeChart();
+    if(j===maxIndex){
+      showFeedback($('#derivativeFeedback'),'good','Genau dieser Punkt bildet das Maximum der Hilfskurve. Hier ist die pH-Änderung pro Volumenschritt am größten.');
+      $('#eqResult').classList.add('show');
+      $('#eqResult').innerHTML=`Mit der Hilfskurve bestimmtes Äquivalenzvolumen: <b>${fmt(pick.v,2)} mL NaOH</b><br>Eure vorherige Schätzung: <b>${state.eqEstimate!==null?fmt(state.eqEstimate,2)+' mL':'—'}</b>`;
+      $('#eqCompareBlock').classList.add('show');
+      $('#toPhase7Btn').disabled=false;
+      log('Phase 6',`Maximum der Hilfskurve gefunden: Äquivalenzvolumen etwa ${fmt(pick.v,2)} mL NaOH.`);
+    } else if(pick.slope<best.slope*0.45){
+      showFeedback($('#derivativeFeedback'),'hint','Dieser Punkt liegt deutlich unter dem höchsten Ausschlag. Sucht den höchsten Punkt der Hilfskurve – dort ändert sich der pH-Wert pro mL am stärksten.');
+      $('#toPhase7Btn').disabled=true;
+    } else {
+      showFeedback($('#derivativeFeedback'),'hint','Ihr seid nahe am Maximum, aber ein benachbarter Punkt liegt noch höher. Vergleicht die Gipfelpunkte der Hilfskurve miteinander.');
+      $('#toPhase7Btn').disabled=true;
+    }
+  }
+  $('#saveEqReflectionBtn').addEventListener('click',()=>{
+    const cmp=$('#eqCompare').value, txt=$('#eqReflection').value.trim();
+    if(cmp) log('Phase 6',`Vergleich eigene ÄP-Schätzung mit Hilfskurve: ${cmp}.`);
+    if(txt) log('Phase 6',`Reflexion zur ÄP-Schätzung: ${txt}`);
+  });
+  $('#toPhase7Btn').addEventListener('click',()=>goPhase(7));
+
+  // Phase 7
+  $('#toggleBTBBtn').addEventListener('click',()=>{state.showBTB=!state.showBTB;renderPhase7();});
+  $('#togglePPBtn').addEventListener('click',()=>{state.showPP=!state.showPP;renderPhase7();});
+  $('#checkIndicatorBtn').addEventListener('click',()=>{
+    const r=$('input[name="indicatorChoice"]:checked');
+    if(!r){showFeedback($('#indicatorFeedback'),'hint','Wählt zuerst einen Indikator aus. Blendet bei Bedarf beide Umschlagsbereiche in die Kurve ein.');return;}
+    if(r.value==='pp'){
+      state.indicatorChoiceDone=true;
+      showFeedback($('#indicatorFeedback'),'good','Phenolphthalein ist hier die günstigere Wahl: Sein Umschlagsbereich liegt gut im steilen, leicht basischen Abschnitt der Titrationskurve.');
+      log('Phase 7','Phenolphthalein als geeigneterer Indikator ausgewählt.');
+    } else if(r.value==='btb'){
+      state.indicatorChoiceDone=false;
+      showFeedback($('#indicatorFeedback'),'hint','Bromthymolblau schlägt schon in einem niedrigeren pH-Bereich um. Bei Essigsäure + NaOH liegt der Äquivalenzbereich auf der basischen Seite; vergleicht deshalb seine Lage noch einmal mit Phenolphthalein.');
+    } else {
+      state.indicatorChoiceDone=false;
+      showFeedback($('#indicatorFeedback'),'hint','Beide Indikatoren verändern zwar ihre Farbe im Bereich des pH-Anstiegs, ihre Umschlagsbereiche liegen aber nicht gleich günstig. Vergleicht besonders, welcher Bereich näher am basischen Äquivalenzbereich liegt.');
+    }
+    updatePhase7Complete();
+  });
+  $('#checkIndicatorObsBtn').addEventListener('click',()=>{
+    const r=$('input[name="indicatorObs"]:checked');
+    if(!r){showFeedback($('#indicatorObsFeedback'),'hint','Wählt zuerst eine Beobachtung aus.');return;}
+    if(r.value==='pink'){
+      state.indicatorObsDone=true;
+      showFeedback($('#indicatorObsFeedback'),'good','Richtig. Eine gerade beständige, sehr schwache Rosafärbung zeigt an, dass der Endpunkt erreicht ist. Mehr NaOH würde den Endpunkt überschreiten.');
+      log('Phase 7','Erwartete Beobachtung mit Phenolphthalein richtig zugeordnet: schwache beständige Rosafärbung.');
+    } else if(r.value==='blue'){
+      state.indicatorObsDone=false;
+      showFeedback($('#indicatorObsFeedback'),'hint','Eine Blaufärbung gehört nicht zu Phenolphthalein. Dieser Indikator ist im sauren Bereich farblos und wird im basischen Umschlagsbereich rosa bis pink.');
+    } else {
+      state.indicatorObsDone=false;
+      showFeedback($('#indicatorObsFeedback'),'hint','Phenolphthalein wurde gerade deshalb gewählt, weil sein Farbumschlag sichtbar ist. Am Endpunkt soll eine sehr schwache Rosafärbung gerade bestehen bleiben.');
+    }
+    updatePhase7Complete();
+  });
+  function updatePhase7Complete(){
+    const done=state.indicatorChoiceDone && state.indicatorObsDone;
+    $('#phase7Complete').classList.toggle('show',done);
+    if(done) logOnce('phase7complete','Phase 7','Indikatorauswahl abgeschlossen; bereit für die Übertragung auf den Realversuch.');
+  }
+  const onceKeys=new Set();
+  function logOnce(key,section,text){if(onceKeys.has(key)) return; onceKeys.add(key); log(section,text);}
 
   // Stepper navigation: alle bereits freigeschalteten Phasen können direkt geöffnet werden.
   $$('.step').forEach(s=>s.addEventListener('click',()=>{
