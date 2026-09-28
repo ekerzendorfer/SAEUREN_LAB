@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SÄUREN_LAB – Säuren in Lebensmitteln</title>
+<style>
+:root{
+  --bg:#f4f7fb; --panel:#ffffff; --ink:#172033; --muted:#5f6b7a; --line:#d8e0ea;
+  --accent:#2457c5; --accent2:#e8eefc; --good:#156b45; --warn:#9a5a00; --bad:#9a2f2f;
+  --shadow:0 8px 24px rgba(30,55,90,.08); --radius:16px;
+}
+*{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+button,input,textarea,select{font:inherit} button{cursor:pointer}
+header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.header-inner{max-width:1320px;margin:auto;padding:14px 18px;display:flex;gap:14px;align-items:center;justify-content:space-between}
+.brand h1{font-size:1.25rem;margin:0}.brand p{margin:2px 0 0;color:var(--muted);font-size:.9rem}
+.header-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.version{font-size:.78rem;color:var(--muted);padding:4px 8px;border:1px solid var(--line);border-radius:999px}
+.btn{border:1px solid var(--line);background:#fff;color:var(--ink);padding:9px 13px;border-radius:10px;font-weight:650}.btn:hover{border-color:#9fb3d8}.btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}.btn.soft{background:var(--accent2);border-color:#c7d5f3;color:#173b86}.btn.good{background:#e8f6ef;border-color:#b5dfc8;color:var(--good)}.btn:disabled{opacity:.45;cursor:not-allowed}
+main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}.step{background:#fff;border:1px solid var(--line);padding:10px 12px;border-radius:12px;color:var(--muted);font-size:.88rem}.step.active{border-color:var(--accent);box-shadow:0 0 0 2px rgba(36,87,197,.08);color:var(--accent);font-weight:750}.step.done{background:#f1f8f4;color:var(--good);border-color:#cbe7d7}
+.phase{display:none}.phase.active{display:block}.grid3{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:14px}.grid2{display:grid;grid-template-columns:1.2fr .8fr;gap:14px}.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}.card h2,.card h3{margin-top:0}.subtle{color:var(--muted);font-size:.94rem}.callout{padding:12px 14px;border-radius:12px;background:#f7f9fd;border:1px solid var(--line);margin:10px 0}.question{margin:15px 0;padding-top:12px;border-top:1px dashed var(--line)}.question:first-child{border-top:none;padding-top:0}.feedback{margin-top:8px;padding:10px 12px;border-radius:10px;background:#f7f9fc;border:1px solid var(--line);display:none}.feedback.show{display:block}.feedback.good{background:#eef9f3;border-color:#bfe5cf;color:#0f5c3b}.feedback.hint{background:#fff7ea;border-color:#ead3a7;color:#7c4d00}.feedback.bad{background:#fff1f1;border-color:#efc5c5;color:#8f2828}
+.sample-stage{min-height:230px;display:flex;align-items:center;justify-content:center;gap:28px;position:relative}.bottle{width:110px;height:165px;border:3px solid #96a5b7;border-radius:16px 16px 24px 24px;position:relative;background:linear-gradient(#fff 0 35%,#f4f0d5 35% 100%)}.bottle:before{content:"";position:absolute;width:52px;height:36px;left:26px;top:-35px;border:3px solid #96a5b7;border-bottom:none;border-radius:7px 7px 0 0;background:#fff}.label{position:absolute;left:10px;right:10px;top:62px;background:#fff;border:1px solid #c6cdd8;border-radius:8px;padding:9px;text-align:center;font-weight:700;font-size:.88rem}.beaker{width:110px;height:130px;border:3px solid #96a5b7;border-top:none;border-radius:0 0 18px 18px;position:relative;background:linear-gradient(to top,#edf3ff 0 58%,transparent 58%)}.beaker:before{content:"";position:absolute;top:0;left:-3px;right:-3px;border-top:3px solid #96a5b7}.beaker span{position:absolute;bottom:14px;left:0;right:0;text-align:center;color:#546277;font-size:.82rem}
+.indicator-wrap{display:flex;gap:14px;align-items:center}.strip{width:38px;height:150px;border:1px solid #aaa;border-radius:4px;background:#eee;position:relative}.strip.wet:after{content:"";position:absolute;left:0;right:0;bottom:0;height:48%;background:#e26b50;border-radius:0 0 3px 3px}.ph-scale{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-top:12px}.ph-chip{height:26px;border-radius:5px;color:#fff;font-size:.72rem;display:flex;align-items:center;justify-content:center;text-shadow:0 1px 2px #0006}.ph1{background:#c53b33}.ph2{background:#d9513d}.ph3{background:#e56d45}.ph4{background:#ee9447}.ph5{background:#d8b64b}.ph6{background:#9fbd55}.ph7{background:#5aa86f}.meter{display:flex;align-items:center;gap:14px}.electrode{width:28px;height:155px;border-radius:14px;background:linear-gradient(#dbe2ea,#8b99aa);position:relative}.electrode:after{content:"";position:absolute;bottom:-6px;left:6px;width:16px;height:22px;border-radius:0 0 8px 8px;background:#46596f}.digital{font-variant-numeric:tabular-nums;font-size:2rem;font-weight:800;border:2px solid #a7b6c8;background:#172033;color:#8ef0ba;padding:12px 16px;border-radius:10px;min-width:138px;text-align:center}
+.choice{display:block;margin:8px 0;padding:9px 10px;border:1px solid var(--line);border-radius:10px;background:#fff}.choice:hover{background:#f9fbff}.choice input{margin-right:8px}.inline{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.field{width:100%;border:1px solid #bbc6d5;border-radius:9px;padding:9px 10px;background:#fff}.short{width:110px}.note-area{min-height:90px;resize:vertical}
+.excourse{margin-top:10px}.excourse summary{cursor:pointer;font-weight:700;color:#274b91}.excourse div{margin-top:8px;padding:10px 12px;background:#f8faff;border:1px solid var(--line);border-radius:10px}
+.hypothesis{min-height:130px}
+.titration-top{display:grid;grid-template-columns:.85fr 1.1fr .85fr;gap:14px;margin-bottom:14px}.syringe-wrap{display:flex;gap:14px;align-items:center;justify-content:center;min-height:200px}.syringe{width:54px;height:170px;border:3px solid #8796a8;border-radius:8px;position:relative;background:repeating-linear-gradient(to bottom,#fff 0 12px,#d3dbe6 12px 13px)}.syringe:after{content:"";position:absolute;bottom:-38px;left:23px;width:4px;height:38px;background:#8796a8}.syringe-level{position:absolute;left:4px;right:4px;bottom:4px;height:70%;background:rgba(154,214,255,.55);border-radius:4px}.dose-buttons{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px}.dose-new{display:none}.dose-new.show{display:inline-block;animation:pop .55s ease-out}.newtag{font-size:.65rem;background:#ffe18b;color:#6b4a00;border-radius:999px;padding:2px 6px;margin-left:4px}@keyframes pop{0%{transform:scale(.5);opacity:0}70%{transform:scale(1.12)}100%{transform:scale(1);opacity:1}}
+.measurement{display:grid;grid-template-columns:1fr 1fr;gap:14px}.chart-card{min-height:420px}.chart-title{display:flex;justify-content:space-between;align-items:center;gap:10px}.chartbox{width:100%;overflow:auto}.chartbox svg{width:100%;min-width:580px;height:auto;display:block}.table-wrap{max-height:320px;overflow:auto;border:1px solid var(--line);border-radius:10px}table{border-collapse:collapse;width:100%;font-size:.9rem}th,td{padding:8px 9px;border-bottom:1px solid #e6ebf2;text-align:right}th:first-child,td:first-child{text-align:center}th{position:sticky;top:0;background:#f7f9fc;z-index:1}
+.phase-nav{display:flex;justify-content:space-between;gap:10px;margin-top:16px}.protocol-panel{position:fixed;top:0;right:-520px;width:min(520px,94vw);height:100vh;background:#fff;border-left:1px solid var(--line);box-shadow:-12px 0 32px rgba(20,40,70,.16);z-index:40;transition:right .25s ease;padding:18px;overflow:auto}.protocol-panel.open{right:0}.protocol-panel pre{white-space:pre-wrap;background:#f7f9fc;border:1px solid var(--line);padding:12px;border-radius:10px}.overlay{position:fixed;inset:0;background:#17203355;z-index:30;display:none}.overlay.show{display:block}.helper{font-size:.84rem;color:var(--muted)}
+.auto-controls{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:12px 0}.range-row label{display:block;font-weight:700;margin-bottom:6px}.range-row output{font-variant-numeric:tabular-nums;color:var(--accent);font-weight:800}.unlock-note{display:none;margin:8px 0;padding:10px 12px;background:#fff6da;border:1px solid #e8cc77;border-radius:10px;color:#684b00}.unlock-note.show{display:block}.footer-note{margin-top:16px;color:var(--muted);font-size:.84rem}
+@media(max-width:980px){.grid3,.grid2,.titration-top,.measurement{grid-template-columns:1fr}.stepper{grid-template-columns:1fr 1fr}.header-inner{align-items:flex-start}.sample-stage{min-height:190px}.auto-controls{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <h1>SÄUREN_LAB – Säuren in Lebensmitteln</h1>
+      <p>Beispiel 1: Speiseessig – vom pH-Wert zur Titrationskurve</p>
+    </div>
+    <div class="header-actions">
+      <span class="version">v0.1.0 · Phase 1–4</span>
+      <button class="btn" id="protocolBtn">Protokoll</button>
+      <button class="btn" id="resetAllBtn">Neu starten</button>
+    </div>
+  </div>
+</header>
+<main>
+  <div class="stepper" id="stepper">
+    <div class="step active" data-step="1">1 · pH untersuchen</div>
+    <div class="step" data-step="2">2 · Vermuten</div>
+    <div class="step" data-step="3">3 · Messen</div>
+    <div class="step" data-step="4">4 · Kurve entdecken</div>
+  </div>
+
+  <section class="phase active" id="phase1">
+    <div class="grid3">
+      <div class="card">
+        <h2>1. Ist Speiseessig sauer?</h2>
+        <p class="subtle">Auf der Flasche steht „5 % Säure“. Zuerst untersuchen wir nur den pH-Wert.</p>
+        <div class="sample-stage">
+          <div class="bottle"><div class="label">Speiseessig<br><b>5 % Säure</b></div></div>
+          <div class="beaker"><span>Probe</span></div>
+        </div>
+        <div class="callout"><b>Auftrag:</b> Bestimmt zunächst den pH-Wert möglichst so, wie ihr es mit einfachem Indikatorpapier tun würdet.</div>
+      </div>
+
+      <div class="card">
+        <h3>pH mit Indikatorpapier</h3>
+        <div class="indicator-wrap">
+          <div class="strip" id="indicatorStrip"></div>
+          <div style="flex:1">
+            <button class="btn soft" id="testPaperBtn">Indikatorpapier eintauchen</button>
+            <div class="ph-scale" aria-label="vereinfachte pH-Farbskala">
+              <div class="ph-chip ph1">1</div><div class="ph-chip ph2">2</div><div class="ph-chip ph3">3</div><div class="ph-chip ph4">4</div><div class="ph-chip ph5">5</div><div class="ph-chip ph6">6</div><div class="ph-chip ph7">7</div>
+            </div>
+            <div class="question">
+              <label><b>Euer geschätzter pH-Wert:</b></label>
+              <div class="inline" style="margin-top:7px">
+                <input class="field short" id="phEstimate" type="number" min="1" max="7" step="0.5" placeholder="z. B. 3" disabled>
+                <button class="btn" id="saveEstimateBtn" disabled>Schätzung übernehmen</button>
+              </div>
+              <div class="feedback" id="estimateFeedback"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Genauer nachmessen</h3>
+        <div class="meter">
+          <div class="electrode"></div>
+          <div class="digital" id="phDisplay">—</div>
+        </div>
+        <p class="helper">Die Elektrode wird erst nach eurer eigenen Schätzung freigeschaltet.</p>
+        <button class="btn soft" id="measureElectrodeBtn" disabled>Mit Elektrode messen</button>
+        <div class="question" id="compareBlock" style="display:none">
+          <label><b>Wie gut stimmt eure Schätzung überein?</b></label>
+          <select class="field" id="estimateCompare">
+            <option value="">Bitte auswählen</option>
+            <option>sehr gut</option><option>ungefähr</option><option>deutlich abweichend</option>
+          </select>
+          <label style="display:block;margin-top:8px">Warum könnte Indikatorpapier ungenauer sein?</label>
+          <textarea class="field note-area" id="paperReason" placeholder="Kurze Notiz …"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid2" style="margin-top:14px">
+      <div class="card">
+        <h3>Was sagt uns die Messung?</h3>
+        <p><b>Welche Aussagen passen zur Probe?</b></p>
+        <label class="choice"><input type="checkbox" class="basicCheck" data-id="acidic"> Die Lösung ist sauer.</label>
+        <label class="choice"><input type="checkbox" class="basicCheck" data-id="under7"> Der pH-Wert liegt unter 7.</label>
+        <label class="choice"><input type="checkbox" class="basicCheck" data-id="ions"> In der Lösung überwiegen Oxoniumionen gegenüber Hydroxidionen.</label>
+        <button class="btn" id="checkBasicsBtn">Antworten prüfen</button>
+        <div class="feedback" id="basicsFeedback"></div>
+
+        <div class="question" id="fivePctQuestion">
+          <p><b>Was können wir aus dieser pH-Messung über die Angabe „5 % Säure“ schließen?</b></p>
+          <label class="choice"><input type="radio" name="fivepct" value="A"> A · Der pH-Wert beweist, dass genau 5 % Essigsäure enthalten sind.</label>
+          <label class="choice"><input type="radio" name="fivepct" value="B"> B · Die Messung zeigt, dass die Lösung sauer ist. Den genauen Säuregehalt kann man daraus aber nicht unmittelbar bestimmen.</label>
+          <label class="choice"><input type="radio" name="fivepct" value="C"> C · Jede Lösung mit demselben pH-Wert enthält gleich viel Säure.</label>
+          <button class="btn" id="checkFivePctBtn">Entscheidung prüfen</button>
+          <div class="feedback" id="fivePctFeedback"></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Kurze Wiederholung</h3>
+        <details class="excourse"><summary>Exkurs: Wie funktionieren Indikatoren?</summary><div>Indikatoren verändern ihre Farbe abhängig vom pH-Bereich. Ein Farbvergleich liefert meist nur einen ungefähren pH-Wert. Unterschiedliche Indikatoren besitzen unterschiedliche Umschlagsbereiche.</div></details>
+        <details class="excourse"><summary>Exkurs: H₃O⁺ und OH⁻</summary><div><b>Sauer:</b> H₃O⁺ überwiegt. <b>Basisch:</b> OH⁻ überwiegt. Bei der Neutralisation reagieren Oxonium- und Hydroxidionen zu Wasser:<br><b>H₃O⁺ + OH⁻ → 2 H₂O</b>.</div></details>
+        <div class="callout" style="margin-top:14px"><b>Wichtig:</b> Das Lab bewertet nicht nur „richtig“ oder „falsch“. Bei nicht passenden Antworten bekommt ihr einen fachlichen Hinweis und könnt erneut entscheiden.</div>
+      </div>
+    </div>
+    <div class="phase-nav"><span></span><button class="btn primary" id="toPhase2Btn" disabled>Weiter: Was passiert mit NaOH?</button></div>
+  </section>
+
+  <section class="phase" id="phase2">
+    <div class="grid2">
+      <div class="card">
+        <h2>2. Was passiert bei Zugabe von Natronlauge?</h2>
+        <div class="sample-stage" style="min-height:190px">
+          <div class="beaker"><span>Essigprobe</span></div>
+          <div class="bottle" style="background:linear-gradient(#fff 0 35%,#e7f4ff 35% 100%)"><div class="label">Natronlauge<br><b>NaOH</b></div></div>
+        </div>
+        <div class="callout"><b>Ausgangsfrage:</b> Was erwartet ihr, wenn wir Natronlauge portionsweise zur Essiglösung geben?</div>
+      </div>
+      <div class="card hypothesis">
+        <h3>Vermutung festhalten</h3>
+        <label class="choice"><input type="radio" name="hypothesis" value="sofort"> Der pH-Wert steigt sofort sehr stark an.</label>
+        <label class="choice"><input type="radio" name="hypothesis" value="spaeter"> Der pH-Wert steigt zunächst eher langsam und später in einem Bereich sehr stark an.</label>
+        <label class="choice"><input type="radio" name="hypothesis" value="gleich"> Der pH-Wert bleibt nahezu unverändert.</label>
+        <label class="choice"><input type="radio" name="hypothesis" value="own"> Eigene Vermutung</label>
+        <textarea class="field note-area" id="ownHypothesis" placeholder="Eigene Vermutung …" style="display:none"></textarea>
+        <div class="question">
+          <label><b>Warum sollte sich der pH-Wert überhaupt verändern?</b></label>
+          <textarea class="field note-area" id="hypothesisReason" placeholder="Begründung …"></textarea>
+          <button class="btn soft" id="showHintBtn" style="margin-top:8px">Denkhilfe anzeigen</button>
+          <div class="feedback hint" id="neutralHint">Hydroxidionen aus der Natronlauge reagieren mit Oxoniumionen zu Wasser.</div>
+        </div>
+        <button class="btn primary" id="saveHypothesisBtn">Vermutung speichern</button>
+        <div class="feedback" id="hypothesisFeedback"></div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:14px">
+      <h3>Optionaler Exkurs: Neutralisation sichtbar machen</h3>
+      <p class="subtle">Die externen Simulationen sind freiwillig. Sie öffnen in einem neuen Tab.</p>
+      <div class="inline">
+        <a class="btn" href="https://www.lern-chemie.de/sim/sim-neutralisation.html" target="_blank" rel="noopener">lern-chemie.de</a>
+        <a class="btn" href="https://javalab.org/en/neutralization_reaction_en/" target="_blank" rel="noopener">JavaLab</a>
+      </div>
+    </div>
+    <div class="phase-nav"><button class="btn" data-back="1">Zurück</button><button class="btn primary" id="toPhase3Btn" disabled>Jetzt Messwerte aufnehmen</button></div>
+  </section>
+
+  <section class="phase" id="phase3">
+    <div class="titration-top">
+      <div class="card">
+        <h3>Modellprobe</h3>
+        <p><b>10,0 mL</b> verdünnte Essigsäure</p>
+        <p>c ≈ <b>0,083 mol/L</b></p>
+        <p>NaOH: <b>0,100 mol/L</b></p>
+        <p class="subtle">Die Größenordnung passt zum später geplanten Realversuch.</p>
+        <div class="callout">Äquivalenzbereich im Modell bei etwa <b>8,3 mL</b> NaOH. Dieser Wert wird im Lernweg noch nicht als Lösung hervorgehoben.</div>
+      </div>
+      <div class="card">
+        <h2>3. NaOH portionsweise zugeben</h2>
+        <div class="syringe-wrap">
+          <div class="syringe"><div class="syringe-level" id="syringeLevel"></div></div>
+          <div>
+            <div><b>Gesamtzugabe</b></div>
+            <div class="digital" id="volumeDisplay" style="font-size:1.4rem;min-width:120px">0,0 mL</div>
+          </div>
+        </div>
+        <div class="dose-buttons">
+          <button class="btn soft dose-btn" data-dose="1">+ 1,0 mL</button>
+          <button class="btn soft dose-btn" data-dose="0.5">+ 0,5 mL</button>
+          <button class="btn soft dose-btn dose-new" id="dose02Btn" data-dose="0.2">+ 0,2 mL <span class="newtag">NEU</span></button>
+        </div>
+        <div class="unlock-note" id="doseUnlockNote"><b>Der pH-Wert beginnt sich stärker zu verändern.</b> Jetzt könnte eine feinere Zugabe sinnvoll sein.</div>
+        <button class="btn" id="resetSeriesBtn" style="margin-top:10px">Messreihe zurücksetzen</button>
+      </div>
+      <div class="card">
+        <h3>pH-Messung</h3>
+        <div class="meter"><div class="electrode"></div><div class="digital" id="livePhDisplay">2,95</div></div>
+        <p class="subtle">Nach jeder Zugabe wird gemischt, der pH-Wert neu berechnet und als Messpunkt gespeichert.</p>
+        <div class="feedback hint show" id="doseAdvice">Beginnt mit größeren Portionen. Beobachtet, wann feinere Schritte sinnvoll werden.</div>
+      </div>
+    </div>
+
+    <div class="measurement">
+      <div class="card chart-card">
+        <div class="chart-title"><h3>Messpunkte</h3><span class="subtle">noch keine Verbindungslinie</span></div>
+        <div class="chartbox"><svg id="chart" viewBox="0 0 760 390" role="img" aria-label="pH-Messpunkte gegen zugegebenes NaOH-Volumen"></svg></div>
+      </div>
+      <div class="card">
+        <h3>Messwerttabelle</h3>
+        <div class="table-wrap"><table><thead><tr><th>Nr.</th><th>V(NaOH) / mL</th><th>pH</th></tr></thead><tbody id="measureTable"></tbody></table></div>
+        <div class="feedback hint" id="phase4Ready">Ihr habt den charakteristischen Bereich erfasst. Jetzt könnt ihr die Punktwolke beschreiben.</div>
+      </div>
+    </div>
+    <div class="phase-nav"><button class="btn" data-back="2">Zurück</button><button class="btn primary" id="toPhase4Btn" disabled>Weiter: Aus Punkten wird eine Kurve</button></div>
+  </section>
+
+  <section class="phase" id="phase4">
+    <div class="grid2">
+      <div class="card chart-card">
+        <div class="chart-title"><h2>4. Aus Messpunkten wird eine Titrationskurve</h2><span class="subtle" id="chartModeLabel">Punktwolke</span></div>
+        <div class="chartbox"><svg id="chart4" viewBox="0 0 760 390"></svg></div>
+      </div>
+      <div class="card">
+        <h3>Punktwolke zuerst beschreiben</h3>
+        <p>Beschreibt den Verlauf mit eigenen Worten, <b>bevor</b> ihr die Punkte verbindet.</p>
+        <textarea class="field note-area" id="cloudDescription" placeholder="Was fällt euch am Verlauf auf? Wo ändert sich der pH langsam, wo plötzlich stärker? …"></textarea>
+        <button class="btn primary" id="saveDescriptionBtn">Beschreibung speichern</button>
+        <div class="feedback" id="descriptionFeedback"></div>
+        <div class="question">
+          <button class="btn good" id="connectPointsBtn" disabled>Punkte verbinden</button>
+          <div class="feedback good" id="curveFeedback">Jetzt ist aus euren einzelnen Messwerten eine <b>Titrationskurve</b> geworden. Sie zeigt, wie sich der pH-Wert mit dem zugegebenen Volumen der Maßlösung verändert.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid2" style="margin-top:14px">
+      <div class="card">
+        <h3>Passt eure ursprüngliche Vermutung?</h3>
+        <div class="callout" id="savedHypothesisText">Noch keine Vermutung gespeichert.</div>
+        <select class="field" id="hypothesisCompare">
+          <option value="">Bitte auswählen</option><option>ja</option><option>teilweise</option><option>nein</option>
+        </select>
+        <label style="display:block;margin-top:9px"><b>Was würdet ihr jetzt anders formulieren?</b></label>
+        <textarea class="field note-area" id="reformulation" placeholder="Kurze Reflexion …"></textarea>
+        <button class="btn" id="saveReflectionBtn">Reflexion speichern</button>
+      </div>
+      <div class="card">
+        <h3>Automatische Titration</h3>
+        <p class="subtle">Diese Option wird erst freigeschaltet, nachdem ihr die Messpunkte selbst erzeugt und verbunden habt.</p>
+        <div class="auto-controls">
+          <div class="range-row"><label for="autoStep">Zugabemenge: <output id="autoStepOut">0,5 mL</output></label><input type="range" id="autoStep" min="0.1" max="1" step="0.1" value="0.5" disabled style="width:100%"></div>
+          <div class="range-row"><label for="autoSpeed">Geschwindigkeit: <output id="autoSpeedOut">1,0×</output></label><input type="range" id="autoSpeed" min="0.5" max="3" step="0.5" value="1" disabled style="width:100%"></div>
+        </div>
+        <div class="inline">
+          <button class="btn primary" id="autoRunBtn" disabled>Automatische Titration starten</button>
+          <button class="btn" id="autoStopBtn" disabled>Stoppen</button>
+        </div>
+        <div class="feedback hint" id="autoFeedback">Beobachtet besonders, wie die gewählte Zugabemenge die Auflösung im steilen Bereich beeinflusst.</div>
+      </div>
+    </div>
+    <div class="phase-nav"><button class="btn" data-back="3">Zurück</button><button class="btn primary" disabled title="Folgt in der nächsten Version">Phase 5: Äquivalenzbereich untersuchen</button></div>
+  </section>
+
+  <p class="footer-note">SÄUREN_LAB v0.1.0 · erster technischer Prototyp für GitHub Pages · Phasen 1–4</p>
+</main>
+
+<div class="overlay" id="overlay"></div>
+<aside class="protocol-panel" id="protocolPanel">
+  <div class="inline" style="justify-content:space-between"><h2>Protokoll</h2><button class="btn" id="closeProtocolBtn">Schließen</button></div>
+  <p class="subtle">Der Arbeitsweg wird fortlaufend gesammelt. Keine automatische Benotung.</p>
+  <pre id="protocolText"></pre>
+  <div class="inline"><button class="btn" id="copyProtocolBtn">In Zwischenablage kopieren</button><button class="btn" id="downloadProtocolBtn">Als Markdown speichern</button></div>
+</aside>
+
+<script>
+(() => {
+  const state = {
+    phase:1,
+    phEstimate:null,
+    phExact:null,
+    basicsDone:false,
+    fivePctDone:false,
+    hypothesis:null,
+    hypothesisReason:'',
+    measurements:[],
+    volume:0,
+    fineUnlocked:false,
+    pointsConnected:false,
+    autoRunning:false,
+    protocol:[]
+  };
+
+  const ACID_C = 0.083;       // mol/L
+  const ACID_V0 = 0.010;      // L
+  const BASE_C = 0.100;       // mol/L
+  const PKA = 4.76;
+  const KA = Math.pow(10,-PKA);
+  const KW = 1e-14;
+  const EQ_ML = ACID_C * ACID_V0 / BASE_C * 1000;
+  const PH_INITIAL = calcPH(0);
+
+  const $ = s => document.querySelector(s);
+  const $$ = s => [...document.querySelectorAll(s)];
+  const fmt = (x,n=2) => Number(x).toFixed(n).replace('.',',');
+
+  function calcPH(vbMl){
+    const vb = vbMl/1000;
+    const Vt = ACID_V0 + vb;
+    const Ct = ACID_C*ACID_V0/Vt;
+    const Na = BASE_C*vb/Vt;
+    // Charge balance: H + Na = OH + A-, A- = Ct*Ka/(Ka+H)
+    const f = H => H + Na - KW/H - Ct*KA/(KA+H);
+    let lo = 1e-14, hi = 1;
+    let flo=f(lo), fhi=f(hi);
+    // robust bisection over H in [1e-14,1]
+    for(let i=0;i<120;i++){
+      const mid = Math.sqrt(lo*hi); // log-space bisection
+      const fm = f(mid);
+      if(Math.sign(fm)===Math.sign(flo)){lo=mid;flo=fm}else{hi=mid;fhi=fm}
+    }
+    const H = Math.sqrt(lo*hi);
+    return -Math.log10(H);
+  }
+
+  function log(section, text){
+    state.protocol.push({section,text});
+    renderProtocol();
+  }
+  function renderProtocol(){
+    const groups = {};
+    state.protocol.forEach(x => (groups[x.section]??=[]).push(x.text));
+    let md = '# SÄUREN_LAB – Arbeitsprotokoll\n\n';
+    Object.keys(groups).forEach(k=>{
+      md += `## ${k}\n` + groups[k].map(t=>`- ${t}`).join('\n') + '\n\n';
+    });
+    $('#protocolText').textContent = md;
+    return md;
+  }
+
+  function showFeedback(el, type, html){
+    el.className = `feedback show ${type||''}`;
+    el.innerHTML = html;
+  }
+
+  function goPhase(n){
+    state.phase=n;
+    $$('.phase').forEach((p,i)=>p.classList.toggle('active',i===n-1));
+    $$('.step').forEach((s,i)=>{
+      s.classList.toggle('active',i===n-1);
+      s.classList.toggle('done',i<n-1);
+    });
+    window.scrollTo({top:0,behavior:'smooth'});
+    if(n===4){
+      drawChart($('#chart4'), state.measurements, state.pointsConnected);
+      $('#savedHypothesisText').textContent = hypothesisText();
+    }
+  }
+
+  function hypothesisText(){
+    const v=state.hypothesis;
+    if(!v) return 'Noch keine Vermutung gespeichert.';
+    if(v==='sofort') return '„Der pH-Wert steigt sofort sehr stark an.“';
+    if(v==='spaeter') return '„Der pH-Wert steigt zunächst eher langsam und später in einem Bereich sehr stark an.“';
+    if(v==='gleich') return '„Der pH-Wert bleibt nahezu unverändert.“';
+    return `Eigene Vermutung: ${v.replace('own:','')}`;
+  }
+
+  function ensureInitialPoint(){
+    if(!state.measurements.length){
+      state.volume=0;
+      state.measurements=[{v:0,ph:calcPH(0)}];
+      renderMeasurements();
+    }
+  }
+
+  function drawChart(svg, data, connect=false){
+    const W=760,H=390, ml=58,mr=20,mt=18,mb=48;
+    const pw=W-ml-mr, ph=H-mt-mb;
+    const xMax=15, yMin=0,yMax=14;
+    const sx=x=>ml+(x/xMax)*pw;
+    const sy=y=>mt+(yMax-y)/(yMax-yMin)*ph;
+    let html=`<rect x="0" y="0" width="${W}" height="${H}" fill="#fff" rx="10"/>`;
+    for(let y=0;y<=14;y+=2){html+=`<line x1="${ml}" y1="${sy(y)}" x2="${W-mr}" y2="${sy(y)}" stroke="#e6ebf2"/><text x="${ml-10}" y="${sy(y)+4}" text-anchor="end" font-size="12" fill="#5f6b7a">${y}</text>`}
+    for(let x=0;x<=15;x+=1){if(x%2===0){html+=`<line x1="${sx(x)}" y1="${mt}" x2="${sx(x)}" y2="${H-mb}" stroke="#f0f3f7"/><text x="${sx(x)}" y="${H-mb+20}" text-anchor="middle" font-size="12" fill="#5f6b7a">${x}</text>`}}
+    html+=`<line x1="${ml}" y1="${H-mb}" x2="${W-mr}" y2="${H-mb}" stroke="#78879a"/><line x1="${ml}" y1="${mt}" x2="${ml}" y2="${H-mb}" stroke="#78879a"/>`;
+    html+=`<text x="${ml+pw/2}" y="${H-10}" text-anchor="middle" font-size="13" fill="#334155">zugegebenes NaOH-Volumen / mL</text>`;
+    html+=`<text x="16" y="${mt+ph/2}" transform="rotate(-90 16 ${mt+ph/2})" text-anchor="middle" font-size="13" fill="#334155">pH</text>`;
+    if(connect && data.length>1){
+      const pts=data.map(d=>`${sx(d.v)},${sy(d.ph)}`).join(' ');
+      html+=`<polyline points="${pts}" fill="none" stroke="#2457c5" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>`;
+    }
+    data.forEach((d,i)=>{html+=`<circle cx="${sx(d.v)}" cy="${sy(d.ph)}" r="${i===data.length-1?5:4}" fill="${i===data.length-1?'#c64f32':'#2457c5'}" stroke="#fff" stroke-width="1.5"><title>${fmt(d.v,1)} mL · pH ${fmt(d.ph,2)}</title></circle>`});
+    svg.innerHTML=html;
+  }
+
+  function renderMeasurements(){
+    const tb=$('#measureTable');
+    tb.innerHTML=state.measurements.map((d,i)=>`<tr><td>${i+1}</td><td>${fmt(d.v,1)}</td><td>${fmt(d.ph,2)}</td></tr>`).join('');
+    $('#volumeDisplay').textContent=`${fmt(state.volume,1)} mL`;
+    $('#livePhDisplay').textContent=fmt(state.measurements.at(-1)?.ph ?? PH_INITIAL,2);
+    const level=Math.max(15,80-state.volume*4);
+    $('#syringeLevel').style.height=`${level}%`;
+    drawChart($('#chart'),state.measurements,false);
+    if(state.phase===4) drawChart($('#chart4'),state.measurements,state.pointsConnected);
+    const ready=state.volume >= EQ_ML+1.0 && state.measurements.length>=9;
+    $('#toPhase4Btn').disabled=!ready;
+    $('#phase4Ready').classList.toggle('show',ready);
+  }
+
+  // Phase 1
+  $('#testPaperBtn').addEventListener('click',()=>{
+    $('#indicatorStrip').classList.add('wet');
+    $('#phEstimate').disabled=false; $('#saveEstimateBtn').disabled=false;
+    log('Phase 1','Indikatorpapier verwendet; pH-Farbe mit Skala verglichen.');
+  });
+
+  $('#saveEstimateBtn').addEventListener('click',()=>{
+    const v=parseFloat($('#phEstimate').value);
+    if(!Number.isFinite(v) || v<1 || v>7){showFeedback($('#estimateFeedback'),'hint','Tragt einen plausiblen Wert zwischen pH 1 und 7 ein.');return}
+    state.phEstimate=v;
+    showFeedback($('#estimateFeedback'),'good',`Schätzung gespeichert: pH ${fmt(v,1)}. Jetzt könnt ihr genauer nachmessen.`);
+    $('#measureElectrodeBtn').disabled=false;
+    log('Phase 1',`pH mit Indikatorpapier geschätzt: ${fmt(v,1)}.`);
+  });
+
+  $('#measureElectrodeBtn').addEventListener('click',()=>{
+    state.phExact=PH_INITIAL;
+    $('#phDisplay').textContent=fmt(PH_INITIAL,2);
+    $('#compareBlock').style.display='block';
+    log('Phase 1',`Virtuelle Elektrodenmessung: pH ${fmt(PH_INITIAL,2)}.`);
+  });
+  $('#estimateCompare').addEventListener('change',e=>{if(e.target.value)log('Phase 1',`Vergleich Schätzung/Elektrode: ${e.target.value}.`)});
+  $('#paperReason').addEventListener('change',e=>{if(e.target.value.trim())log('Phase 1',`Warum Indikatorpapier ungenauer sein kann: ${e.target.value.trim()}`)});
+
+  $('#checkBasicsBtn').addEventListener('click',()=>{
+    const selected=new Set($$('.basicCheck:checked').map(x=>x.dataset.id));
+    const missing=[];
+    if(!selected.has('acidic')) missing.push('„Die Lösung ist sauer“ passt, weil der gemessene pH-Wert deutlich unter 7 liegt.');
+    if(!selected.has('under7')) missing.push('„pH < 7“ gehört zur Definition einer sauren wässrigen Lösung.');
+    if(!selected.has('ions')) missing.push('In einer sauren Lösung ist die Oxoniumionen-Konzentration größer als die Hydroxidionen-Konzentration.');
+    if(missing.length===0){
+      state.basicsDone=true; showFeedback($('#basicsFeedback'),'good','Alle drei Aussagen passen. Ihr habt den sauren Charakter der Probe richtig beschrieben.');
+      log('Phase 1','Grundfragen zum sauren Charakter vollständig richtig beantwortet.');
+    } else {
+      showFeedback($('#basicsFeedback'),'hint',missing.map(x=>`• ${x}`).join('<br>')+'<br><b>Wählt die passenden Aussagen und versucht es noch einmal.</b>');
+    }
+    updateP1Gate();
+  });
+
+  $('#checkFivePctBtn').addEventListener('click',()=>{
+    const r=$('input[name="fivepct"]:checked');
+    if(!r){showFeedback($('#fivePctFeedback'),'hint','Wählt zuerst eine Aussage aus.');return}
+    if(r.value==='B'){
+      state.fivePctDone=true;
+      showFeedback($('#fivePctFeedback'),'good','Genau. Der pH-Wert beschreibt den sauren Charakter der Lösung. Bei einer schwachen Säure sagt er aber nicht unmittelbar, wie viel Säure insgesamt vorhanden ist. Für die Mengenbestimmung brauchen wir eine andere Messidee.');
+      log('Phase 1','Erkenntnis: pH zeigt „sauer“, aber nicht unmittelbar den genauen Essigsäuregehalt.');
+    } else if(r.value==='A'){
+      showFeedback($('#fivePctFeedback'),'hint','Der pH-Wert hängt bei einer schwachen Säure nicht nur von der insgesamt vorhandenen Säuremenge ab, sondern auch davon, wie stark die Säure Protonen an Wasser abgibt. Ein pH-Wert allein beweist daher keine Angabe von 5 %.');
+    } else {
+      showFeedback($('#fivePctFeedback'),'hint','Zwei Lösungen können denselben pH-Wert besitzen und trotzdem unterschiedliche Mengen an Säure enthalten. Der pH-Wert allein ist daher kein Maß für die gesamte vorhandene Säuremenge.');
+    }
+    updateP1Gate();
+  });
+
+  function updateP1Gate(){
+    $('#toPhase2Btn').disabled=!(state.phEstimate!==null && state.phExact!==null && state.basicsDone && state.fivePctDone);
+  }
+  $('#toPhase2Btn').addEventListener('click',()=>goPhase(2));
+
+  // Phase 2
+  $$('input[name="hypothesis"]').forEach(r=>r.addEventListener('change',()=>{$('#ownHypothesis').style.display=r.value==='own'&&r.checked?'block':'none'}));
+  $('#showHintBtn').addEventListener('click',()=>$('#neutralHint').classList.toggle('show'));
+  $('#saveHypothesisBtn').addEventListener('click',()=>{
+    const r=$('input[name="hypothesis"]:checked');
+    if(!r){showFeedback($('#hypothesisFeedback'),'hint','Wählt zuerst eine Vermutung aus. Hier gibt es noch keine Bewertung – wichtig ist eure Vorhersage.');return}
+    let v=r.value;
+    if(v==='own'){
+      const t=$('#ownHypothesis').value.trim();
+      if(!t){showFeedback($('#hypothesisFeedback'),'hint','Formuliert eure eigene Vermutung kurz im Textfeld.');return}
+      v='own:'+t;
+    }
+    state.hypothesis=v;
+    state.hypothesisReason=$('#hypothesisReason').value.trim();
+    showFeedback($('#hypothesisFeedback'),'good','Vermutung gespeichert. Sie wird noch nicht bewertet – wir vergleichen sie später mit euren Messwerten.');
+    log('Phase 2',`Vermutung: ${hypothesisText()}`);
+    if(state.hypothesisReason) log('Phase 2',`Begründung: ${state.hypothesisReason}`);
+    $('#toPhase3Btn').disabled=false;
+  });
+  $('#toPhase3Btn').addEventListener('click',()=>{ensureInitialPoint();goPhase(3)});
+
+  // Phase 3
+  $$('.dose-btn').forEach(b=>b.addEventListener('click',()=>{
+    const dose=parseFloat(b.dataset.dose);
+    if(state.volume+dose>15.01) return;
+    state.volume=+(state.volume+dose).toFixed(3);
+    const ph=calcPH(state.volume);
+    state.measurements.push({v:state.volume,ph});
+    log('Phase 3',`NaOH gesamt ${fmt(state.volume,1)} mL → pH ${fmt(ph,2)}.`);
+    if(!state.fineUnlocked && state.volume>=EQ_ML*0.72){
+      state.fineUnlocked=true;
+      $('#dose02Btn').classList.add('show');
+      $('#doseUnlockNote').classList.add('show');
+      log('Phase 3','Feinere Dosierung (+0,2 mL) wurde vor dem steilen Bereich freigeschaltet.');
+    }
+    if(state.volume>=EQ_ML*0.75 && dose>=1){
+      showFeedback($('#doseAdvice'),'hint','Der pH-Wert beginnt sich stärker zu verändern. Mit kleineren Portionen könnt ihr diesen Bereich genauer erfassen.');
+    } else if(state.volume<EQ_ML*0.5 && dose<=0.2){
+      showFeedback($('#doseAdvice'),'hint','Bisher ändert sich der pH nur wenig. Hier reichen größere Portionen meist aus – die feine Dosierung wird besonders später interessant.');
+    } else {
+      showFeedback($('#doseAdvice'),'hint','Beobachtet, wie stark sich der pH-Wert pro Zugabeschritt verändert.');
+    }
+    renderMeasurements();
+  }));
+
+  $('#resetSeriesBtn').addEventListener('click',()=>{
+    state.volume=0;state.measurements=[{v:0,ph:calcPH(0)}];state.fineUnlocked=false;
+    $('#dose02Btn').classList.remove('show');$('#doseUnlockNote').classList.remove('show');
+    log('Phase 3','Messreihe zurückgesetzt.');renderMeasurements();
+  });
+  $('#toPhase4Btn').addEventListener('click',()=>goPhase(4));
+
+  // Phase 4
+  $('#saveDescriptionBtn').addEventListener('click',()=>{
+    const t=$('#cloudDescription').value.trim();
+    if(t.length<8){showFeedback($('#descriptionFeedback'),'hint','Beschreibt den Verlauf etwas genauer. Ein kurzer vollständiger Satz genügt – es gibt keine vorgegebene Musterformulierung.');return}
+    showFeedback($('#descriptionFeedback'),'good','Beschreibung gespeichert. Jetzt könnt ihr die Messpunkte verbinden.');
+    $('#connectPointsBtn').disabled=false;
+    log('Phase 4',`Beschreibung der Punktwolke: ${t}`);
+  });
+  $('#connectPointsBtn').addEventListener('click',()=>{
+    state.pointsConnected=true;
+    drawChart($('#chart4'),state.measurements,true);
+    $('#chartModeLabel').textContent='Titrationskurve';
+    $('#curveFeedback').classList.add('show');
+    $('#autoStep').disabled=false;$('#autoSpeed').disabled=false;$('#autoRunBtn').disabled=false;$('#autoFeedback').classList.add('show');
+    log('Phase 4','Messpunkte verbunden; Titrationskurve sichtbar gemacht.');
+  });
+  $('#saveReflectionBtn').addEventListener('click',()=>{
+    const cmp=$('#hypothesisCompare').value, txt=$('#reformulation').value.trim();
+    if(cmp) log('Phase 4',`Vergleich mit ursprünglicher Vermutung: ${cmp}.`);
+    if(txt) log('Phase 4',`Neu formuliert: ${txt}`);
+  });
+
+  $('#autoStep').addEventListener('input',e=>$('#autoStepOut').textContent=`${fmt(e.target.value,1)} mL`);
+  $('#autoSpeed').addEventListener('input',e=>$('#autoSpeedOut').textContent=`${fmt(e.target.value,1)}×`);
+  let autoTimer=null;
+  $('#autoRunBtn').addEventListener('click',()=>{
+    if(state.autoRunning) return;
+    state.autoRunning=true;$('#autoRunBtn').disabled=true;$('#autoStopBtn').disabled=false;
+    const step=parseFloat($('#autoStep').value), speed=parseFloat($('#autoSpeed').value);
+    const autoData=[{v:0,ph:calcPH(0)}]; let v=0;
+    const tick=()=>{
+      v=+(v+step).toFixed(3);
+      if(v>12.5){stopAuto();return}
+      autoData.push({v,ph:calcPH(v)});
+      drawChart($('#chart4'),autoData,true);
+    };
+    autoTimer=setInterval(tick,Math.max(90,650/speed));
+    log('Phase 4',`Automatische Titration gestartet: Zugabemenge ${fmt(step,1)} mL, Geschwindigkeit ${fmt(speed,1)}×.`);
+  });
+  function stopAuto(){if(autoTimer)clearInterval(autoTimer);autoTimer=null;state.autoRunning=false;$('#autoRunBtn').disabled=false;$('#autoStopBtn').disabled=true}
+  $('#autoStopBtn').addEventListener('click',()=>{stopAuto();drawChart($('#chart4'),state.measurements,state.pointsConnected);log('Phase 4','Automatische Titration gestoppt.');});
+
+  // Navigation back
+  $$('[data-back]').forEach(b=>b.addEventListener('click',()=>goPhase(parseInt(b.dataset.back))));
+
+  // Protocol panel
+  function openProtocol(){renderProtocol();$('#protocolPanel').classList.add('open');$('#overlay').classList.add('show')}
+  function closeProtocol(){$('#protocolPanel').classList.remove('open');$('#overlay').classList.remove('show')}
+  $('#protocolBtn').addEventListener('click',openProtocol);$('#closeProtocolBtn').addEventListener('click',closeProtocol);$('#overlay').addEventListener('click',closeProtocol);
+  $('#copyProtocolBtn').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(renderProtocol());$('#copyProtocolBtn').textContent='Kopiert ✓';setTimeout(()=>$('#copyProtocolBtn').textContent='In Zwischenablage kopieren',1400)}catch(e){alert('Kopieren war im Browser nicht möglich. Bitte Text manuell markieren.')}});
+  $('#downloadProtocolBtn').addEventListener('click',()=>{
+    const blob=new Blob([renderProtocol()],{type:'text/markdown;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='SAEUREN_LAB_Protokoll.md';a.click();URL.revokeObjectURL(a.href);
+  });
+
+  $('#resetAllBtn').addEventListener('click',()=>{if(confirm('Gesamten Arbeitsstand zurücksetzen?')) location.reload()});
+
+  // Initial
+  $('#livePhDisplay').textContent=fmt(PH_INITIAL,2);
+  renderProtocol();
+})();
+</script>
+</body>
+</html>
