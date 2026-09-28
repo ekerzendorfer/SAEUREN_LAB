@@ -17,7 +17,7 @@ header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdro
 .brand h1{font-size:1.25rem;margin:0}.brand p{margin:2px 0 0;color:var(--muted);font-size:.9rem}
 .header-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.version{font-size:.78rem;color:var(--muted);padding:4px 8px;border:1px solid var(--line);border-radius:999px}
 .btn{border:1px solid var(--line);background:#fff;color:var(--ink);padding:9px 13px;border-radius:10px;font-weight:650}.btn:hover{border-color:#9fb3d8}.btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}.btn.soft{background:var(--accent2);border-color:#c7d5f3;color:#173b86}.btn.good{background:#e8f6ef;border-color:#b5dfc8;color:var(--good)}.btn:disabled{opacity:.45;cursor:not-allowed}
-main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-bottom:16px}.step{background:#fff;border:1px solid var(--line);padding:10px 12px;border-radius:12px;color:var(--muted);font-size:.88rem}.step.active{border-color:var(--accent);box-shadow:0 0 0 2px rgba(36,87,197,.08);color:var(--accent);font-weight:750}.step.done{background:#f1f8f4;color:var(--good);border-color:#cbe7d7}.step.unlocked{cursor:pointer}.step.unlocked:hover{border-color:#9fb3d8}.step.locked{opacity:.6}
+main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid;grid-template-columns:repeat(10,minmax(112px,1fr));gap:8px;margin-bottom:16px;overflow-x:auto;padding-bottom:2px}.step{background:#fff;border:1px solid var(--line);padding:10px 12px;border-radius:12px;color:var(--muted);font-size:.88rem}.step.active{border-color:var(--accent);box-shadow:0 0 0 2px rgba(36,87,197,.08);color:var(--accent);font-weight:750}.step.done{background:#f1f8f4;color:var(--good);border-color:#cbe7d7}.step.unlocked{cursor:pointer}.step.unlocked:hover{border-color:#9fb3d8}.step.locked{opacity:.6}
 .phase{display:none}.phase.active{display:block}.grid3{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:14px}.grid2{display:grid;grid-template-columns:1.2fr .8fr;gap:14px}.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}.card h2,.card h3{margin-top:0}.subtle{color:var(--muted);font-size:.94rem}.callout{padding:12px 14px;border-radius:12px;background:#f7f9fd;border:1px solid var(--line);margin:10px 0}.question{margin:15px 0;padding-top:12px;border-top:1px dashed var(--line)}.question:first-child{border-top:none;padding-top:0}.feedback{margin-top:8px;padding:10px 12px;border-radius:10px;background:#f7f9fc;border:1px solid var(--line);display:none}.feedback.show{display:block}.feedback.good{background:#eef9f3;border-color:#bfe5cf;color:#0f5c3b}.feedback.hint{background:#fff7ea;border-color:#ead3a7;color:#7c4d00}.feedback.bad{background:#fff1f1;border-color:#efc5c5;color:#8f2828}
 .sample-stage{min-height:230px;display:flex;align-items:center;justify-content:center;gap:28px;position:relative}.bottle{width:110px;height:165px;border:3px solid #96a5b7;border-radius:16px 16px 24px 24px;position:relative;background:linear-gradient(#fff 0 35%,#f4f0d5 35% 100%)}.bottle:before{content:"";position:absolute;width:52px;height:36px;left:26px;top:-35px;border:3px solid #96a5b7;border-bottom:none;border-radius:7px 7px 0 0;background:#fff}.label{position:absolute;left:10px;right:10px;top:62px;background:#fff;border:1px solid #c6cdd8;border-radius:8px;padding:9px;text-align:center;font-weight:700;font-size:.88rem}.beaker{width:110px;height:130px;border:3px solid #96a5b7;border-top:none;border-radius:0 0 18px 18px;position:relative;background:linear-gradient(to top,#edf3ff 0 58%,transparent 58%)}.beaker:before{content:"";position:absolute;top:0;left:-3px;right:-3px;border-top:3px solid #96a5b7}.beaker span{position:absolute;bottom:14px;left:0;right:0;text-align:center;color:#546277;font-size:.82rem}
 .indicator-wrap{display:flex;gap:14px;align-items:center}.strip{width:38px;height:150px;border:1px solid #aaa;border-radius:4px;background:#eee;position:relative}.strip.wet:after{content:"";position:absolute;left:0;right:0;bottom:0;height:48%;background:#e26b50;border-radius:0 0 3px 3px}.ph-scale{display:grid;grid-template-columns:repeat(9,1fr);gap:2px;margin-top:12px}.ph-chip{height:28px;border-radius:5px;color:#fff;font-size:.68rem;display:flex;align-items:center;justify-content:center;text-shadow:0 1px 2px #0007}.ph20{background:#c94338}.ph25{background:#d6523e}.ph30{background:#e16442}.ph35{background:#ea7844}.ph40{background:#ef8f46}.ph45{background:#e9a349}.ph50{background:#d9b44e}.ph55{background:#bdba52}.ph60{background:#9dbb58}.meter{display:flex;align-items:center;gap:14px}.electrode{width:28px;height:155px;border-radius:14px;background:linear-gradient(#dbe2ea,#8b99aa);position:relative}.electrode:after{content:"";position:absolute;bottom:-6px;left:6px;width:16px;height:22px;border-radius:0 0 8px 8px;background:#46596f}.digital{font-variant-numeric:tabular-nums;font-size:2rem;font-weight:800;border:2px solid #a7b6c8;background:#172033;color:#8ef0ba;padding:12px 16px;border-radius:10px;min-width:138px;text-align:center}
@@ -43,8 +43,20 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
 .phase6-key{display:flex;align-items:center;gap:7px}
 .phase6-line{width:26px;height:0;border-top:3px solid #2457c5}
 .phase6-line.deriv{border-top-color:#7a4bb3}
+.plan-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:12px 0}
+.plan-card{border:1px solid var(--line);border-radius:12px;padding:11px;background:#fff;min-height:92px;display:flex;align-items:center;gap:9px;cursor:pointer}
+.plan-card:hover{border-color:#9fb3d8;background:#f9fbff}.plan-card.used{opacity:.45;cursor:default}
+.plan-card .num{width:28px;height:28px;border-radius:50%;background:var(--accent2);color:#173b86;display:flex;align-items:center;justify-content:center;font-weight:800;flex:0 0 auto}
+.order-strip{display:flex;gap:6px;flex-wrap:wrap;min-height:46px;padding:8px;border:1px dashed #aeb9c8;border-radius:10px;background:#f9fbfd}
+.order-pill{padding:7px 9px;border-radius:999px;background:#e8eefc;color:#173b86;font-size:.82rem;font-weight:700}
+.path-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:12px 0}.path-card{border:1px solid var(--line);border-radius:14px;padding:14px;background:#fff}.path-card.active{border-color:var(--accent);box-shadow:0 0 0 2px rgba(36,87,197,.08)}
+.calc-chain{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}.calc-step{padding:10px;border:1px solid var(--line);border-radius:10px;background:#f8faff;text-align:center}.calc-step b{display:block;color:var(--accent);margin-bottom:3px}
+.big-result{font-size:1.35rem;font-weight:800;color:var(--good);padding:12px 14px;border:1px solid #bfe5cf;background:#eef9f3;border-radius:12px;text-align:center}
+.safety{padding:11px 13px;border-radius:11px;background:#fff3e5;border:1px solid #efcf9d;color:#6d4800}
+.formula{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;background:#f4f7fb;border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:8px 0;font-weight:700}
+.mini-badge{display:inline-block;padding:3px 7px;border-radius:999px;background:#edf2fb;color:#31528f;font-size:.75rem;font-weight:700}
 
-@media(max-width:980px){.grid3,.grid2,.phase6-grid,.titration-top,.measurement{grid-template-columns:1fr}.stepper{grid-template-columns:1fr 1fr}.header-inner{align-items:flex-start}.sample-stage{min-height:190px}.auto-controls{grid-template-columns:1fr}}
+@media(max-width:980px){.grid3,.grid2,.phase6-grid,.titration-top,.measurement,.path-grid,.calc-chain{grid-template-columns:1fr}.plan-steps{grid-template-columns:1fr 1fr}.stepper{grid-template-columns:1fr 1fr;overflow:visible}.header-inner{align-items:flex-start}.sample-stage{min-height:190px}.auto-controls{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -52,10 +64,10 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
   <div class="header-inner">
     <div class="brand">
       <h1>SÄUREN_LAB – Säuren in Lebensmitteln</h1>
-      <p>Beispiel 1: Speiseessig – vom pH-Wert zur Titrationskurve</p>
+      <p>Beispiel 1: Speiseessig – vom pH-Wert zur Lebensmittelanalyse</p>
     </div>
     <div class="header-actions">
-      <span class="version">v0.2.1 · Phase 1–7</span>
+      <span class="version">v0.3.0 · Phase 1–10</span>
       <button class="btn" id="protocolBtn">Protokoll</button>
       <button class="btn" id="resetAllBtn">Neu starten</button>
     </div>
@@ -70,6 +82,9 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
     <div class="step" data-step="5">5 · ÄP annähern</div>
     <div class="step" data-step="6">6 · ÄP finden</div>
     <div class="step" data-step="7">7 · Indikator</div>
+    <div class="step" data-step="8">8 · Planen</div>
+    <div class="step" data-step="9">9 · Durchführen</div>
+    <div class="step" data-step="10">10 · Auswerten</div>
   </div>
 
   <section class="phase active" id="phase1">
@@ -402,15 +417,296 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
           <div class="feedback" id="indicatorObsFeedback"></div>
         </div>
         <div class="result-box hidden-block" id="phase7Complete">
-          <b>Phasen 1–7 abgeschlossen.</b><br>Ihr könnt jetzt den virtuellen Lernweg auf eine reale Essigprobe übertragen. Der nächste Ausbau plant Probenvorbereitung, optionalen Realversuch/Video und die schrittweise Auswertung der Etikettangabe „5 % Säure“.
+          <b>Phasen 1–7 abgeschlossen.</b><br>Ihr könnt den virtuellen Lernweg jetzt auf eine reale bzw. realitätsnahe Essigprobe übertragen.
         </div>
       </div>
     </div>
-    <div class="phase-nav"><button class="btn" data-back="6">Zurück</button><button class="btn primary" disabled title="Folgt im nächsten Ausbau">Phase 8: Realversuch planen</button></div>
+    <div class="phase-nav"><button class="btn" data-back="6">Zurück</button><button class="btn primary" id="toPhase8Btn" disabled>Phase 8: Realversuch planen</button></div>
   </section>
 
-  <div class="card" style="margin-top:14px"><h3>Vorgemerkt für Phase 8+</h3><p class="subtle"><b>Titrationschallenge nach dem Realversuch:</b> Die SchülerInnen dosieren selbst und versuchen, den Äquivalenz-/Endpunkt möglichst genau zu treffen. Die Rückmeldung soll die Abweichung erklären und nicht nur bewerten.</p></div>
-  <p class="footer-note">SÄUREN_LAB v0.2.1 · technischer Prototyp für GitHub Pages · Phasen 1–7</p>
+  <section class="phase" id="phase8">
+    <div class="grid2">
+      <div class="card">
+        <h2>8. Den Realversuch planen</h2>
+        <p class="subtle">„5 % Säure“ entspricht größenordnungsmäßig etwas weniger als 1 mol/L Essigsäure. Unsere Maßlösung enthält 0,100 mol/L NaOH.</p>
+        <div class="question">
+          <p><b>Warum titrieren wir nicht einfach 10,0 mL unverdünnten Speiseessig?</b></p>
+          <label class="choice"><input type="radio" name="diluteWhy" value="noReaction"> A · Unverdünnter Essig reagiert nicht mit Natronlauge.</label>
+          <label class="choice"><input type="radio" name="diluteWhy" value="largeVolume"> B · Der Verbrauch an 0,100-molarer NaOH wäre für eine Schultitration sehr groß.</label>
+          <label class="choice"><input type="radio" name="diluteWhy" value="indicator"> C · Phenolphthalein funktioniert nur bei verdünntem Essig.</label>
+          <label class="choice"><input type="radio" name="diluteWhy" value="moreAcid"> D · Beim Verdünnen entsteht zusätzliche Essigsäure.</label>
+          <button class="btn" id="checkDiluteWhyBtn">Antwort prüfen</button>
+          <div class="feedback" id="diluteWhyFeedback"></div>
+        </div>
+        <details class="excourse">
+          <summary>Exkurs: Warum ändert sich beim Verdünnen der pH-Wert, aber nicht die Stoffmenge?</summary>
+          <div>
+            Beim Verdünnen wird nur Wasser zugesetzt. In der <b>gesamten verdünnten Lösung</b> befinden sich danach noch genauso viele Essigsäure-Teilchen wie in den ursprünglich entnommenen 10,0 mL Essig – die Stoffmenge ist also gleich geblieben. Sie verteilen sich aber auf ein größeres Volumen; die Konzentration sinkt. Weil die Gleichgewichtslage und damit die Oxoniumionenkonzentration von der Konzentration abhängen, verändert sich auch der pH-Wert.<br><br>
+            Wichtig: Entnehmen wir anschließend nur <b>10,0 mL der insgesamt 100,0 mL</b>, nehmen wir natürlich nur ein Zehntel der dort enthaltenen Stoffmenge für die Titration heraus.
+          </div>
+        </details>
+      </div>
+      <div class="card">
+        <h3>Probenvorbereitung ordnen</h3>
+        <p>Klickt die fünf Schritte in der richtigen Reihenfolge an.</p>
+        <div class="plan-steps" id="prepCards">
+          <button class="plan-card" data-prep="3"><span class="num">?</span><span>Mit destilliertem Wasser bis zur 100-mL-Marke auffüllen.</span></button>
+          <button class="plan-card" data-prep="1"><span class="num">?</span><span>10,0 mL Originalessig abmessen.</span></button>
+          <button class="plan-card" data-prep="5"><span class="num">?</span><span>10,0 mL der verdünnten Lösung als Analysenprobe entnehmen.</span></button>
+          <button class="plan-card" data-prep="2"><span class="num">?</span><span>In einen 100-mL-Messkolben überführen.</span></button>
+          <button class="plan-card" data-prep="4"><span class="num">?</span><span>Verschließen und gründlich mischen.</span></button>
+        </div>
+        <div class="order-strip" id="prepOrder"><span class="subtle">Eure Reihenfolge erscheint hier.</span></div>
+        <div class="inline" style="margin-top:9px">
+          <button class="btn" id="resetPrepBtn">Reihenfolge löschen</button>
+          <button class="btn primary" id="checkPrepBtn" disabled>Reihenfolge prüfen</button>
+        </div>
+        <div class="feedback" id="prepFeedback"></div>
+      </div>
+    </div>
+
+    <div class="grid2" style="margin-top:14px">
+      <div class="card">
+        <h3>Verbrauch vorhersagen</h3>
+        <p>Nach der 1:10-Verdünnung werden 10,0 mL Analysenprobe mit 0,100 mol/L NaOH titriert. Auch etwas säurereichere Speiseessige sollen noch in einem gut handhabbaren Bereich liegen.</p>
+        <p><b>In welcher Größenordnung erwartet ihr den Endpunkt?</b></p>
+        <label class="choice"><input type="radio" name="consumptionGuess" value="lt1"> deutlich unter 1 mL</label>
+        <label class="choice"><input type="radio" name="consumptionGuess" value="8to12"> ungefähr 8–12 mL</label>
+        <label class="choice"><input type="radio" name="consumptionGuess" value="50"> ungefähr 50 mL</label>
+        <label class="choice"><input type="radio" name="consumptionGuess" value="gt100"> deutlich über 100 mL</label>
+        <button class="btn" id="checkConsumptionBtn">Vermutung prüfen</button>
+        <div class="feedback" id="consumptionFeedback"></div>
+        <div class="question">
+          <label><b>Ab welchem Volumen würdet ihr besonders vorsichtig dosieren?</b></label>
+          <div class="inline" style="margin-top:7px"><input class="field short" id="carefulFrom" type="text" inputmode="decimal" placeholder="z. B. 7,5"><span>mL</span><button class="btn" id="saveCarefulBtn">Speichern</button></div>
+          <div class="feedback" id="carefulFeedback"></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Unser Versuchsplan</h3>
+        <div class="callout">
+          <b>Standardmethode</b><br>
+          10,0 mL Originalessig → im 100-mL-Messkolben auf 100,0 mL auffüllen → mischen → 10,0 mL dieser Lösung als Probe entnehmen.
+        </div>
+        <ul>
+          <li>Maßlösung: 0,100 mol/L NaOH</li>
+          <li>Indikator: Phenolphthalein</li>
+          <li>erwarteter Verbrauch: etwa 8–12 mL</li>
+          <li>nahe dem Endpunkt fein dosieren</li>
+          <li>Endpunkt: gerade beständige, sehr schwache Rosafärbung</li>
+        </ul>
+        <div class="safety"><b>Sicherheit:</b> Natronlauge ist ätzend. Im Realversuch nur unter Anleitung, mit Schutzbrille und nach den schulischen Sicherheitsvorgaben arbeiten.</div>
+        <button class="btn primary" id="savePlanBtn" style="margin-top:12px" disabled>Versuchsplan ins Protokoll übernehmen</button>
+        <div class="feedback" id="planFeedback"></div>
+      </div>
+    </div>
+    <div class="phase-nav"><button class="btn" data-back="7">Zurück</button><button class="btn primary" id="toPhase9Btn" disabled>Phase 9: Durchführen / beobachten</button></div>
+  </section>
+
+  <section class="phase" id="phase9">
+    <div class="card">
+      <h2>9. Real durchführen, beobachten oder virtuell vertiefen</h2>
+      <p class="subtle">Der Realversuch ist optional. Wählt den Weg, der zu eurer Unterrichtssituation passt. Für die anschließende Auswertung benötigt ihr nur einen plausiblen NaOH-Verbrauch.</p>
+      <div class="path-grid">
+        <div class="path-card" id="pathRealCard">
+          <h3>A · Selbst titrieren</h3>
+          <p>Mit Kunststoffspritze oder klassisch mit Bürette.</p>
+          <button class="btn soft pathSelect" data-path="real">Diesen Weg wählen</button>
+        </div>
+        <div class="path-card" id="pathVideoCard">
+          <h3>B · Versuch beobachten</h3>
+          <p>Später können hier die dokumentierten Spritzen- und Bürettenversuche direkt geöffnet werden.</p>
+          <button class="btn soft pathSelect" data-path="video">Diesen Weg wählen</button>
+        </div>
+        <div class="path-card" id="pathToolCard">
+          <h3>C · Im TITRATIONSTOOL</h3>
+          <p>Die bereits vorhandene Aufgabe „unbekannte Essiglösung“ verwenden.</p>
+          <button class="btn soft pathSelect" data-path="tool">Diesen Weg wählen</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card hidden-block" id="pathRealBlock" style="margin-top:14px">
+      <h3>A · Eigenes Realexperiment</h3>
+      <div class="grid2">
+        <div>
+          <h4>Spritzen-Titration</h4>
+          <p class="subtle">Halbquantitative Variante mit graduierter Kunststoffspritze.</p>
+          <label>Verbrauchte NaOH / mL</label>
+          <input class="field short" id="syringeVolume" type="text" inputmode="decimal" placeholder="mL">
+          <label style="display:block;margin-top:10px">Wie eindeutig war die Endpunkterkennung?</label>
+          <select class="field" id="endpointClarity"><option value="">Bitte auswählen</option><option>sehr eindeutig</option><option>ausreichend</option><option>schwierig</option></select>
+          <textarea class="field note-area" id="realNotes" placeholder="Beobachtungen / Schwierigkeiten …" style="margin-top:8px"></textarea>
+          <button class="btn" id="saveSyringeBtn">Messwert übernehmen</button>
+        </div>
+        <div>
+          <h4>Büretten-Titration</h4>
+          <p class="subtle">Genauere Laborvariante. Die Bürettenskala nimmt nach unten zu.</p>
+          <label>Bürettenstand Beginn / mL</label><input class="field short" id="buretteStart" type="text" inputmode="decimal">
+          <label style="display:block;margin-top:8px">Bürettenstand Ende / mL</label><input class="field short" id="buretteEnd" type="text" inputmode="decimal">
+          <label style="display:block;margin-top:8px">Euer berechneter Verbrauch / mL</label><input class="field short" id="buretteUsed" type="text" inputmode="decimal">
+          <button class="btn" id="checkBuretteBtn">Verbrauch prüfen und übernehmen</button>
+        </div>
+      </div>
+      <div class="feedback" id="realFeedback"></div>
+    </div>
+
+    <div class="card hidden-block" id="pathVideoBlock" style="margin-top:14px">
+      <h3>B · Versuchsvideo / Demonstration</h3>
+      <p>Die beiden Videos werden nach der Aufnahme hier verlinkt. Bis dahin kann der beim Demonstrationsversuch beobachtete Verbrauch direkt eingetragen werden.</p>
+      <div class="inline"><button class="btn" disabled>Spritzen-Video · folgt</button><button class="btn" disabled>Büretten-Video · folgt</button></div>
+      <div class="question">
+        <label><b>Beobachteter NaOH-Verbrauch:</b></label>
+        <div class="inline" style="margin-top:7px"><input class="field short" id="videoVolume" type="text" inputmode="decimal"><span>mL</span><button class="btn" id="saveVideoBtn">Messwert übernehmen</button></div>
+      </div>
+      <div class="feedback" id="videoFeedback"></div>
+    </div>
+
+    <div class="card hidden-block" id="pathToolBlock" style="margin-top:14px">
+      <h3>C · Im großen TITRATIONSTOOL</h3>
+      <p>Verwendet die vorhandene Aufgabe zur <b>unbekannten Essiglösung</b>.</p>
+      <div class="callout">
+        <b>Wichtige Anpassung:</b> In dieser Aufgabe ist derzeit ein Probenvolumen von 20 mL voreingestellt. Für den direkten Vergleich mit dem SÄUREN_LAB stellt ihr <b>V(Probe) auf 10,0 mL</b> ein. Die übrige Versuchsidee bleibt gleich.
+      </div>
+      <a class="btn soft" href="https://ekerzendorfer.github.io/TITRATIONSTOOL/" target="_blank" rel="noopener">TITRATIONSTOOL öffnen</a>
+      <div class="question">
+        <label><b>Dort ermittelter NaOH-Verbrauch:</b></label>
+        <div class="inline" style="margin-top:7px"><input class="field short" id="toolVolume" type="text" inputmode="decimal"><span>mL</span><button class="btn" id="saveToolBtn">Messwert übernehmen</button></div>
+      </div>
+      <div class="feedback" id="toolFeedback"></div>
+    </div>
+
+    <div class="result-box hidden-block" id="measurementChosen" style="margin-top:14px"></div>
+    <div class="phase-nav"><button class="btn" data-back="8">Zurück</button><button class="btn primary" id="toPhase10Btn" disabled>Phase 10: Messwert auswerten</button></div>
+  </section>
+
+  <section class="phase" id="phase10">
+    <div class="grid2">
+      <div class="card">
+        <h2>10. Vom NaOH-Verbrauch zu „5 % Säure“</h2>
+        <div class="callout" id="analysisInputSummary">Messwert aus Phase 9: —</div>
+        <div class="question">
+          <p><b>Was gilt am Äquivalenzpunkt?</b></p>
+          <label class="choice"><input type="radio" name="eqMeaning" value="sameVolume"> A · Es wurden gleich große Volumina von Essig und NaOH verwendet.</label>
+          <label class="choice"><input type="radio" name="eqMeaning" value="sameMoles"> B · Die Stoffmenge der zugegebenen NaOH entspricht der Stoffmenge der Essigsäure in der Probe.</label>
+          <label class="choice"><input type="radio" name="eqMeaning" value="sameC"> C · Essig und NaOH besitzen dieselbe Konzentration.</label>
+          <label class="choice"><input type="radio" name="eqMeaning" value="ph7"> D · Der pH-Wert muss genau 7 sein.</label>
+          <button class="btn" id="checkEqMeaningBtn">Antwort prüfen</button>
+          <div class="feedback" id="eqMeaningFeedback"></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Rechengang</h3>
+        <div class="calc-chain">
+          <div class="calc-step"><b>1</b>verdünnte Probe<br>mol/L</div>
+          <div class="calc-step"><b>2</b>Originalessig<br>mol/L</div>
+          <div class="calc-step"><b>3</b>Essigsäure<br>g/L</div>
+          <div class="calc-step"><b>4</b>Etikett<br>g/100 mL</div>
+        </div>
+        <p class="subtle">Jeder Schritt wird erst nach eurer eigenen Eingabe kontrolliert.</p>
+      </div>
+    </div>
+
+    <div class="card hidden-block" id="calcBlockB" style="margin-top:14px">
+      <h3>10B · Konzentration der verdünnten Probe</h3>
+      <p>Für Essigsäure und NaOH gilt hier am Äquivalenzpunkt ein Stoffmengenverhältnis von 1 : 1.</p>
+      <div class="formula">c(Säure) · V(Säure) = c(NaOH) · V(NaOH)</div>
+      <p>Bekannt: V(Säure) = <b>10,0 mL</b>, c(NaOH) = <b>0,100 mol/L</b>, V(NaOH) = <b id="calcBaseVol">—</b>.</p>
+      <p><b>Welche Größe suchen wir in diesem Schritt?</b></p>
+      <label class="choice"><input type="radio" name="calcUnknown" value="acidV"> V(Säure)</label>
+      <label class="choice"><input type="radio" name="calcUnknown" value="acidC"> c(Säure)</label>
+      <label class="choice"><input type="radio" name="calcUnknown" value="baseC"> c(NaOH)</label>
+      <label class="choice"><input type="radio" name="calcUnknown" value="baseV"> V(NaOH)</label>
+      <button class="btn" id="checkUnknownBtn">Antwort prüfen</button>
+      <div class="feedback" id="unknownFeedback"></div>
+
+      <div class="hidden-block" id="formulaChoiceBlock">
+        <p><b>Welche Umstellung ist richtig?</b></p>
+        <label class="choice"><input type="radio" name="formulaChoice" value="right"> c(Säure) = c(NaOH) · V(NaOH) / V(Säure)</label>
+        <label class="choice"><input type="radio" name="formulaChoice" value="invert"> c(Säure) = c(NaOH) · V(Säure) / V(NaOH)</label>
+        <label class="choice"><input type="radio" name="formulaChoice" value="add"> c(Säure) = c(NaOH) + V(NaOH) / V(Säure)</label>
+        <button class="btn" id="checkFormulaBtn">Formel prüfen</button>
+        <div class="feedback" id="formulaFeedback"></div>
+      </div>
+
+      <div class="hidden-block" id="acidDilutedInputBlock">
+        <label><b>c(verdünnte Essigprobe) =</b></label>
+        <div class="inline" style="margin-top:7px"><input class="field short" id="acidDilutedInput" type="text" inputmode="decimal"><span>mol/L</span><button class="btn" id="checkAcidDilutedBtn">Wert prüfen</button></div>
+        <div class="feedback" id="acidDilutedFeedback"></div>
+      </div>
+    </div>
+
+    <div class="card hidden-block" id="calcBlockC" style="margin-top:14px">
+      <h3>10C · Verdünnung rückgängig machen</h3>
+      <div class="callout">10,0 mL Originalessig wurden auf 100,0 mL aufgefüllt. Die Konzentration wurde also auf ein Zehntel verringert.</div>
+      <p><b>Wie erhält man die Konzentration des Originalessigs?</b></p>
+      <label class="choice"><input type="radio" name="dilutionBack" value="divide"> verdünnte Konzentration ÷ 10</label>
+      <label class="choice"><input type="radio" name="dilutionBack" value="multiply"> verdünnte Konzentration × 10</label>
+      <label class="choice"><input type="radio" name="dilutionBack" value="same"> beide sind gleich</label>
+      <button class="btn" id="checkDilutionBackBtn">Antwort prüfen</button>
+      <div class="feedback" id="dilutionBackFeedback"></div>
+      <div class="hidden-block" id="originalCInputBlock">
+        <div class="inline"><label><b>c(Originalessig) =</b></label><input class="field short" id="originalCInput" type="text" inputmode="decimal"><span>mol/L</span><button class="btn" id="checkOriginalCBtn">Wert prüfen</button></div>
+        <div class="feedback" id="originalCFeedback"></div>
+      </div>
+    </div>
+
+    <div class="card hidden-block" id="calcBlockD" style="margin-top:14px">
+      <h3>10D · Von mol/L zu g/L</h3>
+      <p>Molare Masse der Essigsäure: <b>M = 60,05 g/mol</b></p>
+      <div class="formula">Massenkonzentration = c · M</div>
+      <div class="inline"><input class="field short" id="massConcInput" type="text" inputmode="decimal"><span>g/L</span><button class="btn" id="checkMassConcBtn">Wert prüfen</button></div>
+      <div class="feedback" id="massConcFeedback"></div>
+    </div>
+
+    <div class="card hidden-block" id="calcBlockE" style="margin-top:14px">
+      <h3>10E · Von g/L zur Etikettangabe</h3>
+      <p><b>Wie kommt ihr von g/L zu g pro 100 mL?</b></p>
+      <label class="choice"><input type="radio" name="per100Choice" value="times10"> mit 10 multiplizieren</label>
+      <label class="choice"><input type="radio" name="per100Choice" value="divide10"> durch 10 dividieren</label>
+      <label class="choice"><input type="radio" name="per100Choice" value="divide100"> durch 100 dividieren</label>
+      <button class="btn" id="checkPer100Btn">Antwort prüfen</button>
+      <div class="feedback" id="per100Feedback"></div>
+      <div class="hidden-block" id="percentInputBlock">
+        <div class="inline"><input class="field short" id="percentInput" type="text" inputmode="decimal"><span>g/100 mL ≙ % Säure</span><button class="btn" id="checkPercentBtn">Wert prüfen</button></div>
+        <div class="feedback" id="percentFeedback"></div>
+      </div>
+    </div>
+
+    <div class="card hidden-block" id="calcBlockF" style="margin-top:14px">
+      <h3>10F · Etikett und Messwert vergleichen</h3>
+      <div class="grid2">
+        <div class="big-result">Etikett<br><span>5,0 % Säure</span></div>
+        <div class="big-result">Unser Ergebnis<br><span id="finalPercent">—</span></div>
+      </div>
+      <p style="margin-top:12px"><b id="differenceText"></b></p>
+      <p><b>Wie beschreibt ihr den Vergleich?</b></p>
+      <label class="choice"><input type="radio" name="compareLabel" value="near"> unser Wert liegt nahe bei der Etikettangabe</label>
+      <label class="choice"><input type="radio" name="compareLabel" value="below"> unser Wert liegt merklich darunter</label>
+      <label class="choice"><input type="radio" name="compareLabel" value="above"> unser Wert liegt merklich darüber</label>
+      <textarea class="field note-area" id="errorSources" placeholder="Welche Ursachen könnten eine Abweichung erklären? …"></textarea>
+      <button class="btn" id="saveComparisonBtn">Vergleich ins Protokoll übernehmen</button>
+      <div class="feedback" id="comparisonFeedback"></div>
+      <details class="excourse"><summary>Denkanstöße zu möglichen Unsicherheiten</summary><div>Volumenablesung · Verdünnung · Endpunkterkennung · Tropfengröße · tatsächliche Konzentration der Maßlösung · Verluste beim Überführen · subjektive Wahrnehmung der Rosafärbung</div></details>
+    </div>
+
+    <div class="card hidden-block" id="calcBlockG" style="margin-top:14px">
+      <h3>10G · Abschluss-Erkenntnis</h3>
+      <p><b>Was konnten wir mit der Titration herausfinden, was die anfängliche pH-Messung nicht zeigen konnte?</b></p>
+      <textarea class="field note-area" id="finalInsight" placeholder="Eigene Formulierung …"></textarea>
+      <button class="btn primary" id="saveFinalInsightBtn">Erkenntnis festhalten</button>
+      <div class="feedback" id="finalInsightFeedback"></div>
+      <div class="result-box hidden-block" id="finalSummary">
+        <b>Vom pH-Wert zur Lebensmittelanalyse</b><br><br>
+        pH messen → sauer erkennen → Neutralisation untersuchen → Messreihe aufnehmen → Titrationskurve entwickeln → Äquivalenzpunkt bestimmen → NaOH-Verbrauch auswerten → Säuregehalt bestimmen → Etikett überprüfen.
+      </div>
+    </div>
+
+    <div class="phase-nav"><button class="btn" data-back="9">Zurück</button><button class="btn" id="protocolEndBtn">Arbeitsprotokoll anzeigen</button></div>
+  </section>
+
+  <div class="card" style="margin-top:14px"><h3>Nächster Ausbau: Titrationschallenge</h3><p class="subtle"><b>Ziel:</b> Mit selbst gewählten Zugabeschritten den Äquivalenz-/Endpunkt möglichst genau treffen. Die Rückmeldung soll die Abweichung erklären und nicht nur bewerten.</p></div>
+  <p class="footer-note">SÄUREN_LAB v0.3.0 · technischer Prototyp für GitHub Pages · Phasen 1–10</p>
 </main>
 
 <div class="overlay" id="overlay"></div>
@@ -451,6 +747,26 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
     showPP:false,
     indicatorChoiceDone:false,
     indicatorObsDone:false,
+    diluteWhyDone:false,
+    prepOrder:[],
+    prepDone:false,
+    consumptionDone:false,
+    carefulFrom:null,
+    planSaved:false,
+    experimentPath:null,
+    measuredVolume:null,
+    measuredSource:null,
+    eqMeaningDone:false,
+    calcUnknownDone:false,
+    formulaDone:false,
+    acidDiluted:null,
+    dilutionBackDone:false,
+    originalC:null,
+    massConc:null,
+    per100Done:false,
+    percentAcid:null,
+    comparisonSaved:false,
+    finalInsightDone:false,
     maxUnlocked:1,
     protocol:[]
   };
@@ -463,6 +779,7 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
   const KW = 1e-14;
   const EQ_ML = ACID_C * ACID_V0 / BASE_C * 1000;
   const PH_INITIAL = calcPH(0);
+  const MOLAR_MASS_ACETIC = 60.05; // g/mol
 
   const $ = s => document.querySelector(s);
   const $$ = s => [...document.querySelectorAll(s)];
@@ -508,7 +825,7 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
   }
 
   function goPhase(n){
-    if(n<1 || n>7) return;
+    if(n<1 || n>10) return;
     if(n>state.maxUnlocked) state.maxUnlocked=n;
     state.phase=n;
     $$('.phase').forEach((p,i)=>p.classList.toggle('active',i===n-1));
@@ -533,6 +850,9 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
     if(n===5) renderPhase5();
     if(n===6) renderPhase6();
     if(n===7) renderPhase7();
+    if(n===8) renderPhase8();
+    if(n===9) renderPhase9();
+    if(n===10) renderPhase10();
   }
 
   function hypothesisText(){
@@ -1150,8 +1470,337 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
   function updatePhase7Complete(){
     const done=state.indicatorChoiceDone && state.indicatorObsDone;
     $('#phase7Complete').classList.toggle('show',done);
+    $('#toPhase8Btn').disabled=!done;
     if(done) logOnce('phase7complete','Phase 7','Indikatorauswahl abgeschlossen; bereit für die Übertragung auf den Realversuch.');
   }
+  $('#toPhase8Btn').addEventListener('click',()=>goPhase(8));
+
+  // Phase 8
+  function renderPhase8(){ updatePlanGate(); renderPrepOrder(); }
+  $('#checkDiluteWhyBtn').addEventListener('click',()=>{
+    const r=$('input[name="diluteWhy"]:checked');
+    if(!r){showFeedback($('#diluteWhyFeedback'),'hint','Wählt zuerst eine Begründung aus.');return;}
+    if(r.value==='largeVolume'){
+      state.diluteWhyDone=true;
+      showFeedback($('#diluteWhyFeedback'),'good','Richtig. Die Essigsäure im Originalessig ist viel konzentrierter als unsere 0,100-molare Maßlösung. Durch die Verdünnung gelangt der Verbrauch in einen gut handhabbaren Bereich.');
+      logOnce('diluteWhy','Phase 8','Verdünnung begründet: direkter Verbrauch an 0,100 mol/L NaOH wäre bei 10,0 mL Originalessig zu groß.');
+    } else if(r.value==='noReaction'){
+      state.diluteWhyDone=false;
+      showFeedback($('#diluteWhyFeedback'),'hint','Essigsäure reagiert auch im unverdünnten Essig mit Hydroxidionen. Das Problem ist nicht die Reaktionsfähigkeit, sondern der unpraktisch große Bedarf an Maßlösung.');
+    } else if(r.value==='indicator'){
+      state.diluteWhyDone=false;
+      showFeedback($('#diluteWhyFeedback'),'hint','Phenolphthalein funktioniert nicht nur in verdünntem Essig. Die Verdünnung wählen wir hier vor allem, damit der NaOH-Verbrauch gut messbar bleibt.');
+    } else {
+      state.diluteWhyDone=false;
+      showFeedback($('#diluteWhyFeedback'),'hint','Beim Verdünnen entsteht keine zusätzliche Essigsäure. Es wird nur Wasser zugesetzt; die Stoffmenge in der gesamten verdünnten Lösung bleibt gleich, die Konzentration sinkt.');
+    }
+    updatePlanGate();
+  });
+
+  function prepText(n){
+    return {
+      1:'10,0 mL Originalessig abmessen',
+      2:'in 100-mL-Messkolben überführen',
+      3:'mit Wasser bis zur Marke auffüllen',
+      4:'verschließen und gründlich mischen',
+      5:'10,0 mL Analysenprobe entnehmen'
+    }[n];
+  }
+  function renderPrepOrder(){
+    const box=$('#prepOrder'); if(!box) return;
+    box.innerHTML=state.prepOrder.length ? state.prepOrder.map((n,i)=>`<span class="order-pill">${i+1}. ${prepText(n)}</span>`).join('') : '<span class="subtle">Eure Reihenfolge erscheint hier.</span>';
+    $$('#prepCards .plan-card').forEach(btn=>{
+      const n=parseInt(btn.dataset.prep); const used=state.prepOrder.includes(n);
+      btn.classList.toggle('used',used); btn.disabled=used;
+      btn.querySelector('.num').textContent=used ? state.prepOrder.indexOf(n)+1 : '?';
+    });
+    $('#checkPrepBtn').disabled=state.prepOrder.length!==5;
+  }
+  $$('#prepCards .plan-card').forEach(btn=>btn.addEventListener('click',()=>{
+    const n=parseInt(btn.dataset.prep); if(state.prepOrder.includes(n)) return;
+    state.prepOrder.push(n); renderPrepOrder();
+  }));
+  $('#resetPrepBtn').addEventListener('click',()=>{state.prepOrder=[];state.prepDone=false;renderPrepOrder();$('#prepFeedback').classList.remove('show');updatePlanGate();});
+  $('#checkPrepBtn').addEventListener('click',()=>{
+    const ok=state.prepOrder.join(',')==='1,2,3,4,5';
+    if(ok){
+      state.prepDone=true;
+      showFeedback($('#prepFeedback'),'good','Richtig geordnet. Die 10,0 mL Analysenprobe stammen aus der 1:10 verdünnten Lösung und entsprechen damit der Essigsäuremenge in 1,0 mL Originalessig.');
+      logOnce('prepDone','Phase 8','Probenvorbereitung richtig geordnet: 10,0 mL Originalessig auf 100,0 mL verdünnen, mischen, danach 10,0 mL Analysenprobe entnehmen.');
+    } else {
+      state.prepDone=false;
+      const firstWrong=state.prepOrder.findIndex((n,i)=>n!==i+1);
+      const hints=[
+        'Beginnt mit dem Abmessen des Originalessigs.',
+        'Nach dem Abmessen muss der Essig zuerst in den Messkolben überführt werden.',
+        'Erst danach wird bis zur Marke mit destilliertem Wasser aufgefüllt.',
+        'Vor der Probenentnahme muss die verdünnte Lösung gründlich gemischt werden.',
+        'Die 10,0-mL-Analysenprobe wird ganz am Schluss aus der homogenisierten Verdünnung entnommen.'
+      ];
+      showFeedback($('#prepFeedback'),'hint',hints[Math.max(0,firstWrong)]+' Löscht die Reihenfolge und versucht es erneut.');
+    }
+    updatePlanGate();
+  });
+
+  $('#checkConsumptionBtn').addEventListener('click',()=>{
+    const r=$('input[name="consumptionGuess"]:checked');
+    if(!r){showFeedback($('#consumptionFeedback'),'hint','Wählt zuerst einen Bereich aus.');return;}
+    if(r.value==='8to12'){
+      state.consumptionDone=true;
+      showFeedback($('#consumptionFeedback'),'good','Plausibel. Nach der 1:10-Verdünnung liegt der erwartete Verbrauch für typische Speiseessige ungefähr im Bereich von 8–12 mL 0,100-molarer NaOH.');
+      logOnce('consumptionDone','Phase 8','NaOH-Verbrauch für den Realversuch in der Größenordnung 8–12 mL erwartet.');
+    } else if(r.value==='lt1'){
+      state.consumptionDone=false;
+      showFeedback($('#consumptionFeedback'),'hint','Unter 1 mL wäre für eine etwa 0,08–0,10-molare Analysenprobe mit 0,100-molarer NaOH deutlich zu wenig. Vergleicht die Konzentrationsgrößenordnungen noch einmal.');
+    } else if(r.value==='50'){
+      state.consumptionDone=false;
+      showFeedback($('#consumptionFeedback'),'hint','Etwa 50 mL wären nach der 1:10-Verdünnung viel zu viel. Ein solcher Verbrauch wäre eher bei einer wesentlich größeren Stoffmenge der Probe zu erwarten.');
+    } else {
+      state.consumptionDone=false;
+      showFeedback($('#consumptionFeedback'),'hint','Mehr als 100 mL wäre mit der verdünnten 10,0-mL-Probe völlig außerhalb der erwarteten Größenordnung. Denkt an den virtuellen Äquivalenzbereich um wenige Milliliter.');
+    }
+    updatePlanGate();
+  });
+  $('#saveCarefulBtn').addEventListener('click',()=>{
+    const v=parseNum($('#carefulFrom').value);
+    if(!Number.isFinite(v)||v<0||v>20){showFeedback($('#carefulFeedback'),'hint','Gebt einen plausiblen Wert zwischen 0 und 20 mL an.');return;}
+    state.carefulFrom=v;
+    showFeedback($('#carefulFeedback'),'good',`Gespeichert: Ab etwa ${fmt(v,1)} mL würdet ihr besonders vorsichtig dosieren. Das ist eine Planungsentscheidung, keine exakt vorgegebene Lösung.`);
+    log('Phase 8',`Geplante feinere Dosierung ab etwa ${fmt(v,1)} mL NaOH.`);
+    updatePlanGate();
+  });
+  function updatePlanGate(){
+    const ready=state.diluteWhyDone && state.prepDone && state.consumptionDone && state.carefulFrom!==null;
+    if($('#savePlanBtn')) $('#savePlanBtn').disabled=!ready;
+    if($('#toPhase9Btn')) $('#toPhase9Btn').disabled=!state.planSaved;
+  }
+  $('#savePlanBtn').addEventListener('click',()=>{
+    state.planSaved=true;
+    showFeedback($('#planFeedback'),'good','Versuchsplan gespeichert. Ihr könnt nun real titrieren, ein Versuchsvideo auswerten oder die vorhandene Essig-Aufgabe im großen TITRATIONSTOOL verwenden.');
+    logOnce('planSaved','Phase 8','Versuchsplan übernommen: 10,0 mL Originalessig auf 100,0 mL verdünnen; davon 10,0 mL Probe; 0,100 mol/L NaOH; Phenolphthalein; erwarteter Verbrauch etwa 8–12 mL.');
+    $('#toPhase9Btn').disabled=false;
+  });
+  $('#toPhase9Btn').addEventListener('click',()=>goPhase(9));
+
+  // Phase 9
+  function renderPhase9(){
+    ['real','video','tool'].forEach(p=>{
+      const block=$(`#path${p[0].toUpperCase()+p.slice(1)}Block`);
+      const card=$(`#path${p[0].toUpperCase()+p.slice(1)}Card`);
+      if(block) block.classList.toggle('show',state.experimentPath===p);
+      if(card) card.classList.toggle('active',state.experimentPath===p);
+    });
+    renderChosenMeasurement();
+  }
+  $$('.pathSelect').forEach(b=>b.addEventListener('click',()=>{
+    state.experimentPath=b.dataset.path;
+    renderPhase9();
+    const labels={real:'eigenes Realexperiment',video:'Versuchsvideo / Demonstration',tool:'großes TITRATIONSTOOL'};
+    log('Phase 9',`Durchführungsweg gewählt: ${labels[state.experimentPath]}.`);
+  }));
+  function parseNum(v){ return parseFloat(String(v).trim().replace(',','.')); }
+  function plausibleVolume(v){ return Number.isFinite(v) && v>0 && v<=25; }
+  function setMeasurement(v,source){
+    state.measuredVolume=v; state.measuredSource=source;
+    renderChosenMeasurement();
+    $('#toPhase10Btn').disabled=false;
+    log('Phase 9',`NaOH-Verbrauch übernommen: ${fmt(v,2)} mL · Quelle: ${source}.`);
+  }
+  function renderChosenMeasurement(){
+    const box=$('#measurementChosen'); if(!box) return;
+    const has=state.measuredVolume!==null;
+    box.classList.toggle('show',has);
+    if(has) box.innerHTML=`<b>Messwert für die Auswertung:</b> ${fmt(state.measuredVolume,2)} mL NaOH<br><span class="subtle">Quelle: ${state.measuredSource}</span>`;
+  }
+  $('#saveSyringeBtn').addEventListener('click',()=>{
+    const v=parseNum($('#syringeVolume').value);
+    if(!plausibleVolume(v)){showFeedback($('#realFeedback'),'hint','Gebt einen positiven Verbrauch in mL an. Für diesen Versuch erwarten wir typischerweise ungefähr 8–12 mL.');return;}
+    const clarity=$('#endpointClarity').value||'nicht angegeben';
+    const notes=$('#realNotes').value.trim();
+    setMeasurement(v,'eigene Spritzen-Titration');
+    showFeedback($('#realFeedback'),'good',`Messwert übernommen: ${fmt(v,2)} mL. Die Spritzenvariante ist bewusst halbquantitativ; die begrenzte Skalengenauigkeit gehört zur späteren Bewertung dazu.`);
+    log('Phase 9',`Endpunkterkennung bei Spritzen-Titration: ${clarity}.${notes?' Beobachtung: '+notes:''}`);
+  });
+  $('#checkBuretteBtn').addEventListener('click',()=>{
+    const a=parseNum($('#buretteStart').value), b=parseNum($('#buretteEnd').value), u=parseNum($('#buretteUsed').value);
+    if(!Number.isFinite(a)||!Number.isFinite(b)||b<a){showFeedback($('#realFeedback'),'hint','Bei einer üblichen Bürettenskala nimmt der abgelesene Wert nach unten zu. Der Endstand sollte daher mindestens so groß wie der Anfangsstand sein.');return;}
+    const correct=b-a;
+    if(!Number.isFinite(u)){showFeedback($('#realFeedback'),'hint','Berechnet zuerst den Verbrauch aus Endstand minus Anfangsstand.');return;}
+    if(Math.abs(u-correct)>0.06){showFeedback($('#realFeedback'),'hint',`Der Verbrauch ergibt sich aus Endstand minus Anfangsstand. Prüft eure Differenz noch einmal.`);return;}
+    setMeasurement(correct,'eigene Büretten-Titration');
+    showFeedback($('#realFeedback'),'good',`Richtig berechnet: ${fmt(correct,2)} mL NaOH wurden verbraucht.`);
+  });
+  $('#saveVideoBtn').addEventListener('click',()=>{
+    const v=parseNum($('#videoVolume').value);
+    if(!plausibleVolume(v)){showFeedback($('#videoFeedback'),'hint','Tragt den am Demonstrationsversuch bzw. Video beobachteten Verbrauch als positiven mL-Wert ein.');return;}
+    setMeasurement(v,'Versuchsvideo / Demonstration');
+    showFeedback($('#videoFeedback'),'good',`Beobachteter Verbrauch ${fmt(v,2)} mL wurde übernommen.`);
+  });
+  $('#saveToolBtn').addEventListener('click',()=>{
+    const v=parseNum($('#toolVolume').value);
+    if(!plausibleVolume(v)){showFeedback($('#toolFeedback'),'hint','Tragt den im TITRATIONSTOOL bestimmten NaOH-Verbrauch als positiven mL-Wert ein.');return;}
+    setMeasurement(v,'TITRATIONSTOOL – Aufgabe unbekannte Essiglösung, V(Probe)=10,0 mL');
+    showFeedback($('#toolFeedback'),'good',`Virtueller Messwert ${fmt(v,2)} mL wurde übernommen. Wichtig für den Vergleich: Das Probenvolumen wurde auf 10,0 mL reduziert.`);
+  });
+  $('#toPhase10Btn').addEventListener('click',()=>goPhase(10));
+
+  // Phase 10
+  function renderPhase10(){
+    if(state.measuredVolume===null) return;
+    $('#analysisInputSummary').innerHTML=`Messwert aus Phase 9: <b>${fmt(state.measuredVolume,2)} mL NaOH</b> · ${state.measuredSource}`;
+    $('#calcBaseVol').textContent=`${fmt(state.measuredVolume,2)} mL`;
+  }
+  function expectedValues(){
+    const acidDiluted=BASE_C*(state.measuredVolume/10); // because both sample and titrant volumes can use mL ratio; sample=10 mL
+    const original=acidDiluted*10;
+    const mass=original*MOLAR_MASS_ACETIC;
+    const percent=mass/10;
+    return {acidDiluted,original,mass,percent};
+  }
+  function near(user,target,rel=.025,abs=.004){
+    return Math.abs(user-target)<=Math.max(abs,Math.abs(target)*rel);
+  }
+  $('#checkEqMeaningBtn').addEventListener('click',()=>{
+    const r=$('input[name="eqMeaning"]:checked');
+    if(!r){showFeedback($('#eqMeaningFeedback'),'hint','Wählt zuerst eine Aussage aus.');return;}
+    if(r.value==='sameMoles'){
+      state.eqMeaningDone=true;
+      showFeedback($('#eqMeaningFeedback'),'good','Richtig. Für die 1:1-Reaktion entspricht am Äquivalenzpunkt die Stoffmenge der zugegebenen NaOH der Stoffmenge an Essigsäure in der Probe.');
+      $('#calcBlockB').classList.add('show');
+      logOnce('eqMeaning','Phase 10','Äquivalenzprinzip richtig zugeordnet: n(NaOH) = n(Essigsäure) für die 1:1-Reaktion.');
+    } else if(r.value==='sameVolume'){
+      showFeedback($('#eqMeaningFeedback'),'hint','Gleiche Stoffmengen bedeuten nicht automatisch gleiche Volumina. Die Volumina hängen zusätzlich von den Konzentrationen der Lösungen ab.');
+    } else if(r.value==='sameC'){
+      showFeedback($('#eqMeaningFeedback'),'hint','Die Konzentrationen müssen am Äquivalenzpunkt nicht gleich sein. Entscheidend ist die passende Stoffmenge entsprechend der Reaktionsgleichung.');
+    } else {
+      showFeedback($('#eqMeaningFeedback'),'hint','Bei einer schwachen Säure und einer starken Base liegt der Äquivalenzpunkt nicht zwingend bei pH 7. Entscheidend ist hier das Stoffmengenverhältnis, nicht ein bestimmter pH-Wert.');
+    }
+  });
+  $('#checkUnknownBtn').addEventListener('click',()=>{
+    const r=$('input[name="calcUnknown"]:checked');
+    if(!r){showFeedback($('#unknownFeedback'),'hint','Wählt zuerst die gesuchte Größe aus.');return;}
+    if(r.value==='acidC'){
+      state.calcUnknownDone=true; showFeedback($('#unknownFeedback'),'good','Richtig. V(Säure), c(NaOH) und V(NaOH) sind bekannt; gesucht ist c(Säure) der verdünnten Analysenprobe.');
+      $('#formulaChoiceBlock').classList.add('show');
+    } else {
+      showFeedback($('#unknownFeedback'),'hint','Diese Größe ist bereits bekannt. Gesucht ist in diesem Schritt die Stoffmengenkonzentration der verdünnten Essigprobe.');
+    }
+  });
+  $('#checkFormulaBtn').addEventListener('click',()=>{
+    const r=$('input[name="formulaChoice"]:checked');
+    if(!r){showFeedback($('#formulaFeedback'),'hint','Wählt zuerst eine Umstellung aus.');return;}
+    if(r.value==='right'){
+      state.formulaDone=true; showFeedback($('#formulaFeedback'),'good','Richtig umgestellt. Da beide Volumina in derselben Einheit eingesetzt werden, kürzen sich die Volumeneinheiten im Quotienten.');
+      $('#acidDilutedInputBlock').classList.add('show');
+    } else if(r.value==='invert'){
+      showFeedback($('#formulaFeedback'),'hint','Hier wurden Zähler und Nenner vertauscht. Teilt nach dem Umstellen durch V(Säure), nicht durch V(NaOH).');
+    } else {
+      showFeedback($('#formulaFeedback'),'hint','In der Ausgangsgleichung werden Konzentration und Volumen miteinander multipliziert. Beim Umstellen entsteht deshalb kein Additionsausdruck.');
+    }
+  });
+  $('#checkAcidDilutedBtn').addEventListener('click',()=>{
+    const u=parseNum($('#acidDilutedInput').value), e=expectedValues();
+    if(!Number.isFinite(u)){showFeedback($('#acidDilutedFeedback'),'hint','Gebt einen Zahlenwert in mol/L ein.');return;}
+    if(near(u,e.acidDiluted,.03,.003)){
+      state.acidDiluted=e.acidDiluted; showFeedback($('#acidDilutedFeedback'),'good',`Richtig. Die verdünnte Analysenprobe enthält etwa ${fmt(e.acidDiluted,3)} mol/L Essigsäure.`);
+      $('#calcBlockC').classList.add('show'); log('Phase 10',`c(verdünnte Essigprobe) ≈ ${fmt(e.acidDiluted,3)} mol/L.`);
+    } else if(near(u,e.original,.03,.02)){
+      showFeedback($('#acidDilutedFeedback'),'hint','Dieser Wert entspricht eher schon dem Originalessig. In diesem Schritt wird noch die 1:10 verdünnte Analysenprobe berechnet.');
+    } else {
+      showFeedback($('#acidDilutedFeedback'),'hint','Prüft die Formel und setzt V(NaOH) und V(Säure) in derselben Volumeneinheit ein. Für die verdünnte Probe sollte der Wert größenordnungsmäßig um 0,1 mol/L liegen.');
+    }
+  });
+  $('#checkDilutionBackBtn').addEventListener('click',()=>{
+    const r=$('input[name="dilutionBack"]:checked');
+    if(!r){showFeedback($('#dilutionBackFeedback'),'hint','Wählt zuerst eine Beziehung aus.');return;}
+    if(r.value==='multiply'){
+      state.dilutionBackDone=true; showFeedback($('#dilutionBackFeedback'),'good','Richtig. Die Probe wurde auf das Zehnfache des ursprünglichen Volumens verdünnt; der Originalessig war daher zehnmal so konzentriert.');
+      $('#originalCInputBlock').classList.add('show');
+    } else if(r.value==='divide'){
+      showFeedback($('#dilutionBackFeedback'),'hint','Damit würdet ihr die Lösung nochmals verdünnen. Gesucht ist aber die Konzentration vor der 1:10-Verdünnung – also der zehnfach größere Wert.');
+    } else {
+      showFeedback($('#dilutionBackFeedback'),'hint','Beim Verdünnen bleibt die Stoffmenge in der gesamten Lösung gleich, die Konzentration sinkt aber. Original und Verdünnung haben deshalb nicht dieselbe Konzentration.');
+    }
+  });
+  $('#checkOriginalCBtn').addEventListener('click',()=>{
+    const u=parseNum($('#originalCInput').value), e=expectedValues();
+    if(!Number.isFinite(u)){showFeedback($('#originalCFeedback'),'hint','Gebt einen Zahlenwert in mol/L ein.');return;}
+    if(near(u,e.original,.03,.02)){
+      state.originalC=e.original; showFeedback($('#originalCFeedback'),'good',`Richtig. Für den Originalessig ergibt sich etwa ${fmt(e.original,3)} mol/L.`);
+      $('#calcBlockD').classList.add('show'); log('Phase 10',`c(Originalessig) ≈ ${fmt(e.original,3)} mol/L.`);
+    } else if(near(u,e.acidDiluted,.03,.004)){
+      showFeedback($('#originalCFeedback'),'hint','Das ist noch ungefähr die Konzentration der verdünnten Probe. Für den Originalessig muss der Verdünnungsfaktor 10 berücksichtigt werden.');
+    } else {
+      showFeedback($('#originalCFeedback'),'hint','Multipliziert die Konzentration der verdünnten Probe mit dem Verdünnungsfaktor 10.');
+    }
+  });
+  $('#checkMassConcBtn').addEventListener('click',()=>{
+    const u=parseNum($('#massConcInput').value), e=expectedValues();
+    if(!Number.isFinite(u)){showFeedback($('#massConcFeedback'),'hint','Gebt einen Zahlenwert in g/L ein.');return;}
+    if(near(u,e.mass,.03,.6)){
+      state.massConc=e.mass; showFeedback($('#massConcFeedback'),'good',`Richtig. ${fmt(e.original,3)} mol/L × 60,05 g/mol ergeben etwa ${fmt(e.mass,1)} g/L Essigsäure.`);
+      $('#calcBlockE').classList.add('show'); log('Phase 10',`Massenkonzentration ≈ ${fmt(e.mass,1)} g/L Essigsäure.`);
+    } else if(near(u,e.acidDiluted*MOLAR_MASS_ACETIC,.04,.5)){
+      showFeedback($('#massConcFeedback'),'hint','Dieser Wert passt eher zur verdünnten Analysenprobe. Für die Etikettangabe brauchen wir die Massenkonzentration des Originalessigs.');
+    } else {
+      showFeedback($('#massConcFeedback'),'hint','Multipliziert die Stoffmengenkonzentration des Originalessigs in mol/L mit der molaren Masse 60,05 g/mol.');
+    }
+  });
+  $('#checkPer100Btn').addEventListener('click',()=>{
+    const r=$('input[name="per100Choice"]:checked');
+    if(!r){showFeedback($('#per100Feedback'),'hint','Wählt zuerst einen Umrechnungsweg aus.');return;}
+    if(r.value==='divide10'){
+      state.per100Done=true; showFeedback($('#per100Feedback'),'good','Richtig. 100 mL sind ein Zehntel Liter; daher entspricht der Zahlenwert in g/100 mL einem Zehntel des Werts in g/L.');
+      $('#percentInputBlock').classList.add('show');
+    } else if(r.value==='times10'){
+      showFeedback($('#per100Feedback'),'hint','Von 1 Liter auf 100 mL betrachten wir nur ein Zehntel des Volumens. Der Zahlenwert muss daher kleiner, nicht größer werden.');
+    } else {
+      showFeedback($('#per100Feedback'),'hint','100 mL sind 1/10 Liter, nicht 1/100 Liter. Deshalb wird durch 10 dividiert.');
+    }
+  });
+  $('#checkPercentBtn').addEventListener('click',()=>{
+    const u=parseNum($('#percentInput').value), e=expectedValues();
+    if(!Number.isFinite(u)){showFeedback($('#percentFeedback'),'hint','Gebt einen Zahlenwert für g/100 mL bzw. % Säure ein.');return;}
+    if(near(u,e.percent,.03,.08)){
+      state.percentAcid=e.percent;
+      showFeedback($('#percentFeedback'),'good',`Richtig. Das entspricht etwa ${fmt(e.percent,2)} g Essigsäure pro 100 mL bzw. ${fmt(e.percent,2)} % Säure.`);
+      $('#calcBlockF').classList.add('show');
+      $('#finalPercent').textContent=`${fmt(e.percent,2)} % Säure`;
+      const diff=e.percent-5;
+      $('#differenceText').textContent=`Differenz zur Etikettangabe: ${diff>=0?'+':''}${fmt(diff,2)} Prozentpunkte.`;
+      log('Phase 10',`Ergebnis ≈ ${fmt(e.percent,2)} g/100 mL bzw. ${fmt(e.percent,2)} % Säure.`);
+    } else if(near(u,e.mass,.03,.8)){
+      showFeedback($('#percentFeedback'),'hint','Das ist noch ungefähr der Wert in g/L. Für g pro 100 mL muss durch 10 dividiert werden.');
+    } else {
+      showFeedback($('#percentFeedback'),'hint','Nehmt euren Wert in g/L und teilt ihn durch 10, weil 100 mL ein Zehntel Liter sind.');
+    }
+  });
+  $('#saveComparisonBtn').addEventListener('click',()=>{
+    if(state.percentAcid===null) return;
+    const r=$('input[name="compareLabel"]:checked'), notes=$('#errorSources').value.trim();
+    if(!r){showFeedback($('#comparisonFeedback'),'hint','Wählt zuerst eine Beschreibung für euren Vergleich aus.');return;}
+    const diff=state.percentAcid-5;
+    const expected = Math.abs(diff)<=0.5 ? 'near' : diff<0 ? 'below' : 'above';
+    if(r.value!==expected){
+      const msg=expected==='near'?'Der berechnete Wert liegt nur relativ wenig von 5,0 % entfernt. „Nahe“ beschreibt den Vergleich hier besser.':expected==='below'?'Euer berechneter Wert liegt unter 5,0 %, nicht darüber.':'Euer berechneter Wert liegt über 5,0 %, nicht darunter.';
+      showFeedback($('#comparisonFeedback'),'hint',msg); return;
+    }
+    state.comparisonSaved=true;
+    showFeedback($('#comparisonFeedback'),'good','Der Vergleich ist passend beschrieben. Für ein Schulversuchsergebnis interessieren uns nun vor allem die möglichen Ursachen einer Abweichung – nicht nur die Zahl allein.');
+    log('Phase 10',`Vergleich mit Etikett: ${r.parentElement.textContent.trim()}.${notes?' Mögliche Unsicherheiten: '+notes:''}`);
+    $('#calcBlockG').classList.add('show');
+  });
+  $('#saveFinalInsightBtn').addEventListener('click',()=>{
+    const t=$('#finalInsight').value.trim();
+    if(t.length<12){showFeedback($('#finalInsightFeedback'),'hint','Formuliert die Erkenntnis bitte in einem vollständigen Satz: Was liefert die Titration zusätzlich zur anfänglichen pH-Messung?');return;}
+    state.finalInsightDone=true;
+    showFeedback($('#finalInsightFeedback'),'good','Erkenntnis gespeichert. Die pH-Messung beschreibt den sauren Charakter; die Titration ermöglicht zusätzlich eine quantitative Aussage über die enthaltene Säuremenge.');
+    $('#finalSummary').classList.add('show');
+    log('Phase 10',`Abschließende Erkenntnis: ${t}`);
+    logOnce('acidExampleDone','Abschluss','Essigbeispiel vollständig abgeschlossen: vom pH-Wert über die Titrationskurve bis zur quantitativen Überprüfung der Etikettangabe.');
+  });
+  $('#protocolEndBtn').addEventListener('click',openProtocol);
+
   const onceKeys=new Set();
   function logOnce(key,section,text){if(onceKeys.has(key)) return; onceKeys.add(key); log(section,text);}
 
