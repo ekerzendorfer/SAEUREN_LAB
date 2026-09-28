@@ -1,52 +1,23 @@
 # SÄUREN_LAB
 
-**Säuren in Lebensmitteln – Beispiel 1: Speiseessig**
+**Version 0.1.1 – technischer Prototyp, Phasen 1–4**
 
-Erster technischer Prototyp des didaktischen Spin-offs zum bestehenden TITRATIONSTOOL.
+Browserbasierte Lernumgebung zum Einstieg in pH-Messung, Neutralisation und Titration am Beispiel Speiseessig.
 
-## Version 0.1.0
+## Neu in v0.1.1
 
-Umgesetzt sind die Phasen 1–4 des Referenzpfads:
+- feinere pH-Farbskala von 2,0 bis 6,0 in 0,5er-Schritten
+- zusätzliche Fehlvorstellung bei den Grundfragen mit erklärendem Feedback
+- direkte Navigation zu bereits freigeschalteten Phasen
+- robuster Neustart ohne erhaltene Browser-Formularwerte
+- CSV-Export der manuellen Messreihe
+- Autotitration mit **Pause/Fortsetzen**, veränderbarer Zugabemenge und Geschwindigkeit
+- CSV-Export der Autotitrationswerte
+- Titrationschallenge für den späteren vollständigen Lernweg vorgemerkt
 
-1. **pH untersuchen** – Indikatorpapier, eigener Schätzwert, genauere virtuelle Elektrodenmessung, Grundfragen und Aussagekraft des pH-Werts.
-2. **Vermuten** – Vorhersage zur portionsweisen Zugabe von NaOH; optionale Neutralisations-Simulationen.
-3. **Messen** – diskontinuierliche NaOH-Zugabe, Messwerttabelle und wachsende Punktwolke. `+0,2 mL` wird rechtzeitig vor dem steilen Kurvenbereich sichtbar freigeschaltet.
-4. **Kurve entdecken** – freie Beschreibung der Punktwolke, danach erst „Punkte verbinden“, Reflexion der ursprünglichen Vermutung und optionale automatische Titration mit Reglern für Zugabemenge und Geschwindigkeit.
+## Dateien
 
-## Chemisches Modell
+- `index.html` – komplette App
+- `.nojekyll` – für GitHub Pages
 
-Referenzfall:
-
-- 10,0 mL Essigsäurelösung
-- c(CH3COOH) = 0,083 mol/L
-- c(NaOH) = 0,100 mol/L
-- pKs(Essigsäure) = 4,76
-- 25 °C
-
-Der pH-Wert wird für jeden Mischzustand aus einer Ladungsbilanz für das System Essigsäure/Acetat/NaOH numerisch berechnet. Der Äquivalenzbereich liegt im Modell bei etwa 8,3 mL NaOH.
-
-## Didaktische Prinzipien
-
-- keine fertige Titrationskurve zu Beginn
-- Messpunkte entstehen einzeln und werden zunächst nicht verbunden
-- jede nicht passende Antwort erhält eine kurze fachliche Erklärung statt nur „falsch“
-- Protokollierung des Lernwegs
-- keine automatische Benotung
-- GitHub-Pages-tauglich, keine externen Bibliotheken nötig
-
-## GitHub Pages
-
-Die Dateien können direkt in die Root-Ebene eines GitHub-Repositories gelegt werden:
-
-- `index.html`
-- `README.md`
-- `.nojekyll`
-
-Danach unter **Settings → Pages** die Veröffentlichung aus dem gewünschten Branch aktivieren.
-
-## Nächste geplante Schritte
-
-- Phase 5: steilen Kurvenbereich und Äquivalenzpunkt qualitativ erkennen
-- Phase 6: 1. Ableitung als Hilfe zum Auffinden des ÄP
-- Phase 7: Bromthymolblau und Phenolphthalein im Graphen vergleichen
-- Phase 8–10: Realversuch planen, optionale Videos/Verlinkung zum TITRATIONSTOOL, geführte Auswertung bis zur Angabe „5 % Säure“
+Die App benötigt keinen Build-Schritt und kein Backend.
