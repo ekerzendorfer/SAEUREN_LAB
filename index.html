@@ -37,8 +37,14 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
 .chart-clickable{cursor:crosshair;touch-action:none}
 .indicator-buttons{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}
 .result-box{padding:12px 14px;border-radius:12px;border:1px solid #bfe5cf;background:#eef9f3;color:#0f5c3b;margin-top:10px}
+.phase6-grid{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(285px,.75fr);gap:14px}
+.phase6-chart-card{min-height:500px}
+.phase6-legend{display:flex;gap:16px;flex-wrap:wrap;margin:8px 0 10px;font-size:.86rem;color:var(--muted)}
+.phase6-key{display:flex;align-items:center;gap:7px}
+.phase6-line{width:26px;height:0;border-top:3px solid #2457c5}
+.phase6-line.deriv{border-top-color:#7a4bb3}
 
-@media(max-width:980px){.grid3,.grid2,.titration-top,.measurement{grid-template-columns:1fr}.stepper{grid-template-columns:1fr 1fr}.header-inner{align-items:flex-start}.sample-stage{min-height:190px}.auto-controls{grid-template-columns:1fr}}
+@media(max-width:980px){.grid3,.grid2,.phase6-grid,.titration-top,.measurement{grid-template-columns:1fr}.stepper{grid-template-columns:1fr 1fr}.header-inner{align-items:flex-start}.sample-stage{min-height:190px}.auto-controls{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -49,7 +55,7 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
       <p>Beispiel 1: Speiseessig – vom pH-Wert zur Titrationskurve</p>
     </div>
     <div class="header-actions">
-      <span class="version">v0.2.0 · Phase 1–7</span>
+      <span class="version">v0.2.1 · Phase 1–7</span>
       <button class="btn" id="protocolBtn">Protokoll</button>
       <button class="btn" id="resetAllBtn">Neu starten</button>
     </div>
@@ -329,19 +335,22 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
   </section>
 
   <section class="phase" id="phase6">
-    <div class="grid2">
-      <div class="card chart-card">
+    <div class="phase6-grid">
+      <div class="card phase6-chart-card">
         <h2>6. Äquivalenzpunkt leichter finden</h2>
-        <p class="subtle">Oben bleibt eure Titrationskurve sichtbar. Darunter könnt ihr eine Hilfskurve einblenden, die zeigt, wie stark sich der pH-Wert pro zugegebenem Volumen ändert.</p>
-        <div class="chartbox"><svg id="chart6main" viewBox="0 0 760 390"></svg></div>
-        <button class="btn soft" id="showDerivativeBtn">ÄP leichter finden</button>
+        <p class="subtle">Blendet nun eine Hilfskurve direkt in eure Titrationskurve ein. Sie zeigt, wo sich der pH-Wert am stärksten ändert.</p>
+        <div class="phase6-legend">
+          <span class="phase6-key"><span class="phase6-line"></span>pH-Kurve / Messwerte</span>
+          <span class="phase6-key"><span class="phase6-line deriv"></span>pH-Änderung · Hilfskurve</span>
+        </div>
+        <div class="chartbox"><svg id="chart6combined" class="chart-clickable" viewBox="0 0 900 430" aria-label="Titrationskurve und Hilfskurve zur pH-Änderung"></svg></div>
+        <button class="btn soft" id="showDerivativeBtn">Hilfskurve einblenden</button>
       </div>
       <div class="card">
-        <h3>Hilfskurve</h3>
+        <h3>ÄP leichter finden</h3>
         <div class="hidden-block" id="derivativeBlock">
-          <div class="chartbox"><svg id="derivativeChart" viewBox="0 0 760 300" aria-label="Änderung des pH-Werts pro Volumen"></svg></div>
           <p class="deriv-note"><b>Änderung des pH-Werts pro zugegebenem Volumen</b> · mathematisch: 1. Ableitung</p>
-          <p>Klickt auf den Punkt, an dem die Hilfskurve ihr Maximum erreicht.</p>
+          <p>Klickt im gemeinsamen Diagramm auf das Maximum der violetten Hilfskurve.</p>
           <div class="feedback" id="derivativeFeedback"></div>
           <div class="result-box hidden-block" id="eqResult"></div>
           <div class="question hidden-block" id="eqCompareBlock">
@@ -350,6 +359,10 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
             <textarea class="field note-area" id="eqReflection" placeholder="Was hat euch bei der Schätzung geholfen oder irritiert? …" style="margin-top:8px"></textarea>
             <button class="btn" id="saveEqReflectionBtn">Reflexion speichern</button>
           </div>
+          <details class="excourse" style="margin-top:12px">
+            <summary>Wie entsteht die Hilfskurve?</summary>
+            <div>Für diese Auswertung wird derselbe pH-Verlauf in sehr kleinen Volumenschritten betrachtet. Die pH-Änderung wird jeweils über ein kleines Volumenfenster bestimmt. Dadurch bleibt das Maximum gut erkennbar und hängt nicht davon ab, ob ihr zuvor in 1,0-, 0,5- oder 0,2-mL-Schritten dosiert habt. Die Hilfskurve ist eine Auswertungshilfe – keine zusätzliche Messung.</div>
+          </details>
           <details class="excourse" style="margin-top:12px"><summary>SEK II: Warum heißt das „Ableitung“?</summary><div>Die Ableitung beschreibt hier, wie stark sich der pH-Wert pro kleinem Volumenschritt ändert. Wo diese Änderung am größten ist, besitzt die Hilfskurve ihr Maximum.</div></details>
         </div>
       </div>
@@ -397,7 +410,7 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
   </section>
 
   <div class="card" style="margin-top:14px"><h3>Vorgemerkt für Phase 8+</h3><p class="subtle"><b>Titrationschallenge nach dem Realversuch:</b> Die SchülerInnen dosieren selbst und versuchen, den Äquivalenz-/Endpunkt möglichst genau zu treffen. Die Rückmeldung soll die Abweichung erklären und nicht nur bewerten.</p></div>
-  <p class="footer-note">SÄUREN_LAB v0.2.0 · technischer Prototyp für GitHub Pages · Phasen 1–7</p>
+  <p class="footer-note">SÄUREN_LAB v0.2.1 · technischer Prototyp für GitHub Pages · Phasen 1–7</p>
 </main>
 
 <div class="overlay" id="overlay"></div>
@@ -620,40 +633,84 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
     $('#checkRangeBtn').disabled=false;
   }
 
-  function derivativeData(data){
-    const out=[];
-    for(let i=1;i<data.length;i++){
-      const dv=data[i].v-data[i-1].v;
-      if(dv<=0) continue;
-      out.push({v:(data[i].v+data[i-1].v)/2, slope:(data[i].ph-data[i-1].ph)/dv, i});
+  // Didaktisch aufbereitete Hilfskurve:
+  // feines Volumenraster + symmetrische mittlere pH-Änderung über ±0,15 mL.
+  // Dadurch ist die Lage des Maximums unabhängig von der vorher gewählten Messpunktdichte.
+  function derivativeAssistData(){
+    const step=0.05, halfWindow=0.15, out=[];
+    for(let v=0;v<=15.0001;v+=step){
+      const vm=Math.max(0,v-halfWindow), vp=Math.min(15,v+halfWindow);
+      const slope=(calcPH(vp)-calcPH(vm))/(vp-vm);
+      out.push({v:Number(v.toFixed(2)),slope});
     }
-    return out;
+    const maxSlope=Math.max(...out.map(x=>x.slope),1e-9);
+    return out.map(x=>({...x,rel:x.slope/maxSlope}));
   }
 
-  function renderDerivativeChart(){
-    const svg=$('#derivativeChart'); if(!svg) return;
-    const d=derivativeData(phaseData());
-    const W=760,H=300, ml=58,mr=20,mt=18,mb=48,pw=W-ml-mr,ph=H-mt-mb,xMax=15;
-    const maxY=Math.max(1,...d.map(x=>x.slope))*1.12;
-    const sx=x=>ml+(x/xMax)*pw, sy=y=>mt+(maxY-y)/maxY*ph;
-    let html=`<rect x="0" y="0" width="${W}" height="${H}" fill="#fff" rx="10"/>`;
-    for(let k=0;k<=4;k++){const y=maxY*k/4;html+=`<line x1="${ml}" y1="${sy(y)}" x2="${W-mr}" y2="${sy(y)}" stroke="#e6ebf2"/><text x="${ml-9}" y="${sy(y)+4}" text-anchor="end" font-size="11" fill="#5f6b7a">${y.toFixed(1).replace('.',',')}</text>`}
-    for(let x=0;x<=15;x+=2){html+=`<line x1="${sx(x)}" y1="${mt}" x2="${sx(x)}" y2="${H-mb}" stroke="#f1f3f6"/><text x="${sx(x)}" y="${H-mb+20}" text-anchor="middle" font-size="11" fill="#5f6b7a">${x}</text>`}
-    html+=`<line x1="${ml}" y1="${H-mb}" x2="${W-mr}" y2="${H-mb}" stroke="#78879a"/><line x1="${ml}" y1="${mt}" x2="${ml}" y2="${H-mb}" stroke="#78879a"/>`;
-    html+=`<text x="${ml+pw/2}" y="${H-9}" text-anchor="middle" font-size="12" fill="#334155">NaOH-Volumen / mL</text>`;
-    html+=`<text x="16" y="${mt+ph/2}" transform="rotate(-90 16 ${mt+ph/2})" text-anchor="middle" font-size="12" fill="#334155">ΔpH / ΔV</text>`;
-    if(d.length>1){html+=`<polyline points="${d.map(x=>`${sx(x.v)},${sy(x.slope)}`).join(' ')}" fill="none" stroke="#7a4bb3" stroke-width="2.5"/>`;}
-    d.forEach((x,j)=>{
-      const selected=state.eqDerived!==null && Math.abs(state.eqDerived-x.v)<1e-6;
-      html+=`<circle class="deriv-point" data-j="${j}" cx="${sx(x.v)}" cy="${sy(x.slope)}" r="${selected?7:5}" fill="${selected?'#c05a00':'#7a4bb3'}" stroke="#fff" stroke-width="1.5" style="cursor:pointer"><title>${fmt(x.v,2)} mL · ΔpH/ΔV ${fmt(x.slope,2)}</title></circle>`;
+  function renderPhase6Combined(){
+    const svg=$('#chart6combined'); if(!svg) return;
+    const data=phaseData();
+    const d=derivativeAssistData();
+    const W=900,H=430, ml=60,mr=72,mt=20,mb=50,pw=W-ml-mr,ph=H-mt-mb;
+    const xMax=15, yMin=0,yMax=14;
+    const sx=x=>ml+(x/xMax)*pw;
+    const sy=y=>mt+(yMax-y)/(yMax-yMin)*ph;
+    const syD=r=>mt+(1-r)*ph;
+
+    let out=`<rect x="0" y="0" width="${W}" height="${H}" fill="#fff" rx="10"/>`;
+    for(let y=0;y<=14;y+=2){
+      out+=`<line x1="${ml}" y1="${sy(y)}" x2="${W-mr}" y2="${sy(y)}" stroke="#e6ebf2"/>`;
+      out+=`<text x="${ml-10}" y="${sy(y)+4}" text-anchor="end" font-size="12" fill="#5f6b7a">${y}</text>`;
+    }
+    for(let x=0;x<=15;x+=2){
+      out+=`<line x1="${sx(x)}" y1="${mt}" x2="${sx(x)}" y2="${H-mb}" stroke="#f0f3f7"/>`;
+      out+=`<text x="${sx(x)}" y="${H-mb+21}" text-anchor="middle" font-size="12" fill="#5f6b7a">${x}</text>`;
+    }
+    out+=`<line x1="${ml}" y1="${H-mb}" x2="${W-mr}" y2="${H-mb}" stroke="#78879a"/>`;
+    out+=`<line x1="${ml}" y1="${mt}" x2="${ml}" y2="${H-mb}" stroke="#78879a"/>`;
+    out+=`<line x1="${W-mr}" y1="${mt}" x2="${W-mr}" y2="${H-mb}" stroke="#8c75aa"/>`;
+    out+=`<text x="${ml+pw/2}" y="${H-10}" text-anchor="middle" font-size="13" fill="#334155">zugegebenes NaOH-Volumen / mL</text>`;
+    out+=`<text x="17" y="${mt+ph/2}" transform="rotate(-90 17 ${mt+ph/2})" text-anchor="middle" font-size="13" fill="#334155">pH</text>`;
+    out+=`<text x="${W-15}" y="${mt+ph/2}" transform="rotate(90 ${W-15} ${mt+ph/2})" text-anchor="middle" font-size="12" fill="#6b4a8c">pH-Änderung (rel.)</text>`;
+
+    [0,0.25,0.5,0.75,1].forEach(r=>{
+      out+=`<line x1="${W-mr}" y1="${syD(r)}" x2="${W-mr+5}" y2="${syD(r)}" stroke="#8c75aa"/>`;
+      out+=`<text x="${W-mr+9}" y="${syD(r)+4}" text-anchor="start" font-size="10" fill="#6b4a8c">${Math.round(r*100)}%</text>`;
     });
-    svg.innerHTML=html;
-    $$('.deriv-point').forEach(c=>c.addEventListener('click',()=>handleDerivativePick(parseInt(c.dataset.j))));
+
+    if(data.length>1){
+      out+=`<polyline points="${data.map(p=>`${sx(p.v)},${sy(p.ph)}`).join(' ')}" fill="none" stroke="#2457c5" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>`;
+    }
+    data.forEach(p=>{
+      out+=`<circle cx="${sx(p.v)}" cy="${sy(p.ph)}" r="4" fill="#2457c5" stroke="#fff" stroke-width="1.5"><title>${fmt(p.v,1)} mL · pH ${fmt(p.ph,2)}</title></circle>`;
+    });
+
+    if(state.derivativeShown){
+      out+=`<polyline points="${d.map(p=>`${sx(p.v)},${syD(p.rel)}`).join(' ')}" fill="none" stroke="#7a4bb3" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>`;
+      if(state.eqDerived!==null){
+        const nearest=d.reduce((a,b)=>Math.abs(b.v-state.eqDerived)<Math.abs(a.v-state.eqDerived)?b:a,d[0]);
+        out+=`<line x1="${sx(nearest.v)}" y1="${mt}" x2="${sx(nearest.v)}" y2="${H-mb}" stroke="#c05a00" stroke-width="2" stroke-dasharray="6 5"/>`;
+        out+=`<circle cx="${sx(nearest.v)}" cy="${syD(nearest.rel)}" r="7" fill="#c05a00" stroke="#fff" stroke-width="2"/>`;
+      }
+      out+=`<rect id="phase6ClickLayer" x="${ml}" y="${mt}" width="${pw}" height="${ph}" fill="transparent" pointer-events="all"/>`;
+    }
+    svg.innerHTML=out;
+
+    const layer=$('#phase6ClickLayer');
+    if(layer){
+      layer.addEventListener('click',evt=>{
+        const rect=svg.getBoundingClientRect();
+        const x=(evt.clientX-rect.left)*(W/rect.width);
+        if(x<ml || x>ml+pw) return;
+        const v=(x-ml)/pw*xMax;
+        handleDerivativeVolume(v);
+      });
+    }
   }
 
   function renderPhase6(){
-    if($('#chart6main')) drawChart($('#chart6main'),phaseData(),true);
-    if(state.derivativeShown){$('#derivativeBlock').classList.add('show');renderDerivativeChart();}
+    renderPhase6Combined();
+    if(state.derivativeShown) $('#derivativeBlock').classList.add('show');
   }
 
   function renderPhase7(){
@@ -1007,33 +1064,47 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
 
   // Phase 6
   $('#showDerivativeBtn').addEventListener('click',()=>{
-    state.derivativeShown=true;
-    $('#derivativeBlock').classList.add('show');
-    renderDerivativeChart();
-    $('#showDerivativeBtn').textContent='Hilfskurve aktualisieren';
-    log('Phase 6','Hilfskurve (1. Ableitung) eingeblendet.');
+    state.derivativeShown=!state.derivativeShown;
+    $('#derivativeBlock').classList.toggle('show',state.derivativeShown);
+    $('#showDerivativeBtn').textContent=state.derivativeShown?'Hilfskurve ausblenden':'Hilfskurve einblenden';
+    if(!state.derivativeShown){
+      state.eqDerived=null;
+      $('#toPhase7Btn').disabled=true;
+      $('#eqResult').classList.remove('show');
+      $('#eqCompareBlock').classList.remove('show');
+      $('#derivativeFeedback').classList.remove('show');
+    } else {
+      log('Phase 6','Hilfskurve (1. Ableitung) gemeinsam mit der pH-Kurve eingeblendet.');
+    }
+    renderPhase6Combined();
   });
-  function handleDerivativePick(j){
-    const d=derivativeData(phaseData()); if(!d[j]) return;
-    const maxIndex=d.reduce((best,x,i)=>x.slope>d[best].slope?i:best,0);
-    const pick=d[j], best=d[maxIndex];
+
+  function handleDerivativeVolume(v){
+    const d=derivativeAssistData();
+    const best=d.reduce((a,b)=>b.slope>a.slope?b:a,d[0]);
+    const pick=d.reduce((a,b)=>Math.abs(b.v-v)<Math.abs(a.v-v)?b:a,d[0]);
     state.eqDerived=pick.v;
-    renderDerivativeChart();
-    if(j===maxIndex){
-      showFeedback($('#derivativeFeedback'),'good','Genau dieser Punkt bildet das Maximum der Hilfskurve. Hier ist die pH-Änderung pro Volumenschritt am größten.');
+    renderPhase6Combined();
+
+    const dist=Math.abs(pick.v-best.v);
+    if(dist<=0.10){
+      state.eqDerived=best.v;
+      renderPhase6Combined();
+      showFeedback($('#derivativeFeedback'),'good','Genau. Hier erreicht die Hilfskurve ihr Maximum: In diesem Bereich ändert sich der pH-Wert pro kleiner Volumenzugabe am stärksten.');
       $('#eqResult').classList.add('show');
-      $('#eqResult').innerHTML=`Mit der Hilfskurve bestimmtes Äquivalenzvolumen: <b>${fmt(pick.v,2)} mL NaOH</b><br>Eure vorherige Schätzung: <b>${state.eqEstimate!==null?fmt(state.eqEstimate,2)+' mL':'—'}</b>`;
+      $('#eqResult').innerHTML=`Mit der Hilfskurve bestimmtes Äquivalenzvolumen: <b>${fmt(best.v,2)} mL NaOH</b><br>Eure vorherige Schätzung: <b>${state.eqEstimate!==null?fmt(state.eqEstimate,2)+' mL':'—'}</b>`;
       $('#eqCompareBlock').classList.add('show');
       $('#toPhase7Btn').disabled=false;
-      log('Phase 6',`Maximum der Hilfskurve gefunden: Äquivalenzvolumen etwa ${fmt(pick.v,2)} mL NaOH.`);
-    } else if(pick.slope<best.slope*0.45){
-      showFeedback($('#derivativeFeedback'),'hint','Dieser Punkt liegt deutlich unter dem höchsten Ausschlag. Sucht den höchsten Punkt der Hilfskurve – dort ändert sich der pH-Wert pro mL am stärksten.');
+      log('Phase 6',`Maximum der Hilfskurve gefunden: Äquivalenzvolumen etwa ${fmt(best.v,2)} mL NaOH.`);
+    } else if(dist<=0.35){
+      showFeedback($('#derivativeFeedback'),'hint','Ihr seid bereits nahe am Maximum. Sucht noch den höchsten Punkt der violetten Hilfskurve; dort ist die relative pH-Änderung am größten.');
       $('#toPhase7Btn').disabled=true;
     } else {
-      showFeedback($('#derivativeFeedback'),'hint','Ihr seid nahe am Maximum, aber ein benachbarter Punkt liegt noch höher. Vergleicht die Gipfelpunkte der Hilfskurve miteinander.');
+      showFeedback($('#derivativeFeedback'),'hint','An dieser Stelle ist die violette Hilfskurve noch deutlich niedriger. Folgt ihr bis zu ihrem höchsten Punkt und klickt dort erneut.');
       $('#toPhase7Btn').disabled=true;
     }
   }
+
   $('#saveEqReflectionBtn').addEventListener('click',()=>{
     const cmp=$('#eqCompare').value, txt=$('#eqReflection').value.trim();
     if(cmp) log('Phase 6',`Vergleich eigene ÄP-Schätzung mit Hilfskurve: ${cmp}.`);
