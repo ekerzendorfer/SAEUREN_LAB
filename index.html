@@ -133,6 +133,30 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
 .challenge-current-state output{font-weight:800;color:var(--accent)}
 .challenge-direct-note{display:none;margin:0 0 12px;padding:10px 12px;border:1px solid #bdd0f2;background:#f3f7ff;border-radius:10px;color:#244b91}
 .challenge-direct-note.show{display:block}
+.challenge-modebar{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 4px}
+.challenge-modebar .btn.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.series-status{display:none;margin:10px 0 12px;padding:11px 13px;border-radius:11px;border:1px solid #bdd0f2;background:#f4f7ff;color:#244b91}
+.series-status.show{display:block}
+.series-table-wrap{overflow:auto;margin-top:12px}
+.series-table{width:100%;border-collapse:collapse;min-width:760px}
+.series-table th,.series-table td{border-bottom:1px solid var(--line);padding:9px 8px;text-align:left;vertical-align:middle}
+.series-table th{font-size:.78rem;color:var(--muted);background:#f8faff;position:sticky;top:0}
+.series-table td.num{text-align:right;font-variant-numeric:tabular-nums}
+.series-table tr.orientation td{background:#fffaf0}
+.series-table input[type=checkbox]{width:18px;height:18px}
+.series-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.series-final{display:none;margin-top:14px}
+.series-final.show{display:block}
+.series-mean-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.series-score-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}
+.series-score-card{padding:11px;border:1px solid var(--line);border-radius:11px;background:#f8faff;text-align:center}
+.series-score-card strong{display:block;font-size:1.35rem;color:var(--accent)}
+.series-score-card.total{background:#eef9f3;border-color:#bfe5cf}
+.series-score-card.total strong{color:var(--good)}
+.series-deviation-hidden{color:var(--muted)}
+.series-hint{display:none;margin-top:10px}
+.series-hint.show{display:block}
+@media(max-width:980px){.series-score-grid{grid-template-columns:1fr 1fr}}
 
 @media(max-width:980px){.grid3,.grid2,.phase6-grid,.titration-top,.measurement,.path-grid,.calc-chain,.challenge-lab{grid-template-columns:1fr}.plan-steps{grid-template-columns:1fr 1fr}.challenge-levels,.challenge-score-grid{grid-template-columns:1fr}.stepper{grid-template-columns:1fr 1fr;overflow:visible}.header-inner{align-items:flex-start}.sample-stage{min-height:190px}.auto-controls{grid-template-columns:1fr}}
 </style>
@@ -145,7 +169,7 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
       <p>Beispiel 1: Speiseessig – vom pH-Wert zur Lebensmittelanalyse</p>
     </div>
     <div class="header-actions">
-      <span class="version">v0.4.0e · Phase 1–10 + Challenge</span>
+      <span class="version">v0.4.1 · Phase 1–10 + Challenge-Serie</span>
       <button class="btn primary" id="directChallengeBtn">Titrationschallenge direkt</button>
       <button class="btn" id="protocolBtn">Protokoll</button>
       <button class="btn" id="resetAllBtn">Neu starten</button>
@@ -651,6 +675,12 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
       <h3>C · Titrationschallenge – die Bürette selbst beherrschen</h3>
       <p class="subtle">Hier liefert keine Ableitung den Äquivalenzpunkt. Ihr entscheidet selbst, wie schnell ihr dosiert, wann ihr auf Tropfenbetrieb umstellt und wann der Endpunkt erreicht ist.</p>
 
+      <div class="challenge-modebar" aria-label="Challenge-Modus">
+        <button class="btn active" id="challengeModeSingleBtn" type="button">Einzellauf</button>
+        <button class="btn" id="challengeModeSeriesBtn" type="button">Serie 1 + 3</button>
+      </div>
+      <div class="series-status" id="challengeSeriesStatus"></div>
+
       <div class="challenge-levels" id="challengeLevels">
         <button class="challenge-level" data-ch-level="easy">
           <b>Einfach</b><br><span class="subtle">Indikator + pH + mitlaufende Punktwolke</span>
@@ -744,6 +774,56 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
             <div class="feedback" id="challengeEndFeedback"></div>
             <div class="feedback" id="challengeConsumptionFeedback"></div>
           </div>
+        </div>
+      </div>
+
+      <div class="card" id="challengeSeriesBlock" style="display:none;margin-top:14px;box-shadow:none">
+        <h3>Serienprotokoll · 1 Orientierung + 3 Bestimmungen</h3>
+        <p class="subtle">Alle vier Läufe gehören zur gleichen Probe. Die Bürette wird zwischen den Läufen nicht automatisch auf 0,00 mL gestellt. Erst nach Abschluss aller Läufe entscheidet ihr selbst, welche Messwerte für den Mittelwert verwendet werden.</p>
+        <div class="series-table-wrap">
+          <table class="series-table">
+            <thead>
+              <tr>
+                <th>Lauf</th><th>Typ</th><th>V(Anfang) / mL</th><th>V(Ende) / mL</th>
+                <th>Verbrauch / mL</th><th>Abweichung</th><th>verwenden?</th>
+              </tr>
+            </thead>
+            <tbody id="challengeSeriesBody">
+              <tr><td colspan="7" class="subtle">Noch keine Titration abgeschlossen.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="series-actions">
+          <button class="btn" id="seriesHintBtn" type="button">Denkhilfe zur Messwertauswahl</button>
+          <button class="btn primary" id="seriesNextRunBtn" type="button" disabled>Nächsten Lauf vorbereiten</button>
+        </div>
+        <div class="callout series-hint" id="seriesHint">
+          <b>Denkhilfe:</b> Die Orientierungstitration darf bewusst gröber sein. Vergleicht danach besonders die drei Bestimmungen miteinander: Welche Werte liegen eng beieinander? Gab es einen Lauf mit deutlich zu großem letzten Dosierschritt oder unsicherer Endpunkterkennung? Die App sortiert keinen Wert automatisch aus – die Entscheidung bleibt bei euch.
+        </div>
+
+        <div class="series-final" id="seriesFinalBlock">
+          <h3>Messwerte auswählen und Mittelwert selbst berechnen</h3>
+          <p>Markiert mindestens zwei Werte, die ihr für eure Auswertung verwenden wollt. Berechnet den Mittelwert selbst und gebt ihn anschließend ab.</p>
+          <div class="series-mean-row">
+            <label><b>Euer Mittelwert:</b></label>
+            <input class="field short" id="seriesMeanInput" type="text" inputmode="decimal" placeholder="mL">
+            <span>mL NaOH</span>
+            <button class="btn primary" id="submitSeriesBtn" type="button">Serienergebnis abgeben</button>
+          </div>
+          <div class="feedback" id="seriesMeanFeedback"></div>
+        </div>
+
+        <div class="series-final" id="seriesScoreBlock">
+          <h3>Auswertung der Serie</h3>
+          <div class="series-score-grid">
+            <div class="series-score-card"><span>Endpunkt & Serie</span><strong id="seriesScoreEndpoint">–</strong><span>/ 70</span></div>
+            <div class="series-score-card"><span>Ablesen</span><strong id="seriesScoreReading">–</strong><span>/ 20</span></div>
+            <div class="series-score-card"><span>Dosierstrategie</span><strong id="seriesScoreStrategy">–</strong><span>/ 10</span></div>
+            <div class="series-score-card total"><span>Gesamt</span><strong id="seriesScoreTotal">–</strong><span>/ 100</span></div>
+          </div>
+          <div class="challenge-awards" id="seriesAwards"></div>
+          <div class="feedback show good" id="seriesScoreFeedback"></div>
+          <button class="btn primary" id="seriesUseMeasurementBtn" style="margin-top:12px">Mittelwert für Phase 10 übernehmen</button>
         </div>
       </div>
 
@@ -916,8 +996,8 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
     <div class="phase-nav"><button class="btn" data-back="9">Zurück</button><button class="btn" id="protocolEndBtn">Arbeitsprotokoll anzeigen</button></div>
   </section>
 
-  <div class="card" style="margin-top:14px"><h3>Nächster Ausbau: Serienmodus der Titrationschallenge</h3><p class="subtle"><b>Geplant für v0.4.1:</b> vier Läufe mit derselben Probe (1 Orientierung + 3 Bestimmungen), ohne die Bürette jedes Mal auf 0,00 mL aufzufüllen. Anfangs- und Endstände werden selbst abgelesen, geeignete Werte für den Mittelwert ausgewählt und erst danach gemeinsam bewertet.</p></div>
-  <p class="footer-note">SÄUREN_LAB v0.4.0e · technischer Prototyp für GitHub Pages · Phasen 1–10</p>
+  <div class="card" style="margin-top:14px"><h3>Titrationschallenge</h3><p class="subtle">Neben dem Einzellauf steht nun auch die Serie aus <b>1 Orientierungstitration + 3 Bestimmungen</b> zur Verfügung. Der Serienmodus bewertet erst nach Auswahl der Messwerte und Abgabe des selbst berechneten Mittelwerts.</p></div>
+  <p class="footer-note">SÄUREN_LAB v0.4.1 · technischer Prototyp für GitHub Pages · Phasen 1–10</p>
 </main>
 
 <div class="overlay" id="overlay"></div>
@@ -1074,6 +1154,7 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
     $('#challengeDirectNote').classList.add('show');
     renderPhase9();
     renderChallengeHelpers();
+    updateChallengeTransferVisibility();
     setTimeout(()=>$('#pathChallengeBlock')?.scrollIntoView({behavior:'smooth',block:'start'}),250);
   });
 
@@ -1804,13 +1885,16 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
   });
   $('#toPhase9Btn').addEventListener('click',()=>goPhase(9));
 
-  // Titrationschallenge v0.4.0 – Einzellauf
+  // Titrationschallenge v0.4.1 – Einzellauf + Serie 1+3
   const challenge = {
+    mode:'single',
     level:'medium', veq:null, acidC:null, startTrue:0, added:0, stage:'idle',
     timer:null, opening:0, lastPointV:-1, points:[], dropCounter:0,
     startAccepted:null, endAccepted:null, reportedVolume:null,
     firstStartErr:null, firstEndErr:null, fineTotal:0, fineGood:0,
-    score:null, resultReady:false
+    score:null, resultReady:false,
+    seriesRuns:[], seriesIndex:0, seriesActive:false, seriesRefilled:false,
+    seriesMean:null, seriesScore:null
   };
 
   function challengeLevelLabel(level){
@@ -1833,13 +1917,104 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
   }
   $$('.challenge-level').forEach(b=>b.addEventListener('click',()=>setChallengeLevel(b.dataset.chLevel)));
 
+  function setChallengeMode(mode){
+    if(challenge.stage==='titrating'){
+      showFeedback($('#challengeStartFeedback'),'hint','Während einer laufenden Titration kann der Modus nicht gewechselt werden. Beendet zuerst den Lauf.');
+      return;
+    }
+    challenge.mode=mode;
+    challenge.seriesRuns=[];
+    challenge.seriesIndex=0;
+    challenge.seriesActive=false;
+    challenge.seriesRefilled=false;
+    challenge.seriesMean=null;
+    challenge.seriesScore=null;
+    challenge.veq=null;
+    challenge.stage='idle';
+    challenge.resultReady=false;
+    $('#challengeModeSingleBtn').classList.toggle('active',mode==='single');
+    $('#challengeModeSeriesBtn').classList.toggle('active',mode==='series');
+    $('#challengeSeriesBlock').style.display=mode==='series'?'block':'none';
+    $('#challengeResultBlock').classList.remove('show');
+    $('#seriesFinalBlock').classList.remove('show');
+    $('#seriesScoreBlock').classList.remove('show');
+    $('#challengeSeriesStatus').classList.toggle('show',mode==='series');
+    $('#challengeSeriesStatus').innerHTML=mode==='series'
+      ?'<b>Serienmodus:</b> 4 Titrationen derselben Probe · Lauf 1 Orientierung, Läufe 2–4 Bestimmungen. Noch keine Probe vorbereitet.'
+      :'';
+    $('#newChallengeBtn').textContent=mode==='series'?'Neue Serie starten':'Neue Probe vorbereiten';
+    $('#repeatChallengeBtn').style.display=mode==='series'?'none':'inline-flex';
+    $('#seriesNextRunBtn').disabled=true;
+    renderSeriesTable(false);
+    updateChallengeTransferVisibility();
+  }
+  $('#challengeModeSingleBtn').addEventListener('click',()=>setChallengeMode('single'));
+  $('#challengeModeSeriesBtn').addEventListener('click',()=>setChallengeMode('series'));
+
+  function seriesRunLabel(index){
+    return index===0?'Orientierung':`Bestimmung ${index}`;
+  }
+
+  function nextSeriesStart(){
+    if(!challenge.seriesRuns.length){
+      challenge.seriesRefilled=false;
+      return challenge.level==='easy' ? 0 : Number((Math.round(Math.random()*30)*0.05).toFixed(2));
+    }
+    const prev=challenge.seriesRuns.at(-1);
+    // Reserve enough volume for another typical 8–12 mL titration plus some safety margin.
+    if(prev.trueEnd + 13.0 > 49.8){
+      challenge.seriesRefilled=true;
+      return Number((Math.round(Math.random()*20)*0.05).toFixed(2)); // realistic refill, not forced to exactly 0.00
+    }
+    challenge.seriesRefilled=false;
+    return prev.trueEnd;
+  }
+
+  function updateSeriesStatus(){
+    const box=$('#challengeSeriesStatus');
+    if(challenge.mode!=='series'){ box.classList.remove('show'); return; }
+    box.classList.add('show');
+    if(!challenge.seriesActive){
+      box.innerHTML='<b>Serienmodus:</b> 4 Titrationen derselben Probe · Lauf 1 Orientierung, Läufe 2–4 Bestimmungen.';
+      return;
+    }
+    const current=Math.min(challenge.seriesRuns.length+1,4);
+    const label=seriesRunLabel(current-1);
+    const refill=challenge.seriesRefilled?' <span class="mini-badge">Bürette nachgefüllt – neuen Anfangsstand beachten</span>':'';
+    box.innerHTML=`<b>Lauf ${current}/4 · ${label}</b>${refill}<br><span class="subtle">${current===1?'Der erste Lauf darf bewusst gröber sein und der Orientierung dienen.':'Jetzt zählt eine möglichst reproduzierbare, sorgfältige Bestimmung.'}</span>`;
+  }
+
   function newChallenge(keepSample=false){
     stopChallengeTimer();
-    if(!keepSample || challenge.veq===null){
-      challenge.veq=Number((8 + Math.round(Math.random()*20)*0.2).toFixed(2));
-      challenge.acidC=BASE_C*(challenge.veq/10);
+
+    if(challenge.mode==='series'){
+      const startingNewSeries=!keepSample || !challenge.seriesActive;
+      if(startingNewSeries){
+        challenge.veq=Number((8 + Math.round(Math.random()*20)*0.2).toFixed(2));
+        challenge.acidC=BASE_C*(challenge.veq/10);
+        challenge.seriesRuns=[];
+        challenge.seriesIndex=0;
+        challenge.seriesActive=true;
+        challenge.seriesMean=null;
+        challenge.seriesScore=null;
+        $('#seriesFinalBlock').classList.remove('show');
+        $('#seriesScoreBlock').classList.remove('show');
+        $('#seriesMeanInput').value='';
+        $('#seriesMeanFeedback').classList.remove('show');
+        $('#seriesNextRunBtn').disabled=true;
+        challenge.startTrue=nextSeriesStart();
+      } else {
+        challenge.seriesIndex=challenge.seriesRuns.length;
+        challenge.startTrue=nextSeriesStart();
+      }
+    } else {
+      if(!keepSample || challenge.veq===null){
+        challenge.veq=Number((8 + Math.round(Math.random()*20)*0.2).toFixed(2));
+        challenge.acidC=BASE_C*(challenge.veq/10);
+      }
+      challenge.startTrue=challenge.level==='easy' ? 0 : Number((Math.round(Math.random()*30)*0.05).toFixed(2));
     }
-    challenge.startTrue=challenge.level==='easy' ? 0 : Number((Math.round(Math.random()*30)*0.05).toFixed(2));
+
     challenge.added=0;
     challenge.stage='readStart';
     challenge.opening=0;
@@ -1852,7 +2027,7 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
 
     $('#challengeValve').value=0; $('#challengeValve').disabled=true;
     $('#challengeCloseValveBtn').disabled=true; $('#challengeEndpointBtn').disabled=false;
-    $('#openMeniscusBtn').disabled=false; $('#checkChallengeStartBtn').disabled=false;
+    $('#openMeniscusBtn').disabled=false;
     $('#challengeStartRead').value=''; $('#challengeEndRead').value=''; $('#challengeConsumption').value='';
     $('#challengeStartRead').disabled=false;
     $('#challengeEndRead').disabled=true;
@@ -1865,14 +2040,27 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
     $('#challengeConsumptionFeedback').classList.remove('show');
     $('#challengeResultBlock').classList.remove('show');
     $('#repeatChallengeBtn').disabled=false;
-    $('#challengeObservation').innerHTML='<b>Beobachtung:</b> Die Probe ist leicht gelblich und wird gerührt. Lest zuerst den Anfangsstand der Bürette im Zoom ab.';
+    $('#seriesNextRunBtn').disabled=true;
+
+    let obs='<b>Beobachtung:</b> Die Probe ist leicht gelblich und wird gerührt. Lest zuerst den Anfangsstand der Bürette im Zoom ab.';
+    if(challenge.mode==='series' && challenge.seriesRefilled){
+      obs='<b>Bürette nachgefüllt.</b> Für den nächsten Lauf war nicht mehr genügend Reserve vorhanden. Sie wurde nachgefüllt, aber nicht auf 0,00 mL eingestellt. Lest den neuen Anfangsstand sorgfältig ab.';
+    }
+    $('#challengeObservation').innerHTML=obs;
     updateChallengeUI();
     renderChallengeHelpers();
     renderChallengePlot();
     refreshChallengeCheckButtons();
+    updateSeriesStatus();
+    renderSeriesTable(false);
+    updateChallengeTransferVisibility();
   }
   $('#newChallengeBtn').addEventListener('click',()=>newChallenge(false));
   $('#repeatChallengeBtn').addEventListener('click',()=>newChallenge(true));
+  $('#seriesNextRunBtn').addEventListener('click',()=>{
+    if(challenge.mode!=='series' || challenge.seriesRuns.length>=4) return;
+    newChallenge(true);
+  });
 
   function renderChallengeHelpers(){
     const ph=$('#challengePHBlock'), plot=$('#challengePlotBlock');
@@ -2041,6 +2229,179 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
   });
 
 
+  function renderSeriesTable(revealDeviations=false){
+    const body=$('#challengeSeriesBody');
+    if(!body) return;
+    if(!challenge.seriesRuns.length){
+      body.innerHTML='<tr><td colspan="7" class="subtle">Noch keine Titration abgeschlossen.</td></tr>';
+      return;
+    }
+    body.innerHTML=challenge.seriesRuns.map((r,i)=>{
+      const dev=revealDeviations ? `${r.signedDiff>=0?'+':''}${fmt(r.signedDiff,2)} mL` : '—';
+      const disabled=challenge.seriesRuns.length<4 || revealDeviations ? 'disabled' : '';
+      const checked=r.useForMean?'checked':'';
+      return `<tr class="${i===0?'orientation':''}">
+        <td>${i+1}</td><td>${seriesRunLabel(i)}</td>
+        <td class="num">${fmt(r.startReported,2)}</td>
+        <td class="num">${fmt(r.endReported,2)}</td>
+        <td class="num"><b>${fmt(r.reportedVolume,2)}</b></td>
+        <td class="num ${revealDeviations?'':'series-deviation-hidden'}">${dev}</td>
+        <td><input type="checkbox" class="series-use" data-series-index="${i}" ${checked} ${disabled} aria-label="Lauf ${i+1} für Mittelwert verwenden"></td>
+      </tr>`;
+    }).join('');
+    $$('.series-use').forEach(cb=>cb.addEventListener('change',()=>{
+      const i=Number(cb.dataset.seriesIndex);
+      challenge.seriesRuns[i].useForMean=cb.checked;
+    }));
+  }
+
+  function completeSeriesRun(){
+    const run={
+      startReported:challenge.startAccepted,
+      endReported:challenge.endAccepted,
+      reportedVolume:challenge.reportedVolume,
+      trueAdded:challenge.added,
+      trueEnd:challenge.startTrue+challenge.added,
+      signedDiff:challenge.added-challenge.veq,
+      startErr:challenge.firstStartErr??0,
+      endErr:challenge.firstEndErr??0,
+      fineTotal:challenge.fineTotal,
+      fineGood:challenge.fineGood,
+      useForMean:false
+    };
+    challenge.seriesRuns.push(run);
+    challenge.stage='done';
+    renderSeriesTable(false);
+
+    if(challenge.seriesRuns.length<4){
+      $('#seriesNextRunBtn').disabled=false;
+      $('#challengeObservation').innerHTML=`<b>Lauf ${challenge.seriesRuns.length}/4 gespeichert.</b> Noch keine Bewertung – die Serie wird erst nach allen vier Läufen ausgewertet. Bereitet jetzt den nächsten Lauf vor.`;
+      log('Phase 9',`Titrationschallenge Serie: ${seriesRunLabel(challenge.seriesRuns.length-1)} gespeichert · Verbrauch ${fmt(run.reportedVolume,2)} mL. Bewertung noch verborgen.`);
+    } else {
+      $('#seriesNextRunBtn').disabled=true;
+      $('#seriesFinalBlock').classList.add('show');
+      $('#challengeObservation').innerHTML='<b>Vier Läufe abgeschlossen.</b> Wählt jetzt selbst aus, welche Messwerte ihr für den Mittelwert verwenden wollt. Erst nach Abgabe des Mittelwerts werden Abweichungen und Bewertung sichtbar.';
+      renderSeriesTable(false);
+      log('Phase 9','Titrationschallenge Serie: alle vier Läufe abgeschlossen; Messwertauswahl und Mittelwertbildung freigeschaltet.');
+    }
+    updateSeriesStatus();
+  }
+
+  function seriesMeanOf(values){ return values.reduce((a,b)=>a+b,0)/values.length; }
+
+  function scoreSeriesAccuracy(diff){
+    if(diff<=0.05) return 50;
+    if(diff<=0.10) return 47;
+    if(diff<=0.20) return 42;
+    if(diff<=0.30) return 35;
+    if(diff<=0.40) return 28;
+    if(diff<=0.60) return 18;
+    if(diff<=1.00) return 8;
+    return 0;
+  }
+  function scoreSeriesRepro(range){
+    if(range<=0.10) return 20;
+    if(range<=0.20) return 18;
+    if(range<=0.30) return 15;
+    if(range<=0.50) return 10;
+    if(range<=0.80) return 5;
+    return 0;
+  }
+  function scoreSeriesReading(){
+    const errs=challenge.seriesRuns.flatMap(r=>[r.startErr,r.endErr]);
+    const mean=errs.reduce((a,b)=>a+b,0)/Math.max(1,errs.length);
+    if(mean<=0.025) return 20;
+    if(mean<=0.05) return 16;
+    if(mean<=0.075) return 12;
+    if(mean<=0.10) return 8;
+    return 4;
+  }
+  function scoreSeriesStrategy(){
+    const determinations=challenge.seriesRuns.slice(1);
+    const shares=determinations.map(r=>r.fineTotal>0.001?r.fineGood/r.fineTotal:0);
+    const mean=shares.reduce((a,b)=>a+b,0)/Math.max(1,shares.length);
+    if(mean>=0.75) return 10;
+    if(mean>=0.60) return 8;
+    if(mean>=0.40) return 6;
+    if(mean>=0.20) return 4;
+    return 2;
+  }
+
+  function updateChallengeTransferVisibility(){
+    const direct=!!state.directChallenge;
+    $('#challengeUseMeasurementBtn').style.display=direct?'none':'inline-flex';
+    $('#seriesUseMeasurementBtn').style.display=direct?'none':'inline-flex';
+  }
+
+  $('#seriesHintBtn').addEventListener('click',()=>$('#seriesHint').classList.toggle('show'));
+
+  $('#submitSeriesBtn').addEventListener('click',()=>{
+    if(challenge.seriesRuns.length<4) return;
+    const selected=challenge.seriesRuns.filter(r=>r.useForMean);
+    if(selected.length<2){
+      showFeedback($('#seriesMeanFeedback'),'hint','Wählt mindestens zwei Messwerte aus. Eine Serie soll mehr als einen Einzelwert zusammenfassen.');
+      return;
+    }
+    const userMean=parseNum($('#seriesMeanInput').value);
+    if(!Number.isFinite(userMean)){
+      showFeedback($('#seriesMeanFeedback'),'hint','Gebt euren selbst berechneten Mittelwert in mL ein.');
+      return;
+    }
+    const calculated=seriesMeanOf(selected.map(r=>r.reportedVolume));
+    if(Math.abs(userMean-calculated)>0.025){
+      showFeedback($('#seriesMeanFeedback'),'hint','Die Auswahl ist gespeichert, aber der Mittelwert passt rechnerisch noch nicht. Addiert nur die markierten Verbrauchswerte und teilt durch deren Anzahl.');
+      return;
+    }
+
+    challenge.seriesMean=calculated;
+    const meanDiff=Math.abs(calculated-challenge.veq);
+    const values=selected.map(r=>r.reportedVolume);
+    const range=Math.max(...values)-Math.min(...values);
+    const accuracy=scoreSeriesAccuracy(meanDiff);
+    const reproducibility=scoreSeriesRepro(range);
+    const endpoint=accuracy+reproducibility;
+    const reading=scoreSeriesReading();
+    const strategy=scoreSeriesStrategy();
+    const total=endpoint+reading+strategy;
+    challenge.seriesScore={accuracy,reproducibility,endpoint,reading,strategy,total,meanDiff,range};
+
+    renderSeriesTable(true);
+    $('#seriesScoreEndpoint').textContent=endpoint;
+    $('#seriesScoreReading').textContent=reading;
+    $('#seriesScoreStrategy').textContent=strategy;
+    $('#seriesScoreTotal').textContent=total;
+
+    const awards=[];
+    if(meanDiff<=0.10) awards.push('Präziser Mittelwert');
+    if(range<=0.20) awards.push('Reproduzierbare Serie');
+    if(reading>=18) awards.push('Präzise Ablesung');
+    if(strategy>=9) awards.push('FeindosiererIn');
+    const orient=Math.abs(challenge.seriesRuns[0].signedDiff);
+    const later=challenge.seriesRuns.slice(1).reduce((s,r)=>s+Math.abs(r.signedDiff),0)/3;
+    if(later+0.08<orient) awards.push('Laborstrategie verbessert');
+    $('#seriesAwards').innerHTML=awards.length?awards.map(a=>`<span class="challenge-award">${a}</span>`).join(''):'<span class="subtle">Die Teilwerte zeigen, wo die Serie beim nächsten Versuch noch verbessert werden kann.</span>';
+
+    const selectedText=challenge.seriesRuns.map((r,i)=>r.useForMean?String(i+1):null).filter(Boolean).join(', ');
+    $('#seriesScoreFeedback').innerHTML=
+      `<b>Ausgewählte Läufe:</b> ${selectedText} · <b>Mittelwert:</b> ${fmt(calculated,2)} mL.<br>`+
+      `<b>Transparente Wertung:</b> Endpunkt & Serie ${endpoint}/70 = ${accuracy}/50 Genauigkeit des Mittelwerts + ${reproducibility}/20 Reproduzierbarkeit; `+
+      `Ablesen ${reading}/20; Dosierstrategie ${strategy}/10. `+
+      `Die Abweichungsspalte ist jetzt eingeblendet, weil Auswahl und Mittelwert bereits abgegeben wurden.`;
+
+    showFeedback($('#seriesMeanFeedback'),'good','Mittelwert rechnerisch korrekt. Jetzt werden erstmals die Abweichungen und die Serienbewertung sichtbar.');
+    $('#seriesScoreBlock').classList.add('show');
+    $('#seriesFinalBlock').classList.remove('show');
+
+    log('Phase 9',`Titrationschallenge Serie ausgewertet: ausgewählte Läufe ${selectedText}; Mittelwert ${fmt(calculated,2)} mL; Score ${total}/100.`);
+    updateChallengeTransferVisibility();
+  });
+
+  $('#seriesUseMeasurementBtn').addEventListener('click',()=>{
+    if(!Number.isFinite(challenge.seriesMean) || !challenge.seriesScore) return;
+    setMeasurement(challenge.seriesMean,`Titrationschallenge Serie · ${challengeLevelLabel(challenge.level)} · ${challenge.seriesScore.total}/100`);
+    showFeedback($('#seriesScoreFeedback'),'good',`Serienmittelwert ${fmt(challenge.seriesMean,2)} mL wurde für Phase 10 übernommen. Die Auswahl der Messwerte und die Serienbewertung bleiben im Protokoll erhalten.`);
+  });
+
   function refreshChallengeCheckButtons(){
     const hasStart=String($('#challengeStartRead')?.value||'').trim()!=='';
     const hasEnd=String($('#challengeEndRead')?.value||'').trim()!=='';
@@ -2115,7 +2476,8 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
       $('#challengeConsumption').disabled=true;
       refreshChallengeCheckButtons();
       showFeedback($('#challengeConsumptionFeedback'),'good',`Richtig: Endstand minus Anfangsstand ergibt ${fmt(expected,2)} mL.`);
-      evaluateChallenge();
+      if(challenge.mode==='series') completeSeriesRun();
+      else evaluateChallenge();
     } else {
       showFeedback($('#challengeConsumptionFeedback'),'hint','Die Differenz passt noch nicht. Bei der Bürette gilt: Verbrauch = Endstand − Anfangsstand. Verwendet eure beiden akzeptierten Ablesewerte.');
     }
@@ -2180,6 +2542,7 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
     else feedback+='Die Feindosierung im entscheidenden Bereich war überzeugend.';
     $('#challengeScoreFeedback').innerHTML=`<b>Transparente Wertung:</b> 70 Punkte Endpunktgenauigkeit + 20 Punkte Bürettenablesung + 10 Punkte Dosierstrategie. ${feedback}`;
     $('#challengeResultBlock').classList.add('show');
+    updateChallengeTransferVisibility();
 
     log('Phase 9',`Titrationschallenge beendet: ${fmt(challenge.reportedVolume,2)} mL abgelesener Verbrauch · Score ${total}/100 (${ep}/70 Endpunkt, ${rd}/20 Ablesen, ${st}/10 Dosierstrategie).`);
   }
@@ -2200,6 +2563,7 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
       if(card) card.classList.toggle('active',state.experimentPath===p);
     });
     renderChosenMeasurement();
+    updateChallengeTransferVisibility();
   }
   $$('.pathSelect').forEach(b=>b.addEventListener('click',()=>{
     state.directChallenge=false;
