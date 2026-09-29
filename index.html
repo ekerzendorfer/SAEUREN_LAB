@@ -88,8 +88,8 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
 .challenge-stirbar{position:absolute;left:46px;bottom:12px;width:46px;height:6px;border-radius:5px;background:#374151;z-index:6;transform-origin:center;animation:challengeStir .55s ease-in-out infinite}
 @keyframes challengeStir{0%,100%{transform:scaleX(1)}50%{transform:scaleX(.28)}}
 .challenge-swirls{position:absolute;left:0;right:0;bottom:0;height:58%;overflow:hidden;pointer-events:none;z-index:4}
-.challenge-swirl{position:absolute;width:30px;height:14px;border-radius:50%;border:5px solid rgba(219,54,130,.65);filter:blur(1px);opacity:.9;animation:challengeSwirl var(--swirlDur,800ms) ease-out forwards}
-@keyframes challengeSwirl{0%{opacity:.95;transform:scale(.55) rotate(0deg)}55%{opacity:.65;transform:scale(1.45) rotate(85deg)}100%{opacity:0;transform:scale(2.1) rotate(170deg)}}
+.challenge-swirl{position:absolute;width:22px;height:9px;border-radius:50%;border:3px solid rgba(219,54,130,.42);filter:blur(.7px);opacity:.62;animation:challengeSwirl var(--swirlDur,800ms) ease-out forwards}
+@keyframes challengeSwirl{0%{opacity:.62;transform:translateX(0) scale(.55) rotate(0deg)}55%{opacity:.34;transform:translateX(12px) scale(1.15) rotate(35deg)}100%{opacity:0;transform:translateX(28px) scale(1.55) rotate(70deg)}}
 .challenge-stirrer{position:absolute;left:64px;bottom:34px;width:168px;height:42px;border-radius:12px;background:linear-gradient(180deg,#8fa5bf,#6f849e);box-shadow:0 6px 14px #0002;border:1px solid #66778a;z-index:2}
 .challenge-stirrer:before{content:"";position:absolute;left:16px;right:36px;top:7px;height:10px;border-radius:999px;background:rgba(255,255,255,.28);box-shadow:inset 0 0 0 2px rgba(72,96,123,.20)}
 .challenge-stirrer:after{content:"";position:absolute;right:14px;top:11px;width:16px;height:16px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#d8ebff,#7c90a8 68%,#536477);box-shadow:0 0 0 2px rgba(80,97,115,.28)}
@@ -97,7 +97,7 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
 .challenge-control input[type=range]{width:100%}
 .challenge-stop-btn{width:100%;margin-top:8px;background:#fff1f1;border-color:#e7b8b8;color:#8a2525}
 .challenge-stop-btn:hover{border-color:#c88686}
-.challenge-observation{padding:10px 12px;border-radius:10px;background:#fff9e9;border:1px solid #ecdca7;min-height:48px;margin-top:10px}
+.challenge-observation{padding:10px 12px;border-radius:10px;background:#fff9e9;border:1px solid #ecdca7;height:86px;box-sizing:border-box;overflow:auto;margin-top:10px}
 .challenge-ph{font-variant-numeric:tabular-nums;font-size:1.9rem;font-weight:850;background:#172033;color:#8ef0ba;border-radius:10px;padding:10px 14px;text-align:center;margin:8px 0}
 .challenge-plot{border:1px solid var(--line);border-radius:12px;background:#fff;padding:6px;margin-top:10px}
 .challenge-plot svg{display:block;width:100%;height:auto;min-width:0}
@@ -145,7 +145,7 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
       <p>Beispiel 1: Speiseessig – vom pH-Wert zur Lebensmittelanalyse</p>
     </div>
     <div class="header-actions">
-      <span class="version">v0.4.0d · Phase 1–10 + Challenge</span>
+      <span class="version">v0.4.0e · Phase 1–10 + Challenge</span>
       <button class="btn primary" id="directChallengeBtn">Titrationschallenge direkt</button>
       <button class="btn" id="protocolBtn">Protokoll</button>
       <button class="btn" id="resetAllBtn">Neu starten</button>
@@ -917,7 +917,7 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
   </section>
 
   <div class="card" style="margin-top:14px"><h3>Nächster Ausbau: Serienmodus der Titrationschallenge</h3><p class="subtle"><b>Geplant für v0.4.1:</b> vier Läufe mit derselben Probe (1 Orientierung + 3 Bestimmungen), ohne die Bürette jedes Mal auf 0,00 mL aufzufüllen. Anfangs- und Endstände werden selbst abgelesen, geeignete Werte für den Mittelwert ausgewählt und erst danach gemeinsam bewertet.</p></div>
-  <p class="footer-note">SÄUREN_LAB v0.4.0d · technischer Prototyp für GitHub Pages · Phasen 1–10</p>
+  <p class="footer-note">SÄUREN_LAB v0.4.0e · technischer Prototyp für GitHub Pages · Phasen 1–10</p>
 </main>
 
 <div class="overlay" id="overlay"></div>
@@ -1956,8 +1956,8 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
     const s=document.createElement('span');
     s.className='challenge-swirl';
     const n=challenge.dropCounter;
-    s.style.left=`${18+(n*17)%58}%`;
-    s.style.top=`${18+(n*23)%45}%`;
+    s.style.left=`${42+(n*7)%14}%`;
+    s.style.top=`${5+(n*5)%18}%`;
     const proximity=clamp((challenge.added-(challenge.veq-1.6))/1.6,0,1);
     s.style.setProperty('--swirlDur',`${Math.round(260+proximity*1500)}ms`);
     box.appendChild(s);

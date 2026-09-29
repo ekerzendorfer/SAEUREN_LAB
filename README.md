@@ -1,14 +1,15 @@
-# SÄUREN_LAB v0.4.0d – letzter optischer Feinschliff vor v0.4.1
+# SÄUREN_LAB v0.4.0e – Ruhe im Challenge-Layout
 
-## Änderungen gegenüber v0.4.0c
+Letzter Feinschliff vor dem Serienmodus v0.4.1.
 
-- sichtbarer Teil der Bürettenspitze/Stammverlängerung gekürzt
-- Tropfspitze klarer oberhalb der Flüssigkeitsoberfläche positioniert
-- Tropfen fallen sichtbar in die Lösung
-- zusätzliche, besser erkennbare Glaskontur im Schulter-/Zylinderbereich des Erlenmeyerkolbens
-- Schaltfläche **„Endpunkt erkannt – Lauf beenden“** ist von Beginn des Challenge-Laufs an aktiv,
-  damit ihr keinen versteckten Hinweis auf den Äquivalenzpunkt erhaltet
+## Änderungen
 
-## Nächster Schritt
+- Beobachtungsfeld hat nun eine feste Höhe, damit Textwechsel **keinen optischen Ruck** im mittleren Frame auslösen.
+- Phenolphthalein-Schlieren wurden deutlich dezenter:
+  - kleiner
+  - transparenter
+  - schmalerer pinker Saum
+  - Entstehung stärker auf den Bereich unmittelbar unter dem Eintrittspunkt des Tropfens konzentriert
+  - anschließend seitliches „Verwischen“ durch die Rührbewegung
 
-- v0.4.1: Serienmodus mit 4 Titrationen (1 Orientierung + 3 Bestimmungen)
+Alle übrigen Challenge-Funktionen bleiben unverändert.
