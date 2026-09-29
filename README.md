@@ -1,27 +1,24 @@
-# SÄUREN_LAB v0.4.0a – Challenge-Testpatch
+# SÄUREN_LAB v0.4.0b – Apparatur-Feinschliff der Titrationschallenge
 
-Dieser Patch reserviert **v0.4.1 weiterhin für den späteren 4er-Serienmodus** und verbessert zunächst den Einzellauf.
+Diese Zwischenversion verbessert gezielt die optische Ähnlichkeit der Challenge mit einem realen Titrationsaufbau.
 
-## Änderungen
+## Änderungen gegenüber v0.4.0a
 
-- direkter Einstieg über **„Titrationschallenge direkt“** im Kopfbereich
-- Challenge bleibt zusätzlich als Weg C in Phase 9 erhalten
-- Challenge-Raster wächst nicht mehr mit der Auswertung; Apparatur besitzt eine feste Höhe
-- Bürette etwas höher und schmäler
-- Rührstäbchen bleibt optisch horizontal und simuliert Rotation durch perspektivische Längenänderung
-- Hahnskala klar beschriftet:
-  - geschlossen
-  - tropfenweise
-  - langsamer Fluss
-  - schneller Fluss
-- aktueller Hahnzustand wird separat angezeigt
-- Anfangsstand, Endstand und Differenz stehen kompakt in **einer Tabelle**
-- Prüfschaltflächen liegen nebeneinander unter der Tabelle und werden erst bei sinnvoller Eingabe aktiv
-- alle erklärenden Rückmeldungen zur Ablesung und Differenz erscheinen im rechten Beobachtungsrahmen
-- Meniskus-Zoom und bestehende Scorelogik bleiben erhalten
+- Erlenmeyerkolben neu positioniert und vollständig **auf** dem Magnetrührer platziert
+- Magnetrührer klarer als eigenes Gerät dargestellt
+  - eigene Farbe
+  - elliptische Auflage
+  - Drehknopf rechts
+- Rührstäbchen bleibt waagrecht in der Probe
+- Bürettenspitze steht knapp über der Kolbenöffnung
+- Layer-Reihenfolge korrigiert:
+  - Stativ hinten
+  - Magnetrührer darunter
+  - Kolben davor
+  - Bürettenspitze/Tropfen darüber
+- übrige Verbesserungen aus v0.4.0a (Direkteinstieg, kompakte Ablesetabelle, feste Apparaturhöhe) bleiben erhalten
 
-## Für später vorgemerkt
+## Weiterer geplanter Schritt
 
-- v0.4.1: 4er-Serie (1 Orientierung + 3 Bestimmungen), keine Nullstellung zwischen den Läufen
-- Browser-Zwischenspeicher / Fortsetzen per localStorage, sobald die Challenge-Struktur stabil ist
-- optischer Feinschliff der Phenolphthalein-Schlieren
+- v0.4.1: Serienmodus mit 4 Titrationen (1 Orientierung + 3 Bestimmungen)
+- danach: Browser-Zwischenspeicher / Fortsetzen

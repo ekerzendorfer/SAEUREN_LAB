@@ -63,8 +63,8 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
 .challenge-level.active{border-color:var(--accent);background:#f4f7ff;box-shadow:0 0 0 2px rgba(36,87,197,.08)}
 .challenge-lab{display:grid;grid-template-columns:minmax(245px,.78fr) minmax(335px,1fr) minmax(320px,1.05fr);gap:14px;align-items:start;margin-top:14px}
 .challenge-apparatus{position:relative;height:620px;min-height:620px;overflow:hidden;background:linear-gradient(#fbfdff,#f3f6fa);border:1px solid var(--line);border-radius:14px}
-.burette-stand-base{position:absolute;left:24px;right:24px;bottom:28px;height:15px;border-radius:50%;background:#7b8797}
-.burette-stand-rod{position:absolute;left:55px;top:26px;bottom:35px;width:10px;border-radius:5px;background:linear-gradient(90deg,#8492a3,#c6d0db,#7a8797)}
+.burette-stand-base{position:absolute;left:24px;right:24px;bottom:18px;height:15px;border-radius:50%;background:#7b8797;z-index:0}
+.burette-stand-rod{position:absolute;left:55px;top:26px;bottom:24px;width:10px;border-radius:5px;background:linear-gradient(90deg,#8492a3,#c6d0db,#7a8797);z-index:0}
 .challenge-burette{position:absolute;left:119px;top:25px;width:56px;height:405px;border:3px solid #718093;border-radius:12px 12px 9px 9px;background:
   repeating-linear-gradient(to bottom,transparent 0 7px,rgba(73,89,108,.34) 7px 8px,transparent 8px 14px),
   rgba(255,255,255,.86);overflow:hidden}
@@ -73,23 +73,25 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
 .challenge-meniscus{position:absolute;left:4px;right:4px;height:12px;border-top:3px solid #679dc3;border-radius:50%;transform:translateY(-5px);z-index:4;pointer-events:none}
 .challenge-burette-label{position:absolute;left:184px;top:23px;font-size:.78rem;color:var(--muted);line-height:1.55}
 .challenge-burette-label span{display:block}
-.challenge-stopcock{position:absolute;left:123px;top:438px;width:46px;height:18px;border-radius:9px;background:#657385}
+.challenge-stopcock{position:absolute;left:123px;top:440px;width:46px;height:18px;border-radius:9px;background:#657385;z-index:6}
 .challenge-stopcock:after{content:"";position:absolute;left:19px;top:15px;width:8px;height:47px;background:#77879a;border-radius:4px}
-.challenge-tip{position:absolute;left:144px;top:488px;width:5px;height:47px;background:#7a8999}
+.challenge-tip{position:absolute;left:144px;top:490px;width:5px;height:38px;background:#7a8999;z-index:6}
 .challenge-drop{position:absolute;left:142px;top:526px;width:9px;height:13px;border-radius:50% 50% 55% 55%;background:#9bd8fb;opacity:0;z-index:5}
 .challenge-drop.fall{animation:challengeDrop .38s ease-in}
 @keyframes challengeDrop{0%{opacity:.9;transform:translateY(0) scale(.75)}100%{opacity:.75;transform:translateY(55px) scale(1)}}
-.challenge-flask{position:absolute;left:74px;top:545px;width:150px;height:0;transform:translateY(-85px)}
-.challenge-flask-neck{position:absolute;left:57px;top:-18px;width:36px;height:58px;border-left:3px solid #7d8b9b;border-right:3px solid #7d8b9b;background:rgba(255,255,255,.45);z-index:3}
-.challenge-flask-body{position:absolute;left:0;top:34px;width:148px;height:112px;border:3px solid #7d8b9b;border-radius:9px 9px 42px 42px;clip-path:polygon(35% 0,65% 0,100% 100%,0 100%);overflow:hidden;background:rgba(255,255,255,.28)}
+.challenge-flask{position:absolute;left:82px;top:404px;width:136px;height:172px;transform:none;z-index:4}
+.challenge-flask-neck{position:absolute;left:50px;top:0;width:34px;height:54px;border-left:3px solid #7d8b9b;border-right:3px solid #7d8b9b;background:rgba(255,255,255,.42);z-index:5;border-radius:3px 3px 0 0}
+.challenge-flask-body{position:absolute;left:0;top:42px;width:136px;height:118px;border:3px solid #7d8b9b;border-radius:10px 10px 34px 34px;clip-path:polygon(35% 0,65% 0,95% 100%,5% 100%);overflow:hidden;background:rgba(255,255,255,.28);z-index:4}
 .challenge-solution{position:absolute;left:0;right:0;bottom:0;height:58%;background:rgb(239,229,167);transition:background .3s ease}
 .challenge-solution:before{content:"";position:absolute;left:10%;right:10%;top:-5px;height:10px;border-radius:50%;background:rgba(255,255,255,.24)}
-.challenge-stirbar{position:absolute;left:52px;bottom:11px;width:44px;height:6px;border-radius:5px;background:#374151;z-index:5;transform-origin:center;animation:challengeStir .55s ease-in-out infinite}
+.challenge-stirbar{position:absolute;left:46px;bottom:12px;width:46px;height:6px;border-radius:5px;background:#374151;z-index:6;transform-origin:center;animation:challengeStir .55s ease-in-out infinite}
 @keyframes challengeStir{0%,100%{transform:scaleX(1)}50%{transform:scaleX(.28)}}
 .challenge-swirls{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:4}
 .challenge-swirl{position:absolute;width:30px;height:14px;border-radius:50%;border:5px solid rgba(219,54,130,.65);filter:blur(1px);opacity:.9;animation:challengeSwirl var(--swirlDur,800ms) ease-out forwards}
 @keyframes challengeSwirl{0%{opacity:.95;transform:scale(.55) rotate(0deg)}55%{opacity:.65;transform:scale(1.45) rotate(85deg)}100%{opacity:0;transform:scale(2.1) rotate(170deg)}}
-.challenge-stirrer{position:absolute;left:69px;bottom:23px;width:158px;height:33px;border-radius:9px;background:linear-gradient(#8e9bab,#657386);box-shadow:0 5px 12px #0002}
+.challenge-stirrer{position:absolute;left:64px;bottom:34px;width:168px;height:42px;border-radius:12px;background:linear-gradient(180deg,#8fa5bf,#6f849e);box-shadow:0 6px 14px #0002;border:1px solid #66778a;z-index:2}
+.challenge-stirrer:before{content:"";position:absolute;left:16px;right:36px;top:7px;height:10px;border-radius:999px;background:rgba(255,255,255,.28);box-shadow:inset 0 0 0 2px rgba(72,96,123,.20)}
+.challenge-stirrer:after{content:"";position:absolute;right:14px;top:11px;width:16px;height:16px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#d8ebff,#7c90a8 68%,#536477);box-shadow:0 0 0 2px rgba(80,97,115,.28)}
 .challenge-control{padding:14px;border:1px solid var(--line);border-radius:14px;background:#fff}
 .challenge-control input[type=range]{width:100%}
 .challenge-stop-btn{width:100%;margin-top:8px;background:#fff1f1;border-color:#e7b8b8;color:#8a2525}
@@ -142,7 +144,7 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
       <p>Beispiel 1: Speiseessig – vom pH-Wert zur Lebensmittelanalyse</p>
     </div>
     <div class="header-actions">
-      <span class="version">v0.4.0a · Phase 1–10 + Challenge</span>
+      <span class="version">v0.4.0b · Phase 1–10 + Challenge</span>
       <button class="btn primary" id="directChallengeBtn">Titrationschallenge direkt</button>
       <button class="btn" id="protocolBtn">Protokoll</button>
       <button class="btn" id="resetAllBtn">Neu starten</button>
@@ -914,7 +916,7 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
   </section>
 
   <div class="card" style="margin-top:14px"><h3>Nächster Ausbau: Serienmodus der Titrationschallenge</h3><p class="subtle"><b>Geplant für v0.4.1:</b> vier Läufe mit derselben Probe (1 Orientierung + 3 Bestimmungen), ohne die Bürette jedes Mal auf 0,00 mL aufzufüllen. Anfangs- und Endstände werden selbst abgelesen, geeignete Werte für den Mittelwert ausgewählt und erst danach gemeinsam bewertet.</p></div>
-  <p class="footer-note">SÄUREN_LAB v0.4.0a · technischer Prototyp für GitHub Pages · Phasen 1–10</p>
+  <p class="footer-note">SÄUREN_LAB v0.4.0b · technischer Prototyp für GitHub Pages · Phasen 1–10</p>
 </main>
 
 <div class="overlay" id="overlay"></div>
