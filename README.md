@@ -1,71 +1,49 @@
-# SÄUREN_LAB v0.4.1 – Titrationschallenge mit Serienmodus
+# SÄUREN_LAB v0.4.2 – Zwischenstand, Statistik und Pilotversion
 
-## Neu: Serie 1 + 3
+## Neu in v0.4.2
 
-Neben dem bisherigen Einzellauf kann die Challenge nun als Serie mit vier Titrationen derselben Probe durchgeführt werden:
+### Statistische Serienauswertung
 
-1. **Orientierungstitration**
-2. **Bestimmung 1**
-3. **Bestimmung 2**
-4. **Bestimmung 3**
+Nach Abschluss einer Titrationsserie und nach der eigenen Auswahl der verwendeten Messwerte werden zusätzlich angezeigt:
 
-### Bürette
+- Anzahl der ausgewählten Werte `n`
+- Mittelwert
+- **Stichproben-Standardabweichung `s`** mit `n − 1` im Nenner
+- Spannweite
 
-Die Bürette wird zwischen den Läufen **nicht automatisch auf 0,00 mL gestellt**. Der reale Endstand eines Laufs wird zum Ausgangspunkt des nächsten Laufs. Nur wenn für den nächsten Versuch nicht mehr genügend Reserve vorhanden wäre, wird die Bürette nachgefüllt – dabei startet sie bewusst nicht exakt bei 0,00 mL.
+Die Statistik erscheint bewusst erst **nach** der Abgabe des selbst berechneten Mittelwerts und liefert damit keine vorzeitige Hilfe bei der Auswahl der Messwerte.
 
-Damit müssen bei jedem Lauf erneut
+### Lokaler Zwischenstand
 
-- Anfangsstand,
-- Endstand,
-- und die Differenz = Verbrauch
+Im Kopfbereich stehen nun zur Verfügung:
 
-bestimmt werden.
+- **Zwischenstand speichern**
+- **Fortsetzen**
+- **Speicher löschen**
 
-### Noch keine Bewertung während der Serie
+Gespeichert wird ausschließlich im lokalen Browserspeicher (`localStorage`) des verwendeten Browsers. Es werden keine Daten an einen Server übertragen.
 
-Nach jedem Lauf wird nur der Messwert gespeichert. Es erscheinen noch
+Gespeichert werden unter anderem:
 
-- keine Abweichung vom wahren Äquivalenzvolumen,
-- keine Punkte,
-- keine automatische Entscheidung über gute oder schlechte Werte.
+- aktueller Lernweg und freigeschaltete Phasen
+- Antworten und Eingaben
+- Messreihen
+- Arbeitsprotokoll
+- Titrationschallenge und bereits abgeschlossene Serienläufe
 
-Die Orientierungstitration darf bewusst gröber ausgeführt und auch überschritten werden.
+Ein gerade laufender Autotitrations- oder Challenge-Titrationslauf muss vor dem Speichern beendet bzw. pausiert werden.
 
-### Messwertauswahl
+## Empfohlener nächster Schritt
 
-Erst nach allen vier Läufen werden die Auswahlkästchen freigeschaltet. Die SchülerInnen entscheiden selbst, welche Werte in den Mittelwert eingehen.
+Die chemischen Inhalte werden vorerst **nicht** um weitere Lebensmittelproben erweitert. Die App soll zunächst mit echten SchülerInnen erprobt werden. Rückmeldungen zu Verständlichkeit, Bedienung, Challenge, Hilfen und Zeitbedarf sollen in die nächste Überarbeitung einfließen.
 
-Die Spalte **Abweichung** bleibt bis dahin leer.
+## Später vorgemerkt
 
-Anschließend muss der Mittelwert der ausgewählten Verbrauchswerte **selbst berechnet und eingegeben** werden. Die App kontrolliert zunächst nur die Rechnung.
+Die Titrationschallenge kann mit relativ geringem Aufwand als eigenständige kleine App ausgekoppelt werden. Denkbare, bewusst begrenzte weitere Szenarien:
 
-### Bewertung erst nach Abgabe
+- starke Säure + starke Base
+- starke Base + starke Säure
+- schwache Base + starke Säure
+- wenige kuratierte Indikatoren
 
-Erst nach korrekter Abgabe des Mittelwerts werden Abweichungen und Score sichtbar.
-
-Maximal 100 Punkte:
-
-- **70 Punkte Endpunkt & Serie**
-  - 50 Punkte Genauigkeit des ausgewählten Mittelwerts
-  - 20 Punkte Reproduzierbarkeit der ausgewählten Werte
-- **20 Punkte Bürettenablesung**
-- **10 Punkte Dosierstrategie**
-
-Mögliche Auszeichnungen:
-
-- Präziser Mittelwert
-- Reproduzierbare Serie
-- Präzise Ablesung
-- FeindosiererIn
-- Laborstrategie verbessert
-
-### Direkter Trainingsmodus
-
-Beim direkten Einstieg in die Challenge wird kein Transfer zu Phase 10 benötigt und daher ausgeblendet.
-
-Im normalen Lernweg über Phase 9 kann dagegen der ausgewählte Serienmittelwert direkt als Messwert an Phase 10 übergeben werden.
-
-## Weiter vorgemerkt
-
-- Browser-Zwischenspeicher / Fortsetzen mit localStorage
-- abschließender optischer Feinschliff der Apparatur und Indikatorschlieren
+Der Fokus soll auch dort auf Bürettenbedienung, Endpunkterkennung, Wiederholungsmessung und Messwertbeurteilung liegen – nicht auf einem universellen Titrationssimulator.

@@ -16,6 +16,8 @@ header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdro
 .header-inner{max-width:1320px;margin:auto;padding:14px 18px;display:flex;gap:14px;align-items:center;justify-content:space-between}
 .brand h1{font-size:1.25rem;margin:0}.brand p{margin:2px 0 0;color:var(--muted);font-size:.9rem}
 .header-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.version{font-size:.78rem;color:var(--muted);padding:4px 8px;border:1px solid var(--line);border-radius:999px}
+.save-state-label{font-size:.72rem;color:var(--muted);white-space:nowrap}
+.save-state-label.saved{color:var(--good);font-weight:750}
 .btn{border:1px solid var(--line);background:#fff;color:var(--ink);padding:9px 13px;border-radius:10px;font-weight:650}.btn:hover{border-color:#9fb3d8}.btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}.btn.soft{background:var(--accent2);border-color:#c7d5f3;color:#173b86}.btn.good{background:#e8f6ef;border-color:#b5dfc8;color:var(--good)}.btn:disabled{opacity:.45;cursor:not-allowed}
 main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid;grid-template-columns:repeat(10,minmax(112px,1fr));gap:8px;margin-bottom:16px;overflow-x:auto;padding-bottom:2px}.step{background:#fff;border:1px solid var(--line);padding:10px 12px;border-radius:12px;color:var(--muted);font-size:.88rem}.step.active{border-color:var(--accent);box-shadow:0 0 0 2px rgba(36,87,197,.08);color:var(--accent);font-weight:750}.step.done{background:#f1f8f4;color:var(--good);border-color:#cbe7d7}.step.unlocked{cursor:pointer}.step.unlocked:hover{border-color:#9fb3d8}.step.locked{opacity:.6}
 .phase{display:none}.phase.active{display:block}.grid3{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:14px}.grid2{display:grid;grid-template-columns:1.2fr .8fr;gap:14px}.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}.card h2,.card h3{margin-top:0}.subtle{color:var(--muted);font-size:.94rem}.callout{padding:12px 14px;border-radius:12px;background:#f7f9fd;border:1px solid var(--line);margin:10px 0}.question{margin:15px 0;padding-top:12px;border-top:1px dashed var(--line)}.question:first-child{border-top:none;padding-top:0}.feedback{margin-top:8px;padding:10px 12px;border-radius:10px;background:#f7f9fc;border:1px solid var(--line);display:none}.feedback.show{display:block}.feedback.good{background:#eef9f3;border-color:#bfe5cf;color:#0f5c3b}.feedback.hint{background:#fff7ea;border-color:#ead3a7;color:#7c4d00}.feedback.bad{background:#fff1f1;border-color:#efc5c5;color:#8f2828}
@@ -154,6 +156,13 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
 .series-score-card.total{background:#eef9f3;border-color:#bfe5cf}
 .series-score-card.total strong{color:var(--good)}
 .series-deviation-hidden{color:var(--muted)}
+.series-stats{margin-top:14px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:#fbfcfe}
+.series-stats h4{margin:0 0 9px}
+.series-stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.series-stat{padding:10px;border:1px solid var(--line);border-radius:10px;background:#fff;text-align:center}
+.series-stat span{display:block;font-size:.76rem;color:var(--muted)}
+.series-stat strong{display:block;margin-top:3px;font-size:1.18rem;color:var(--accent)}
+@media(max-width:700px){.series-stats-grid{grid-template-columns:1fr 1fr}}
 .series-hint{display:none;margin-top:10px}
 .series-hint.show{display:block}
 @media(max-width:980px){.series-score-grid{grid-template-columns:1fr 1fr}}
@@ -169,8 +178,12 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
       <p>Beispiel 1: Speiseessig – vom pH-Wert zur Lebensmittelanalyse</p>
     </div>
     <div class="header-actions">
-      <span class="version">v0.4.1 · Phase 1–10 + Challenge-Serie</span>
+      <span class="version">v0.4.2 · Phase 1–10 + Challenge-Serie</span>
       <button class="btn primary" id="directChallengeBtn">Titrationschallenge direkt</button>
+      <button class="btn" id="saveProgressBtn">Zwischenstand speichern</button>
+      <button class="btn" id="resumeProgressBtn" disabled>Fortsetzen</button>
+      <button class="btn" id="clearProgressBtn" hidden>Speicher löschen</button>
+      <span class="save-state-label" id="saveStateLabel">kein Zwischenstand</span>
       <button class="btn" id="protocolBtn">Protokoll</button>
       <button class="btn" id="resetAllBtn">Neu starten</button>
     </div>
@@ -823,6 +836,19 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
           </div>
           <div class="challenge-awards" id="seriesAwards"></div>
           <div class="feedback show good" id="seriesScoreFeedback"></div>
+          <div class="series-stats" id="seriesStatsBlock">
+            <h4>Statistische Auswertung der ausgewählten Messwerte</h4>
+            <div class="series-stats-grid">
+              <div class="series-stat"><span>Anzahl n</span><strong id="seriesStatN">–</strong></div>
+              <div class="series-stat"><span>Mittelwert</span><strong id="seriesStatMean">–</strong></div>
+              <div class="series-stat"><span>Standardabweichung s</span><strong id="seriesStatSD">–</strong></div>
+              <div class="series-stat"><span>Spannweite</span><strong id="seriesStatRange">–</strong></div>
+            </div>
+            <details class="excourse" style="margin-top:10px">
+              <summary>Was bedeutet die Standardabweichung?</summary>
+              <div>Die Standardabweichung <b>s</b> beschreibt hier, wie stark die ausgewählten Verbrauchswerte um ihren Mittelwert streuen. Je kleiner s ist, desto enger liegen die Wiederholungsmessungen beieinander. Verwendet wird die Stichproben-Standardabweichung mit <b>n − 1</b> im Nenner.</div>
+            </details>
+          </div>
           <button class="btn primary" id="seriesUseMeasurementBtn" style="margin-top:12px">Mittelwert für Phase 10 übernehmen</button>
         </div>
       </div>
@@ -997,7 +1023,7 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
   </section>
 
   <div class="card" style="margin-top:14px"><h3>Titrationschallenge</h3><p class="subtle">Neben dem Einzellauf steht nun auch die Serie aus <b>1 Orientierungstitration + 3 Bestimmungen</b> zur Verfügung. Der Serienmodus bewertet erst nach Auswahl der Messwerte und Abgabe des selbst berechneten Mittelwerts.</p></div>
-  <p class="footer-note">SÄUREN_LAB v0.4.1 · technischer Prototyp für GitHub Pages · Phasen 1–10</p>
+  <p class="footer-note">SÄUREN_LAB v0.4.2 · technischer Prototyp für GitHub Pages · Phasen 1–10</p>
 </main>
 
 <div class="overlay" id="overlay"></div>
@@ -1076,6 +1102,137 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
   const $ = s => document.querySelector(s);
   const $$ = s => [...document.querySelectorAll(s)];
   const fmt = (x,n=2) => Number(x).toFixed(n).replace('.',',');
+
+  const STORAGE_KEY='SAEUREN_LAB_PROGRESS_v0_4_2';
+
+  function storageAvailable(){
+    try{
+      const k='__saeuren_lab_test__';
+      localStorage.setItem(k,'1'); localStorage.removeItem(k);
+      return true;
+    }catch(e){ return false; }
+  }
+
+  function captureFormState(){
+    return [...document.querySelectorAll('input,textarea,select')].map((el,index)=>({
+      id:el.id||'',
+      name:el.name||'',
+      type:el.type||el.tagName.toLowerCase(),
+      value:el.value,
+      checked:!!el.checked,
+      index
+    }));
+  }
+
+  function applyFormState(items){
+    if(!Array.isArray(items)) return;
+    items.forEach(item=>{
+      let el=null;
+      if(item.id) el=document.getElementById(item.id);
+      if(!el && item.name){
+        const candidates=[...document.querySelectorAll(`[name="${CSS.escape(item.name)}"]`)];
+        if(item.type==='radio') el=candidates.find(x=>x.value===item.value)||null;
+        else el=candidates[0]||null;
+      }
+      if(!el) return;
+      if(el.type==='checkbox'||el.type==='radio') el.checked=!!item.checked;
+      else el.value=item.value??'';
+    });
+  }
+
+  function safeClone(obj){ return JSON.parse(JSON.stringify(obj)); }
+
+  function updateSaveControls(){
+    if(!storageAvailable()){
+      $('#saveProgressBtn').disabled=true;
+      $('#resumeProgressBtn').disabled=true;
+      $('#clearProgressBtn').hidden=true;
+      $('#saveStateLabel').textContent='Browser-Speicher nicht verfügbar';
+      return;
+    }
+    const raw=localStorage.getItem(STORAGE_KEY);
+    if(!raw){
+      $('#resumeProgressBtn').disabled=true;
+      $('#clearProgressBtn').hidden=true;
+      $('#saveStateLabel').textContent='kein Zwischenstand';
+      $('#saveStateLabel').classList.remove('saved');
+      return;
+    }
+    try{
+      const snap=JSON.parse(raw);
+      const d=new Date(snap.savedAt);
+      $('#resumeProgressBtn').disabled=false;
+      $('#clearProgressBtn').hidden=false;
+      $('#saveStateLabel').textContent=`gespeichert ${d.toLocaleDateString('de-DE')} ${d.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})}`;
+      $('#saveStateLabel').classList.add('saved');
+    }catch(e){
+      localStorage.removeItem(STORAGE_KEY);
+      updateSaveControls();
+    }
+  }
+
+  function canSaveStableState(){
+    if(state.autoRunning) return 'Pausiert zuerst die automatische Titration.';
+    if(typeof challenge!=='undefined' && challenge.stage==='titrating') return 'Beendet zuerst den laufenden Challenge-Titrationslauf. Zwischen den Läufen kann problemlos gespeichert werden.';
+    return '';
+  }
+
+  function saveProgress(){
+    if(!storageAvailable()) return;
+    const reason=canSaveStableState();
+    if(reason){ alert(reason); return; }
+
+    const stateCopy=safeClone(state);
+    stateCopy.autoRunning=false;
+    const challengeCopy=typeof challenge!=='undefined' ? safeClone({...challenge,timer:null,opening:0}) : null;
+    const snapshot={
+      appVersion:'0.4.2',
+      savedAt:new Date().toISOString(),
+      state:stateCopy,
+      challenge:challengeCopy,
+      forms:captureFormState()
+    };
+    localStorage.setItem(STORAGE_KEY,JSON.stringify(snapshot));
+    updateSaveControls();
+  }
+
+  function restoreCurrentUI(){
+    // General gates and measurement areas
+    updateP1Gate();
+    if(state.measurements?.length) renderMeasurements();
+
+    if(state.maxUnlocked>=5) renderPhase5();
+    if(state.maxUnlocked>=6) renderPhase6();
+    if(state.maxUnlocked>=7){ renderPhase7(); updatePhase7Complete(); }
+    if(state.maxUnlocked>=8) renderPhase8();
+    if(state.maxUnlocked>=9) renderPhase9();
+    if(state.maxUnlocked>=10) renderPhase10();
+
+    if(typeof restoreChallengeView==='function') restoreChallengeView();
+    goPhase(state.phase||1);
+    renderProtocol();
+  }
+
+  function restoreProgress(){
+    if(!storageAvailable()) return;
+    const raw=localStorage.getItem(STORAGE_KEY);
+    if(!raw) return;
+    try{
+      const snap=JSON.parse(raw);
+      Object.assign(state,snap.state||{});
+      if(snap.challenge && typeof challenge!=='undefined'){
+        Object.assign(challenge,snap.challenge,{timer:null,opening:0});
+      }
+      applyFormState(snap.forms);
+      restoreCurrentUI();
+      // Some dynamic elements (e.g. series checkboxes) are created only during render.
+      applyFormState(snap.forms);
+      $('#saveStateLabel').textContent='Zwischenstand fortgesetzt';
+      $('#saveStateLabel').classList.add('saved');
+    }catch(e){
+      alert('Der gespeicherte Zwischenstand konnte nicht geladen werden.');
+    }
+  }
 
   function calcPHWeakAcid(vbMl, acidC, acidV0=ACID_V0){
     const vb = vbMl/1000;
@@ -2288,6 +2445,20 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
   }
 
   function seriesMeanOf(values){ return values.reduce((a,b)=>a+b,0)/values.length; }
+  function sampleStandardDeviation(values,mean=seriesMeanOf(values)){
+    if(values.length<2) return 0;
+    const ss=values.reduce((sum,x)=>sum+(x-mean)**2,0);
+    return Math.sqrt(ss/(values.length-1));
+  }
+  function renderSeriesStatistics(values,mean){
+    const sd=sampleStandardDeviation(values,mean);
+    const range=Math.max(...values)-Math.min(...values);
+    $('#seriesStatN').textContent=String(values.length);
+    $('#seriesStatMean').textContent=`${fmt(mean,2)} mL`;
+    $('#seriesStatSD').textContent=`${fmt(sd,3)} mL`;
+    $('#seriesStatRange').textContent=`${fmt(range,2)} mL`;
+    return {sd,range};
+  }
 
   function scoreSeriesAccuracy(diff){
     if(diff<=0.05) return 50;
@@ -2356,14 +2527,15 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
     challenge.seriesMean=calculated;
     const meanDiff=Math.abs(calculated-challenge.veq);
     const values=selected.map(r=>r.reportedVolume);
-    const range=Math.max(...values)-Math.min(...values);
+    const stats=renderSeriesStatistics(values,calculated);
+    const range=stats.range;
     const accuracy=scoreSeriesAccuracy(meanDiff);
     const reproducibility=scoreSeriesRepro(range);
     const endpoint=accuracy+reproducibility;
     const reading=scoreSeriesReading();
     const strategy=scoreSeriesStrategy();
     const total=endpoint+reading+strategy;
-    challenge.seriesScore={accuracy,reproducibility,endpoint,reading,strategy,total,meanDiff,range};
+    challenge.seriesScore={accuracy,reproducibility,endpoint,reading,strategy,total,meanDiff,range,sd:stats.sd,n:values.length};
 
     renderSeriesTable(true);
     $('#seriesScoreEndpoint').textContent=endpoint;
@@ -2392,7 +2564,7 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
     $('#seriesScoreBlock').classList.add('show');
     $('#seriesFinalBlock').classList.remove('show');
 
-    log('Phase 9',`Titrationschallenge Serie ausgewertet: ausgewählte Läufe ${selectedText}; Mittelwert ${fmt(calculated,2)} mL; Score ${total}/100.`);
+    log('Phase 9',`Titrationschallenge Serie ausgewertet: ausgewählte Läufe ${selectedText}; Mittelwert ${fmt(calculated,2)} mL; Standardabweichung s = ${fmt(stats.sd,3)} mL; Spannweite ${fmt(range,2)} mL; Score ${total}/100.`);
     updateChallengeTransferVisibility();
   });
 
@@ -2401,6 +2573,68 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
     setMeasurement(challenge.seriesMean,`Titrationschallenge Serie · ${challengeLevelLabel(challenge.level)} · ${challenge.seriesScore.total}/100`);
     showFeedback($('#seriesScoreFeedback'),'good',`Serienmittelwert ${fmt(challenge.seriesMean,2)} mL wurde für Phase 10 übernommen. Die Auswahl der Messwerte und die Serienbewertung bleiben im Protokoll erhalten.`);
   });
+
+  function restoreChallengeView(){
+    if(typeof challenge==='undefined') return;
+
+    $('#challengeModeSingleBtn').classList.toggle('active',challenge.mode!=='series');
+    $('#challengeModeSeriesBtn').classList.toggle('active',challenge.mode==='series');
+    $('#challengeSeriesBlock').style.display=challenge.mode==='series'?'block':'none';
+    $('#newChallengeBtn').textContent=challenge.mode==='series'?'Neue Serie starten':'Neue Probe vorbereiten';
+    $('#repeatChallengeBtn').style.display=challenge.mode==='series'?'none':'inline-flex';
+
+    $$('.challenge-level').forEach(b=>b.classList.toggle('active',b.dataset.chLevel===challenge.level));
+    $('#challengeDifficultyBadge').textContent=challengeLevelLabel(challenge.level);
+
+    if(challenge.veq!==null){
+      updateChallengeUI();
+      renderChallengeHelpers();
+      renderChallengePlot();
+    }
+
+    if(challenge.mode==='series'){
+      const reveal=!!challenge.seriesScore;
+      renderSeriesTable(reveal);
+      updateSeriesStatus();
+      $('#seriesNextRunBtn').disabled=!(challenge.seriesActive && challenge.seriesRuns.length>0 && challenge.seriesRuns.length<4 && challenge.stage==='done');
+      $('#seriesFinalBlock').classList.toggle('show',challenge.seriesRuns.length>=4 && !challenge.seriesScore);
+      $('#seriesScoreBlock').classList.toggle('show',!!challenge.seriesScore);
+
+      if(challenge.seriesMean!==null) $('#seriesMeanInput').value=String(challenge.seriesMean).replace('.',',');
+      if(challenge.seriesScore){
+        const sc=challenge.seriesScore;
+        $('#seriesScoreEndpoint').textContent=sc.endpoint;
+        $('#seriesScoreReading').textContent=sc.reading;
+        $('#seriesScoreStrategy').textContent=sc.strategy;
+        $('#seriesScoreTotal').textContent=sc.total;
+        const vals=challenge.seriesRuns.filter(r=>r.useForMean).map(r=>r.reportedVolume);
+        if(vals.length>=2) renderSeriesStatistics(vals,challenge.seriesMean);
+      }
+    }else{
+      $('#challengeSeriesStatus').classList.remove('show');
+      $('#challengeSeriesBlock').style.display='none';
+      $('#challengeResultBlock').classList.toggle('show',!!challenge.resultReady);
+      if(challenge.score){
+        $('#scoreEndpoint').textContent=challenge.score.ep;
+        $('#scoreReading').textContent=challenge.score.rd;
+        $('#scoreStrategy').textContent=challenge.score.st;
+        $('#scoreTotal').textContent=challenge.score.total;
+      }
+    }
+
+    // Restore stable interaction stage. Active titration runs are intentionally not saveable.
+    const stage=challenge.stage;
+    $('#challengeValve').value=0;
+    $('#challengeValveText').textContent='geschlossen';
+    $('#challengeValve').disabled=stage!=='titrating';
+    $('#challengeCloseValveBtn').disabled=stage!=='titrating';
+    $('#challengeEndpointBtn').disabled=stage!=='titrating' && stage!=='readStart';
+    $('#challengeStartRead').disabled=stage!=='readStart';
+    $('#challengeEndRead').disabled=stage!=='readEnd';
+    $('#challengeConsumption').disabled=stage!=='calcConsumption';
+    refreshChallengeCheckButtons();
+    updateChallengeTransferVisibility();
+  }
 
   function refreshChallengeCheckButtons(){
     const hasStart=String($('#challengeStartRead')?.value||'').trim()!=='';
@@ -2788,6 +3022,15 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
   // Navigation back
   $$('[data-back]').forEach(b=>b.addEventListener('click',()=>goPhase(parseInt(b.dataset.back))));
 
+  // Local browser progress storage
+  $('#saveProgressBtn').addEventListener('click',saveProgress);
+  $('#resumeProgressBtn').addEventListener('click',restoreProgress);
+  $('#clearProgressBtn').addEventListener('click',()=>{
+    if(!confirm('Gespeicherten Zwischenstand wirklich löschen?')) return;
+    localStorage.removeItem(STORAGE_KEY);
+    updateSaveControls();
+  });
+
   // Protocol panel
   function openProtocol(){renderProtocol();$('#protocolPanel').classList.add('open');$('#overlay').classList.add('show')}
   function closeProtocol(){$('#protocolPanel').classList.remove('open');$('#overlay').classList.remove('show')}
@@ -2815,6 +3058,7 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
   $('#livePhDisplay').textContent=fmt(PH_INITIAL,2);
   goPhase(1);
   renderProtocol();
+  updateSaveControls();
 })();
 </script>
 </body>
