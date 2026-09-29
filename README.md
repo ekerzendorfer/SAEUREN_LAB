@@ -1,13 +1,13 @@
-# SÄUREN_LAB v0.4.0c – letzter Apparatur-Feinschliff vor v0.4.1
+# SÄUREN_LAB v0.4.0d – letzter optischer Feinschliff vor v0.4.1
 
-Diese Zwischenversion schließt die optischen Korrekturen der Titrationschallenge ab.
+## Änderungen gegenüber v0.4.0c
 
-## Änderungen gegenüber v0.4.0b
-
-- Bürettenspitze endet nun klar **oberhalb der Flüssigkeitsoberfläche**
-- Tropfen fallen sichtbar in die Probe
-- zarte zusätzliche **Glaskontur im Schulter-/Zylinderbereich** des Erlenmeyerkolbens
-- pinke Phenolphthalein-Schlieren sind auf den **Flüssigkeitsbereich** begrenzt und ragen nicht mehr über den Spiegel hinaus
+- sichtbarer Teil der Bürettenspitze/Stammverlängerung gekürzt
+- Tropfspitze klarer oberhalb der Flüssigkeitsoberfläche positioniert
+- Tropfen fallen sichtbar in die Lösung
+- zusätzliche, besser erkennbare Glaskontur im Schulter-/Zylinderbereich des Erlenmeyerkolbens
+- Schaltfläche **„Endpunkt erkannt – Lauf beenden“** ist von Beginn des Challenge-Laufs an aktiv,
+  damit ihr keinen versteckten Hinweis auf den Äquivalenzpunkt erhaltet
 
 ## Nächster Schritt
 
