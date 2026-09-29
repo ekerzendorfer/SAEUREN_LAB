@@ -1,24 +1,14 @@
-# SÄUREN_LAB v0.4.0b – Apparatur-Feinschliff der Titrationschallenge
+# SÄUREN_LAB v0.4.0c – letzter Apparatur-Feinschliff vor v0.4.1
 
-Diese Zwischenversion verbessert gezielt die optische Ähnlichkeit der Challenge mit einem realen Titrationsaufbau.
+Diese Zwischenversion schließt die optischen Korrekturen der Titrationschallenge ab.
 
-## Änderungen gegenüber v0.4.0a
+## Änderungen gegenüber v0.4.0b
 
-- Erlenmeyerkolben neu positioniert und vollständig **auf** dem Magnetrührer platziert
-- Magnetrührer klarer als eigenes Gerät dargestellt
-  - eigene Farbe
-  - elliptische Auflage
-  - Drehknopf rechts
-- Rührstäbchen bleibt waagrecht in der Probe
-- Bürettenspitze steht knapp über der Kolbenöffnung
-- Layer-Reihenfolge korrigiert:
-  - Stativ hinten
-  - Magnetrührer darunter
-  - Kolben davor
-  - Bürettenspitze/Tropfen darüber
-- übrige Verbesserungen aus v0.4.0a (Direkteinstieg, kompakte Ablesetabelle, feste Apparaturhöhe) bleiben erhalten
+- Bürettenspitze endet nun klar **oberhalb der Flüssigkeitsoberfläche**
+- Tropfen fallen sichtbar in die Probe
+- zarte zusätzliche **Glaskontur im Schulter-/Zylinderbereich** des Erlenmeyerkolbens
+- pinke Phenolphthalein-Schlieren sind auf den **Flüssigkeitsbereich** begrenzt und ragen nicht mehr über den Spiegel hinaus
 
-## Weiterer geplanter Schritt
+## Nächster Schritt
 
 - v0.4.1: Serienmodus mit 4 Titrationen (1 Orientierung + 3 Bestimmungen)
-- danach: Browser-Zwischenspeicher / Fortsetzen

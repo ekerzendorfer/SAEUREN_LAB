@@ -75,18 +75,19 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
 .challenge-burette-label span{display:block}
 .challenge-stopcock{position:absolute;left:123px;top:440px;width:46px;height:18px;border-radius:9px;background:#657385;z-index:6}
 .challenge-stopcock:after{content:"";position:absolute;left:19px;top:15px;width:8px;height:47px;background:#77879a;border-radius:4px}
-.challenge-tip{position:absolute;left:144px;top:490px;width:5px;height:38px;background:#7a8999;z-index:6}
-.challenge-drop{position:absolute;left:142px;top:526px;width:9px;height:13px;border-radius:50% 50% 55% 55%;background:#9bd8fb;opacity:0;z-index:5}
+.challenge-tip{position:absolute;left:144px;top:470px;width:5px;height:20px;background:#7a8999;z-index:6}
+.challenge-drop{position:absolute;left:142px;top:486px;width:9px;height:13px;border-radius:50% 50% 55% 55%;background:#9bd8fb;opacity:0;z-index:7}
 .challenge-drop.fall{animation:challengeDrop .38s ease-in}
-@keyframes challengeDrop{0%{opacity:.9;transform:translateY(0) scale(.75)}100%{opacity:.75;transform:translateY(55px) scale(1)}}
+@keyframes challengeDrop{0%{opacity:.9;transform:translateY(0) scale(.75)}100%{opacity:.78;transform:translateY(42px) scale(1)}}
 .challenge-flask{position:absolute;left:82px;top:404px;width:136px;height:172px;transform:none;z-index:4}
 .challenge-flask-neck{position:absolute;left:50px;top:0;width:34px;height:54px;border-left:3px solid #7d8b9b;border-right:3px solid #7d8b9b;background:rgba(255,255,255,.42);z-index:5;border-radius:3px 3px 0 0}
 .challenge-flask-body{position:absolute;left:0;top:42px;width:136px;height:118px;border:3px solid #7d8b9b;border-radius:10px 10px 34px 34px;clip-path:polygon(35% 0,65% 0,95% 100%,5% 100%);overflow:hidden;background:rgba(255,255,255,.28);z-index:4}
+.challenge-flask-body:after{content:"";position:absolute;left:31px;top:-13px;width:68px;height:24px;border-left:2px solid rgba(125,139,155,.55);border-right:2px solid rgba(125,139,155,.55);border-bottom:2px solid rgba(125,139,155,.45);border-radius:0 0 18px 18px;pointer-events:none}
 .challenge-solution{position:absolute;left:0;right:0;bottom:0;height:58%;background:rgb(239,229,167);transition:background .3s ease}
 .challenge-solution:before{content:"";position:absolute;left:10%;right:10%;top:-5px;height:10px;border-radius:50%;background:rgba(255,255,255,.24)}
 .challenge-stirbar{position:absolute;left:46px;bottom:12px;width:46px;height:6px;border-radius:5px;background:#374151;z-index:6;transform-origin:center;animation:challengeStir .55s ease-in-out infinite}
 @keyframes challengeStir{0%,100%{transform:scaleX(1)}50%{transform:scaleX(.28)}}
-.challenge-swirls{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:4}
+.challenge-swirls{position:absolute;left:0;right:0;bottom:0;height:58%;overflow:hidden;pointer-events:none;z-index:4}
 .challenge-swirl{position:absolute;width:30px;height:14px;border-radius:50%;border:5px solid rgba(219,54,130,.65);filter:blur(1px);opacity:.9;animation:challengeSwirl var(--swirlDur,800ms) ease-out forwards}
 @keyframes challengeSwirl{0%{opacity:.95;transform:scale(.55) rotate(0deg)}55%{opacity:.65;transform:scale(1.45) rotate(85deg)}100%{opacity:0;transform:scale(2.1) rotate(170deg)}}
 .challenge-stirrer{position:absolute;left:64px;bottom:34px;width:168px;height:42px;border-radius:12px;background:linear-gradient(180deg,#8fa5bf,#6f849e);box-shadow:0 6px 14px #0002;border:1px solid #66778a;z-index:2}
@@ -144,7 +145,7 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
       <p>Beispiel 1: Speiseessig – vom pH-Wert zur Lebensmittelanalyse</p>
     </div>
     <div class="header-actions">
-      <span class="version">v0.4.0b · Phase 1–10 + Challenge</span>
+      <span class="version">v0.4.0c · Phase 1–10 + Challenge</span>
       <button class="btn primary" id="directChallengeBtn">Titrationschallenge direkt</button>
       <button class="btn" id="protocolBtn">Protokoll</button>
       <button class="btn" id="resetAllBtn">Neu starten</button>
@@ -916,7 +917,7 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
   </section>
 
   <div class="card" style="margin-top:14px"><h3>Nächster Ausbau: Serienmodus der Titrationschallenge</h3><p class="subtle"><b>Geplant für v0.4.1:</b> vier Läufe mit derselben Probe (1 Orientierung + 3 Bestimmungen), ohne die Bürette jedes Mal auf 0,00 mL aufzufüllen. Anfangs- und Endstände werden selbst abgelesen, geeignete Werte für den Mittelwert ausgewählt und erst danach gemeinsam bewertet.</p></div>
-  <p class="footer-note">SÄUREN_LAB v0.4.0b · technischer Prototyp für GitHub Pages · Phasen 1–10</p>
+  <p class="footer-note">SÄUREN_LAB v0.4.0c · technischer Prototyp für GitHub Pages · Phasen 1–10</p>
 </main>
 
 <div class="overlay" id="overlay"></div>
