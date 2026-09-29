@@ -61,31 +61,31 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
 .challenge-levels{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:12px 0}
 .challenge-level{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff;text-align:left}
 .challenge-level.active{border-color:var(--accent);background:#f4f7ff;box-shadow:0 0 0 2px rgba(36,87,197,.08)}
-.challenge-lab{display:grid;grid-template-columns:minmax(250px,.85fr) minmax(310px,1fr) minmax(300px,1.05fr);gap:14px;align-items:stretch;margin-top:14px}
-.challenge-apparatus{position:relative;min-height:600px;overflow:hidden;background:linear-gradient(#fbfdff,#f3f6fa);border:1px solid var(--line);border-radius:14px}
+.challenge-lab{display:grid;grid-template-columns:minmax(245px,.78fr) minmax(335px,1fr) minmax(320px,1.05fr);gap:14px;align-items:start;margin-top:14px}
+.challenge-apparatus{position:relative;height:620px;min-height:620px;overflow:hidden;background:linear-gradient(#fbfdff,#f3f6fa);border:1px solid var(--line);border-radius:14px}
 .burette-stand-base{position:absolute;left:24px;right:24px;bottom:28px;height:15px;border-radius:50%;background:#7b8797}
 .burette-stand-rod{position:absolute;left:55px;top:26px;bottom:35px;width:10px;border-radius:5px;background:linear-gradient(90deg,#8492a3,#c6d0db,#7a8797)}
-.challenge-burette{position:absolute;left:112px;top:34px;width:70px;height:370px;border:3px solid #718093;border-radius:12px 12px 9px 9px;background:
+.challenge-burette{position:absolute;left:119px;top:25px;width:56px;height:405px;border:3px solid #718093;border-radius:12px 12px 9px 9px;background:
   repeating-linear-gradient(to bottom,transparent 0 7px,rgba(73,89,108,.34) 7px 8px,transparent 8px 14px),
   rgba(255,255,255,.86);overflow:hidden}
 .challenge-burette:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.65),transparent 33%,rgba(255,255,255,.2) 70%,rgba(73,89,108,.05));pointer-events:none}
 .challenge-burette-liquid{position:absolute;left:4px;right:4px;top:0;bottom:0;background:rgba(173,218,246,.65);transition:top .08s linear}
 .challenge-meniscus{position:absolute;left:4px;right:4px;height:12px;border-top:3px solid #679dc3;border-radius:50%;transform:translateY(-5px);z-index:4;pointer-events:none}
-.challenge-burette-label{position:absolute;left:190px;top:29px;font-size:.78rem;color:var(--muted);line-height:1.55}
+.challenge-burette-label{position:absolute;left:184px;top:23px;font-size:.78rem;color:var(--muted);line-height:1.55}
 .challenge-burette-label span{display:block}
-.challenge-stopcock{position:absolute;left:124px;top:408px;width:46px;height:18px;border-radius:9px;background:#657385}
+.challenge-stopcock{position:absolute;left:123px;top:438px;width:46px;height:18px;border-radius:9px;background:#657385}
 .challenge-stopcock:after{content:"";position:absolute;left:19px;top:15px;width:8px;height:47px;background:#77879a;border-radius:4px}
-.challenge-tip{position:absolute;left:145px;top:458px;width:5px;height:47px;background:#7a8999}
-.challenge-drop{position:absolute;left:143px;top:500px;width:9px;height:13px;border-radius:50% 50% 55% 55%;background:#9bd8fb;opacity:0;z-index:5}
+.challenge-tip{position:absolute;left:144px;top:488px;width:5px;height:47px;background:#7a8999}
+.challenge-drop{position:absolute;left:142px;top:526px;width:9px;height:13px;border-radius:50% 50% 55% 55%;background:#9bd8fb;opacity:0;z-index:5}
 .challenge-drop.fall{animation:challengeDrop .38s ease-in}
 @keyframes challengeDrop{0%{opacity:.9;transform:translateY(0) scale(.75)}100%{opacity:.75;transform:translateY(55px) scale(1)}}
-.challenge-flask{position:absolute;left:79px;top:515px;width:138px;height:0;transform:translateY(-84px)}
-.challenge-flask-neck{position:absolute;left:51px;top:-8px;width:38px;height:47px;border-left:3px solid #7d8b9b;border-right:3px solid #7d8b9b;background:rgba(255,255,255,.45);z-index:3}
-.challenge-flask-body{position:absolute;left:4px;top:33px;width:130px;height:108px;border:3px solid #7d8b9b;border-radius:9px 9px 42px 42px;clip-path:polygon(35% 0,65% 0,100% 100%,0 100%);overflow:hidden;background:rgba(255,255,255,.28)}
+.challenge-flask{position:absolute;left:74px;top:545px;width:150px;height:0;transform:translateY(-85px)}
+.challenge-flask-neck{position:absolute;left:57px;top:-18px;width:36px;height:58px;border-left:3px solid #7d8b9b;border-right:3px solid #7d8b9b;background:rgba(255,255,255,.45);z-index:3}
+.challenge-flask-body{position:absolute;left:0;top:34px;width:148px;height:112px;border:3px solid #7d8b9b;border-radius:9px 9px 42px 42px;clip-path:polygon(35% 0,65% 0,100% 100%,0 100%);overflow:hidden;background:rgba(255,255,255,.28)}
 .challenge-solution{position:absolute;left:0;right:0;bottom:0;height:58%;background:rgb(239,229,167);transition:background .3s ease}
 .challenge-solution:before{content:"";position:absolute;left:10%;right:10%;top:-5px;height:10px;border-radius:50%;background:rgba(255,255,255,.24)}
-.challenge-stirbar{position:absolute;left:46px;bottom:12px;width:38px;height:7px;border-radius:5px;background:#374151;z-index:5;animation:challengeStir .7s linear infinite}
-@keyframes challengeStir{to{transform:rotate(360deg)}}
+.challenge-stirbar{position:absolute;left:52px;bottom:11px;width:44px;height:6px;border-radius:5px;background:#374151;z-index:5;transform-origin:center;animation:challengeStir .55s ease-in-out infinite}
+@keyframes challengeStir{0%,100%{transform:scaleX(1)}50%{transform:scaleX(.28)}}
 .challenge-swirls{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:4}
 .challenge-swirl{position:absolute;width:30px;height:14px;border-radius:50%;border:5px solid rgba(219,54,130,.65);filter:blur(1px);opacity:.9;animation:challengeSwirl var(--swirlDur,800ms) ease-out forwards}
 @keyframes challengeSwirl{0%{opacity:.95;transform:scale(.55) rotate(0deg)}55%{opacity:.65;transform:scale(1.45) rotate(85deg)}100%{opacity:0;transform:scale(2.1) rotate(170deg)}}
@@ -115,6 +115,21 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
 .meniscus-body{padding:14px 16px 18px}
 .meniscus-body svg{display:block;width:100%;max-height:420px}
 .challenge-formula{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;background:#f4f7fb;border:1px solid var(--line);border-radius:9px;padding:8px 10px;font-weight:750;margin:8px 0}
+.challenge-reading-table{width:100%;border-collapse:separate;border-spacing:6px;margin-top:12px;table-layout:fixed}
+.challenge-reading-table th{font-size:.76rem;color:var(--muted);font-weight:750;text-align:left;padding:0 2px}
+.challenge-reading-table td{padding:0 2px}
+.challenge-reading-table .field{width:100%;min-width:0}
+.challenge-check-row{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:7px}
+.challenge-check-row .btn{padding:8px 5px;font-size:.78rem}
+.challenge-feedback-stack{display:grid;gap:8px;margin-top:12px}
+.challenge-feedback-stack .feedback{margin:0}
+.challenge-valve-scale{display:grid;grid-template-columns:repeat(4,1fr);font-size:.72rem;color:var(--muted);margin-top:4px}
+.challenge-valve-scale span:nth-child(2),.challenge-valve-scale span:nth-child(3){text-align:center}
+.challenge-valve-scale span:last-child{text-align:right}
+.challenge-current-state{font-size:.82rem;margin-top:5px;color:var(--muted)}
+.challenge-current-state output{font-weight:800;color:var(--accent)}
+.challenge-direct-note{display:none;margin:0 0 12px;padding:10px 12px;border:1px solid #bdd0f2;background:#f3f7ff;border-radius:10px;color:#244b91}
+.challenge-direct-note.show{display:block}
 
 @media(max-width:980px){.grid3,.grid2,.phase6-grid,.titration-top,.measurement,.path-grid,.calc-chain,.challenge-lab{grid-template-columns:1fr}.plan-steps{grid-template-columns:1fr 1fr}.challenge-levels,.challenge-score-grid{grid-template-columns:1fr}.stepper{grid-template-columns:1fr 1fr;overflow:visible}.header-inner{align-items:flex-start}.sample-stage{min-height:190px}.auto-controls{grid-template-columns:1fr}}
 </style>
@@ -127,7 +142,8 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
       <p>Beispiel 1: Speiseessig – vom pH-Wert zur Lebensmittelanalyse</p>
     </div>
     <div class="header-actions">
-      <span class="version">v0.4.0 · Phase 1–10 + Challenge</span>
+      <span class="version">v0.4.0a · Phase 1–10 + Challenge</span>
+      <button class="btn primary" id="directChallengeBtn">Titrationschallenge direkt</button>
       <button class="btn" id="protocolBtn">Protokoll</button>
       <button class="btn" id="resetAllBtn">Neu starten</button>
     </div>
@@ -567,6 +583,7 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
     <div class="card">
       <h2>9. Real durchführen, beobachten oder virtuell vertiefen</h2>
       <p class="subtle">Der Realversuch ist optional. Wählt den Weg, der zu eurer Unterrichtssituation passt. Für die anschließende Auswertung benötigt ihr nur einen plausiblen NaOH-Verbrauch.</p>
+      <div class="challenge-direct-note" id="challengeDirectNote"><b>Direkter Trainingsmodus:</b> Ihr seid ohne die Phasen 1–8 direkt in die Titrationschallenge eingestiegen. Für das vollständige Essigbeispiel bleibt der normale Weg über Phase 9 erhalten.</div>
       <div class="path-grid">
         <div class="path-card" id="pathRealCard">
           <h3>A · Selbst titrieren</h3>
@@ -677,7 +694,8 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
           <p class="subtle">Wie im Labor: zunächst darf es schneller gehen – nahe dem Endpunkt zählt die Feindosierung.</p>
           <label for="challengeValve"><b>Hahnöffnung</b></label>
           <input id="challengeValve" type="range" min="0" max="100" step="1" value="0" disabled>
-          <div class="inline" style="justify-content:space-between"><span>geschlossen</span><output id="challengeValveText">geschlossen</output><span>schneller Fluss</span></div>
+          <div class="challenge-valve-scale"><span>geschlossen</span><span>tropfenweise</span><span>langsamer Fluss</span><span>schneller Fluss</span></div>
+          <div class="challenge-current-state">Aktuell: <output id="challengeValveText">geschlossen</output></div>
           <button class="btn challenge-stop-btn" id="challengeCloseValveBtn" disabled>Hahn sofort schließen</button>
 
           <div class="challenge-observation" id="challengeObservation"><b>Beobachtung:</b> Probe vorbereitet – zuerst den Anfangsstand der Bürette ablesen.</div>
@@ -687,32 +705,18 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
             <p class="challenge-stage-note">50-mL-Bürette · Teilung 0,1 mL · Ablesen auf etwa 0,05 mL. Die Skala nimmt nach unten zu.</p>
           </div>
 
-          <div id="challengeStartReadBlock">
-            <label><b>Anfangsstand ablesen / mL</b></label>
-            <div class="inline" style="margin-top:7px">
-              <input class="field short" id="challengeStartRead" type="text" inputmode="decimal" placeholder="z. B. 0,35">
-              <button class="btn" id="checkChallengeStartBtn" disabled>Ablesung prüfen</button>
-            </div>
-            <div class="feedback" id="challengeStartFeedback"></div>
-          </div>
-
-          <div class="hidden-block" id="challengeEndReadBlock">
-            <label><b>Endstand ablesen / mL</b></label>
-            <div class="inline" style="margin-top:7px">
-              <input class="field short" id="challengeEndRead" type="text" inputmode="decimal">
-              <button class="btn" id="checkChallengeEndBtn">Ablesung prüfen</button>
-            </div>
-            <div class="feedback" id="challengeEndFeedback"></div>
-          </div>
-
-          <div class="hidden-block" id="challengeConsumptionBlock">
-            <div class="challenge-formula">Verbrauch = Endstand − Anfangsstand</div>
-            <label><b>Euer berechneter NaOH-Verbrauch / mL</b></label>
-            <div class="inline" style="margin-top:7px">
-              <input class="field short" id="challengeConsumption" type="text" inputmode="decimal">
-              <button class="btn" id="checkChallengeConsumptionBtn">Differenz prüfen</button>
-            </div>
-            <div class="feedback" id="challengeConsumptionFeedback"></div>
+          <table class="challenge-reading-table" aria-label="Bürettenablesung und Verbrauch">
+            <thead><tr><th>V(Anfang) / mL</th><th>V(Ende) / mL</th><th>Differenz = Verbrauch / mL</th></tr></thead>
+            <tbody><tr>
+              <td id="challengeStartReadBlock"><input class="field" id="challengeStartRead" type="text" inputmode="decimal" placeholder="z. B. 0,35"></td>
+              <td id="challengeEndReadBlock"><input class="field" id="challengeEndRead" type="text" inputmode="decimal" placeholder="Endstand" disabled></td>
+              <td id="challengeConsumptionBlock"><input class="field" id="challengeConsumption" type="text" inputmode="decimal" placeholder="Ende − Anfang" disabled></td>
+            </tr></tbody>
+          </table>
+          <div class="challenge-check-row">
+            <button class="btn" id="checkChallengeStartBtn" disabled>Anfang prüfen</button>
+            <button class="btn" id="checkChallengeEndBtn" disabled>Ende prüfen</button>
+            <button class="btn" id="checkChallengeConsumptionBtn" disabled>Differenz prüfen</button>
           </div>
 
           <button class="btn primary" id="challengeEndpointBtn" disabled style="width:100%;margin-top:14px">Endpunkt erkannt – Lauf beenden</button>
@@ -731,6 +735,11 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
           <div class="callout" style="margin-top:12px">
             <b>Worauf achten?</b><br>
             Besonders kurz vor dem Endpunkt können beim Auftreffen einzelner NaOH-Tropfen rosa Schlieren entstehen, die beim Rühren wieder verschwinden. Je länger sie bestehen bleiben, desto vorsichtiger solltet ihr weiterdosieren.
+          </div>
+          <div class="challenge-feedback-stack">
+            <div class="feedback" id="challengeStartFeedback"></div>
+            <div class="feedback" id="challengeEndFeedback"></div>
+            <div class="feedback" id="challengeConsumptionFeedback"></div>
           </div>
         </div>
       </div>
@@ -905,7 +914,7 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
   </section>
 
   <div class="card" style="margin-top:14px"><h3>Nächster Ausbau: Serienmodus der Titrationschallenge</h3><p class="subtle"><b>Geplant für v0.4.1:</b> vier Läufe mit derselben Probe (1 Orientierung + 3 Bestimmungen), ohne die Bürette jedes Mal auf 0,00 mL aufzufüllen. Anfangs- und Endstände werden selbst abgelesen, geeignete Werte für den Mittelwert ausgewählt und erst danach gemeinsam bewertet.</p></div>
-  <p class="footer-note">SÄUREN_LAB v0.4.0 · technischer Prototyp für GitHub Pages · Phasen 1–10</p>
+  <p class="footer-note">SÄUREN_LAB v0.4.0a · technischer Prototyp für GitHub Pages · Phasen 1–10</p>
 </main>
 
 <div class="overlay" id="overlay"></div>
@@ -966,6 +975,7 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
     percentAcid:null,
     comparisonSaved:false,
     finalInsightDone:false,
+    directChallenge:false,
     maxUnlocked:1,
     protocol:[]
   };
@@ -1053,6 +1063,16 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
     if(n===9) renderPhase9();
     if(n===10) renderPhase10();
   }
+
+  $('#directChallengeBtn').addEventListener('click',()=>{
+    state.directChallenge=true;
+    state.experimentPath='challenge';
+    goPhase(9);
+    $('#challengeDirectNote').classList.add('show');
+    renderPhase9();
+    renderChallengeHelpers();
+    setTimeout(()=>$('#pathChallengeBlock')?.scrollIntoView({behavior:'smooth',block:'start'}),250);
+  });
 
   function hypothesisText(){
     const v=state.hypothesis;
@@ -1831,17 +1851,22 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
     $('#challengeCloseValveBtn').disabled=true; $('#challengeEndpointBtn').disabled=true;
     $('#openMeniscusBtn').disabled=false; $('#checkChallengeStartBtn').disabled=false;
     $('#challengeStartRead').value=''; $('#challengeEndRead').value=''; $('#challengeConsumption').value='';
+    $('#challengeStartRead').disabled=false;
+    $('#challengeEndRead').disabled=true;
+    $('#challengeConsumption').disabled=true;
+    $('#checkChallengeStartBtn').disabled=true;
+    $('#checkChallengeEndBtn').disabled=true;
+    $('#checkChallengeConsumptionBtn').disabled=true;
     $('#challengeStartFeedback').classList.remove('show');
     $('#challengeEndFeedback').classList.remove('show');
     $('#challengeConsumptionFeedback').classList.remove('show');
-    $('#challengeEndReadBlock').classList.remove('show');
-    $('#challengeConsumptionBlock').classList.remove('show');
     $('#challengeResultBlock').classList.remove('show');
     $('#repeatChallengeBtn').disabled=false;
     $('#challengeObservation').innerHTML='<b>Beobachtung:</b> Die Probe ist leicht gelblich und wird gerührt. Lest zuerst den Anfangsstand der Bürette im Zoom ab.';
     updateChallengeUI();
     renderChallengeHelpers();
     renderChallengePlot();
+    refreshChallengeCheckButtons();
   }
   $('#newChallengeBtn').addEventListener('click',()=>newChallenge(false));
   $('#repeatChallengeBtn').addEventListener('click',()=>newChallenge(true));
@@ -2012,6 +2037,19 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
     const d=$('#meniscusDialog'); if(typeof d.close==='function') d.close(); else d.removeAttribute('open');
   });
 
+
+  function refreshChallengeCheckButtons(){
+    const hasStart=String($('#challengeStartRead')?.value||'').trim()!=='';
+    const hasEnd=String($('#challengeEndRead')?.value||'').trim()!=='';
+    const hasConsumption=String($('#challengeConsumption')?.value||'').trim()!=='';
+    $('#checkChallengeStartBtn').disabled=!(challenge.stage==='readStart' && hasStart);
+    $('#checkChallengeEndBtn').disabled=!(challenge.stage==='readEnd' && hasEnd);
+    $('#checkChallengeConsumptionBtn').disabled=!(challenge.stage==='calcConsumption' && hasConsumption);
+  }
+  ['challengeStartRead','challengeEndRead','challengeConsumption'].forEach(id=>{
+    $('#'+id)?.addEventListener('input',refreshChallengeCheckButtons);
+  });
+
   $('#checkChallengeStartBtn').addEventListener('click',()=>{
     if(challenge.stage!=='readStart') return;
     const u=parseNum($('#challengeStartRead').value);
@@ -2022,7 +2060,8 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
       challenge.startAccepted=u;
       challenge.stage='titrating';
       $('#challengeValve').disabled=false; $('#challengeCloseValveBtn').disabled=false; $('#challengeEndpointBtn').disabled=false;
-      $('#checkChallengeStartBtn').disabled=true;
+      $('#challengeStartRead').disabled=true;
+      refreshChallengeCheckButtons();
       showFeedback($('#challengeStartFeedback'),'good','Die Ablesung liegt innerhalb der erwartbaren Genauigkeit einer 0,1-mL-Bürette. Ihr könnt titrieren.');
       log('Phase 9',`Titrationschallenge (${challengeLevelLabel(challenge.level)}): Anfangsstand der Bürette abgelesen.`);
       startChallengeTimer();
@@ -2037,8 +2076,9 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
     challenge.opening=0; $('#challengeValve').value=0; $('#challengeValveText').textContent='geschlossen';
     challenge.stage='readEnd';
     $('#challengeValve').disabled=true; $('#challengeCloseValveBtn').disabled=true; $('#challengeEndpointBtn').disabled=true;
-    $('#challengeEndReadBlock').classList.add('show');
+    $('#challengeEndRead').disabled=false;
     $('#challengeObservation').innerHTML='<b>Lauf beendet.</b> Lest jetzt den Endstand der Bürette möglichst genau ab. Erst danach wird ausgewertet.';
+    refreshChallengeCheckButtons();
     renderMeniscusZoom();
   });
 
@@ -2051,8 +2091,10 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
     if(err<=0.06){
       challenge.endAccepted=u;
       challenge.stage='calcConsumption';
+      $('#challengeEndRead').disabled=true;
+      $('#challengeConsumption').disabled=false;
       showFeedback($('#challengeEndFeedback'),'good','Endstand plausibel abgelesen. Berechnet jetzt den tatsächlichen Verbrauch als Differenz aus End- und Anfangsstand.');
-      $('#challengeConsumptionBlock').classList.add('show');
+      refreshChallengeCheckButtons();
     } else {
       const dir=u<trueEnd?'zu klein':'zu groß';
       showFeedback($('#challengeEndFeedback'),'hint',`Der Wert ist ${dir}. Achtet auf den tiefsten Punkt des Meniskus und darauf, dass die Bürettenskala nach unten größer wird.`);
@@ -2067,6 +2109,8 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
     if(Math.abs(u-expected)<=0.031){
       challenge.reportedVolume=u;
       challenge.stage='done';
+      $('#challengeConsumption').disabled=true;
+      refreshChallengeCheckButtons();
       showFeedback($('#challengeConsumptionFeedback'),'good',`Richtig: Endstand minus Anfangsstand ergibt ${fmt(expected,2)} mL.`);
       evaluateChallenge();
     } else {
@@ -2145,6 +2189,7 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
 
   // Phase 9
   function renderPhase9(){
+    $('#challengeDirectNote')?.classList.toggle('show',!!state.directChallenge);
     ['real','video','challenge','tool'].forEach(p=>{
       const block=$(`#path${p[0].toUpperCase()+p.slice(1)}Block`);
       const card=$(`#path${p[0].toUpperCase()+p.slice(1)}Card`);
@@ -2154,6 +2199,7 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
     renderChosenMeasurement();
   }
   $$('.pathSelect').forEach(b=>b.addEventListener('click',()=>{
+    state.directChallenge=false;
     state.experimentPath=b.dataset.path;
     renderPhase9();
     if(state.experimentPath==='challenge') renderChallengeHelpers();
