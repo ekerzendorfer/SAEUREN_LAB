@@ -67,7 +67,7 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
       <p>Beispiel 1: Speiseessig – vom pH-Wert zur Lebensmittelanalyse</p>
     </div>
     <div class="header-actions">
-      <span class="version">v0.3.0 · Phase 1–10</span>
+      <span class="version">v0.3.1 · Phase 1–10</span>
       <button class="btn" id="protocolBtn">Protokoll</button>
       <button class="btn" id="resetAllBtn">Neu starten</button>
     </div>
@@ -520,7 +520,7 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
         </div>
         <div class="path-card" id="pathToolCard">
           <h3>C · Im TITRATIONSTOOL</h3>
-          <p>Die bereits vorhandene Aufgabe „unbekannte Essiglösung“ verwenden.</p>
+          <p>Die speziell dafür vorbereitete Brückenaufgabe TITR_A10 verwenden.</p>
           <button class="btn soft pathSelect" data-path="tool">Diesen Weg wählen</button>
         </div>
       </div>
@@ -564,11 +564,11 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
 
     <div class="card hidden-block" id="pathToolBlock" style="margin-top:14px">
       <h3>C · Im großen TITRATIONSTOOL</h3>
-      <p>Verwendet die vorhandene Aufgabe zur <b>unbekannten Essiglösung</b>.</p>
+      <p>Verwendet die eigens dafür vorbereitete Brückenaufgabe <b>„SÄUREN_LAB – Essigprobe: NaOH-Verbrauch bestimmen“</b>.</p>
       <div class="callout">
-        <b>Wichtige Anpassung:</b> In dieser Aufgabe ist derzeit ein Probenvolumen von 20 mL voreingestellt. Für den direkten Vergleich mit dem SÄUREN_LAB stellt ihr <b>V(Probe) auf 10,0 mL</b> ein. Die übrige Versuchsidee bleibt gleich.
+        <b>Die Einstellungen passen bereits:</b> 10,0 mL verdünnte Essigprobe, 0,100 mol/L NaOH und Phenolphthalein. Die Probenkonzentration bleibt unbekannt. Im TITRATIONSTOOL soll <b>nur V(NaOH) am Äquivalenzpunkt</b> bestimmt werden – die gesamte Auswertung folgt anschließend hier im SÄUREN_LAB.
       </div>
-      <a class="btn soft" href="https://ekerzendorfer.github.io/TITRATIONSTOOL/" target="_blank" rel="noopener">TITRATIONSTOOL öffnen</a>
+      <a class="btn soft" href="https://ekerzendorfer.github.io/TITRATIONSTOOL/?task=TITR_A10" target="_blank" rel="noopener">Brückenaufgabe im TITRATIONSTOOL öffnen</a>
       <div class="question">
         <label><b>Dort ermittelter NaOH-Verbrauch:</b></label>
         <div class="inline" style="margin-top:7px"><input class="field short" id="toolVolume" type="text" inputmode="decimal"><span>mL</span><button class="btn" id="saveToolBtn">Messwert übernehmen</button></div>
@@ -706,7 +706,7 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
   </section>
 
   <div class="card" style="margin-top:14px"><h3>Nächster Ausbau: Titrationschallenge</h3><p class="subtle"><b>Ziel:</b> Mit selbst gewählten Zugabeschritten den Äquivalenz-/Endpunkt möglichst genau treffen. Die Rückmeldung soll die Abweichung erklären und nicht nur bewerten.</p></div>
-  <p class="footer-note">SÄUREN_LAB v0.3.0 · technischer Prototyp für GitHub Pages · Phasen 1–10</p>
+  <p class="footer-note">SÄUREN_LAB v0.3.1 · technischer Prototyp für GitHub Pages · Phasen 1–10</p>
 </main>
 
 <div class="overlay" id="overlay"></div>
@@ -1639,8 +1639,8 @@ main{max-width:1320px;margin:18px auto 50px;padding:0 18px}.stepper{display:grid
   $('#saveToolBtn').addEventListener('click',()=>{
     const v=parseNum($('#toolVolume').value);
     if(!plausibleVolume(v)){showFeedback($('#toolFeedback'),'hint','Tragt den im TITRATIONSTOOL bestimmten NaOH-Verbrauch als positiven mL-Wert ein.');return;}
-    setMeasurement(v,'TITRATIONSTOOL – Aufgabe unbekannte Essiglösung, V(Probe)=10,0 mL');
-    showFeedback($('#toolFeedback'),'good',`Virtueller Messwert ${fmt(v,2)} mL wurde übernommen. Wichtig für den Vergleich: Das Probenvolumen wurde auf 10,0 mL reduziert.`);
+    setMeasurement(v,'TITRATIONSTOOL – TITR_A10 · SÄUREN_LAB-Essigprobe');
+    showFeedback($('#toolFeedback'),'good',`Virtueller Messwert ${fmt(v,2)} mL wurde übernommen. Genau dieser NaOH-Verbrauch wird nun im SÄUREN_LAB weiter ausgewertet.`);
   });
   $('#toPhase10Btn').addEventListener('click',()=>goPhase(10));
 
